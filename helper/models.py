@@ -4,7 +4,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models import (ForeignKey, IntegerField, CharField, BooleanField, DateTimeField)
+from django.db.models import (ForeignKey, CharField, BooleanField, DateTimeField)
 
 
 class PersonGroup(models.Model):
@@ -26,7 +26,7 @@ class Person(models.Model):
     firstName = CharField(max_length=25)
     lastName = CharField(max_length=25)
     isActive = BooleanField(default=True)
-    cardNumber = IntegerField()
+    cardNumber = CharField(max_length=15)
 
     group = ForeignKey('PersonGroup')
 
@@ -61,7 +61,6 @@ class AlarmRule(models.Model):
     """
     person = ForeignKey('Person')
     zone = ForeignKey('AlarmZone')
-
     confirmed = BooleanField(default=False)
 
     def __str___(self):
@@ -130,7 +129,7 @@ class ACSRule(models.Model):
 
     Many-to-many table. Entry in this table allowing person get in to the ACSZone
     """
-    user = ForeignKey('Person')
+    person = ForeignKey('Person')
     zone = ForeignKey('ACSZone')
     confirmed = BooleanField(default=False)
 
@@ -201,9 +200,9 @@ class KeyRule(models.Model):
 
     Many-to-many table. Entry in this table allowing person get the key.
     """
-    user = ForeignKey('Person')
+    person = ForeignKey('Person')
     key = ForeignKey('Key')
-    confirmed = BooleanField(defaul=False)
+    confirmed = BooleanField(default=False)
 
     def __str___(self):
         """String repr"""
