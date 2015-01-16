@@ -50,6 +50,10 @@ class ACSZoneTest(TestCase):
         self.assertEqual(zone1.manager, manager)
         self.assertEqual(zone2.manager, manager)
 
+    def test_str(self):
+        zone = ACSZone.objects.get(name='Zone 1')
+        self.assertNotEqual(str(zone), '')
+
 
 class ACSRuleTest(TestCase):
     def setUp(self):
@@ -68,6 +72,13 @@ class ACSRuleTest(TestCase):
         self.assertEqual(rule1.confirmed, False)
 
         self.assertEqual(rule2.confirmed, True)
+
+    def test_str(self):
+        person = Person.objects.get(id=1)
+        zone = ACSZone.objects.get(id=1)
+
+        obj = ACSRule.objects.create(person=person, zone=zone)
+        self.assertNotEqual(str(obj), '')
 
 
 class ACSRequestTest(TestCase):
@@ -89,6 +100,13 @@ class ACSRequestTest(TestCase):
 
         self.assertEqual(req2.addRule, False)
 
+    def test_str(self):
+        rule = ACSRule.objects.get(id=1)
+        user = rule.zone.manager
+
+        obj = ACSRequest.objects.create(user=user, rule=rule)
+        self.assertNotEqual(str(obj), '')
+
 
 class ACSOrdertTest(TestCase):
     def setUp(self):
@@ -109,6 +127,13 @@ class ACSOrdertTest(TestCase):
 
         self.assertEqual(order2.addRule, False)
 
+    def test_str(self):
+        rule = ACSRule.objects.get(id=1)
+        user = rule.zone.manager
+
+        obj = ACSRequest.objects.create(user=user, rule=rule)
+        self.assertNotEqual(str(obj), '')
+
 
 class ACSConfirmtTest(TestCase):
     def setUp(self):
@@ -123,6 +148,13 @@ class ACSConfirmtTest(TestCase):
         self.assertEqual(confirm.user, user)
         self.assertEqual(confirm.order, order)
         self.assertIsNotNone(confirm.executionDate)
+
+    def test_str(self):
+        order = ACSOrder.objects.get(id=1)
+        user = SysUser.objects.get(id=2)
+
+        obj = ACSConfirm.objects.create(order=order, user=user)
+        self.assertNotEqual(str(obj), '')
 
 
 class AlarmZoneTest(TestCase):
@@ -142,6 +174,10 @@ class AlarmZoneTest(TestCase):
         self.assertEqual(zone1.manager, manager1)
         self.assertEqual(zone2.manager, manager1)
 
+    def test_str(self):
+        obj = AlarmZone.objects.get(name='Zone 1')
+        self.assertNotEqual(str(obj), '')
+
 
 class AlarmRuleTest(TestCase):
     def setUp(self):
@@ -160,6 +196,13 @@ class AlarmRuleTest(TestCase):
         self.assertEqual(rule1.confirmed, False)
 
         self.assertEqual(rule2.confirmed, True)
+
+    def test_str(self):
+        person = Person.objects.get(id=1)
+        zone = AlarmZone.objects.get(id=1)
+
+        obj = AlarmRule.objects.create(person=person, zone=zone)
+        self.assertNotEqual(str(obj), '')
 
 
 class AlarmRequestTest(TestCase):
@@ -181,6 +224,13 @@ class AlarmRequestTest(TestCase):
 
         self.assertEqual(req2.addRule, False)
 
+    def test_str(self):
+        rule = AlarmRule.objects.get(id=1)
+        user = rule.zone.manager
+
+        obj = AlarmRequest.objects.create(user=user, rule=rule)
+        self.assertNotEqual(str(obj), '')
+
 
 class AlarmOrdertTest(TestCase):
     def setUp(self):
@@ -201,6 +251,13 @@ class AlarmOrdertTest(TestCase):
 
         self.assertEqual(order2.addRule, False)
 
+    def test_str(self):
+        rule = AlarmRule.objects.get(id=1)
+        user = rule.zone.manager
+
+        obj = AlarmRequest.objects.create(user=user, rule=rule)
+        self.assertNotEqual(str(obj), '')
+
 
 class AlarmConfirmtTest(TestCase):
     def setUp(self):
@@ -215,6 +272,13 @@ class AlarmConfirmtTest(TestCase):
         self.assertEqual(confirm.user, user)
         self.assertEqual(confirm.order, order)
         self.assertIsNotNone(confirm.executionDate)
+
+    def test_str(self):
+        order = AlarmOrder.objects.get(id=1)
+        user = SysUser.objects.get(id=2)
+
+        obj = AlarmConfirm.objects.create(order=order, user=user)
+        self.assertNotEqual(str(obj), '')
 
 
 class KeyTest(TestCase):
@@ -234,6 +298,10 @@ class KeyTest(TestCase):
         self.assertEqual(key1.manager, manager1)
         self.assertEqual(key2.manager, manager1)
 
+    def test_str(self):
+        obj =  Key.objects.get(name='Key 1')
+        self.assertNotEqual(str(obj), '')
+
 
 class KeyRuleTest(TestCase):
     def setUp(self):
@@ -252,6 +320,13 @@ class KeyRuleTest(TestCase):
         self.assertEqual(rule1.confirmed, False)
 
         self.assertEqual(rule2.confirmed, True)
+
+    def test_str(self):
+        person = Person.objects.get(id=1)
+        key = Key.objects.get(id=1)
+
+        obj = KeyRule.objects.create(person=person, key=key)
+        self.assertNotEqual(str(obj), '')
 
 
 class KeyRequestTest(TestCase):
@@ -273,6 +348,13 @@ class KeyRequestTest(TestCase):
 
         self.assertEqual(req2.addRule, False)
 
+    def test_str(self):
+        rule = KeyRule.objects.get(id=1)
+        user = rule.key.manager
+
+        obj = KeyRequest.objects.create(user=user, rule=rule)
+        self.assertNotEqual(str(obj), '')
+
 
 class KeyOrdertTest(TestCase):
     def setUp(self):
@@ -293,6 +375,13 @@ class KeyOrdertTest(TestCase):
 
         self.assertEqual(order2.addRule, False)
 
+    def test_str(self):
+        rule = KeyRule.objects.get(id=1)
+        user = rule.key.manager
+
+        obj = KeyRequest.objects.create(user=user, rule=rule)
+        self.assertNotEqual(str(obj), '')
+
 
 class KeyConfirmtTest(TestCase):
     def setUp(self):
@@ -308,6 +397,13 @@ class KeyConfirmtTest(TestCase):
         self.assertEqual(confirm.order, order)
         self.assertIsNotNone(confirm.executionDate)
 
+    def test_str(self):
+        order = KeyOrder.objects.get(id=1)
+        user = SysUser.objects.get(id=2)
+
+        obj = KeyConfirm.objects.create(order=order, user=user)
+        self.assertNotEqual(str(obj), '')
+
 
 class PersonGroupTest(TestCase):
     def setUp(self):
@@ -320,6 +416,10 @@ class PersonGroupTest(TestCase):
 
         self.assertEqual(group1.name, 'Group 1')
         self.assertEqual(group2.name, 'Group 2')
+
+    def test_str(self):
+        obj = PersonGroup.objects.get(name='Group 1')
+        self.assertNotEqual(str(obj), '')
 
 
 class PersonTest(TestCase):
@@ -378,3 +478,7 @@ class PersonTest(TestCase):
         self.assertEqual(person4.isActive, True)
         self.assertEqual(person4.cardNumber, '1111111111111111111111111111111111111111111')
         self.assertEqual(person4.group, group1)
+
+    def test_str(self):
+        obj = Person.objects.get(id=1)
+        self.assertNotEqual(str(obj), '')

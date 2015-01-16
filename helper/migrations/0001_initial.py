@@ -45,6 +45,8 @@ class Migration(migrations.Migration):
                 ('executionDate', models.DateTimeField(auto_now_add=True)),
             ],
             options={
+                'verbose_name': 'Potwierdzenie zmiany uprawnień',
+                'verbose_name_plural': 'SKD - Potwierdzenia zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -56,6 +58,8 @@ class Migration(migrations.Migration):
                 ('addRule', models.BooleanField(default=True)),
             ],
             options={
+                'verbose_name': 'Polecenie zmiany uprawnień',
+                'verbose_name_plural': 'SKD - Polecenia zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -67,6 +71,8 @@ class Migration(migrations.Migration):
                 ('addRule', models.BooleanField(default=True)),
             ],
             options={
+                'verbose_name': 'Prośba zmiany uprawnień',
+                'verbose_name_plural': 'SKD - Prośby zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -77,6 +83,8 @@ class Migration(migrations.Migration):
                 ('confirmed', models.BooleanField(default=False)),
             ],
             options={
+                'verbose_name': 'Uprawnienie',
+                'verbose_name_plural': 'SKD - Uprawnienia',
             },
             bases=(models.Model,),
         ),
@@ -88,6 +96,8 @@ class Migration(migrations.Migration):
                 ('manager', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
+                'verbose_name': 'Strefa systemu KD',
+                'verbose_name_plural': 'SKD - Strefy systemu',
             },
             bases=(models.Model,),
         ),
@@ -98,6 +108,8 @@ class Migration(migrations.Migration):
                 ('executionDate', models.DateTimeField(auto_now_add=True)),
             ],
             options={
+                'verbose_name': 'Potwierdzenie zmiany uprawnień',
+                'verbose_name_plural': 'SSWiN - Potwierdzenia zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -109,6 +121,8 @@ class Migration(migrations.Migration):
                 ('addRule', models.BooleanField(default=False)),
             ],
             options={
+                'verbose_name': 'Polecenie zmiany uprawnień',
+                'verbose_name_plural': 'SSWiN - Polecenia zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -120,6 +134,8 @@ class Migration(migrations.Migration):
                 ('addRule', models.BooleanField(default=True)),
             ],
             options={
+                'verbose_name': 'Prośba zmiany uprawnień',
+                'verbose_name_plural': 'SSWiN - Prośby zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -130,6 +146,8 @@ class Migration(migrations.Migration):
                 ('confirmed', models.BooleanField(default=False)),
             ],
             options={
+                'verbose_name': 'Uprawnienie',
+                'verbose_name_plural': 'SSWiN - Uprawnienia',
             },
             bases=(models.Model,),
         ),
@@ -141,6 +159,8 @@ class Migration(migrations.Migration):
                 ('manager', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
+                'verbose_name': 'Strefa systemu alarmowego',
+                'verbose_name_plural': 'SSWiN - Strefy systemu',
             },
             bases=(models.Model,),
         ),
@@ -152,6 +172,8 @@ class Migration(migrations.Migration):
                 ('manager', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
+                'verbose_name': 'Klucz',
+                'verbose_name_plural': 'Klucze',
             },
             bases=(models.Model,),
         ),
@@ -162,6 +184,8 @@ class Migration(migrations.Migration):
                 ('executionDate', models.DateTimeField(auto_now_add=True)),
             ],
             options={
+                'verbose_name': 'Potwierdzenie zmiany uprawnień',
+                'verbose_name_plural': 'Klucze - Potwierdzenia zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -173,6 +197,8 @@ class Migration(migrations.Migration):
                 ('addRule', models.BooleanField(default=True)),
             ],
             options={
+                'verbose_name': 'Polecenie zmiany uprawnień',
+                'verbose_name_plural': 'Klucze - Polecenia zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -184,6 +210,8 @@ class Migration(migrations.Migration):
                 ('addRule', models.BooleanField(default=True)),
             ],
             options={
+                'verbose_name': 'Prośba zmiany uprawnień',
+                'verbose_name_plural': 'Klucze - Prośby zmiany uprawnień',
             },
             bases=(models.Model,),
         ),
@@ -195,6 +223,8 @@ class Migration(migrations.Migration):
                 ('key', models.ForeignKey(to='helper.Key')),
             ],
             options={
+                'verbose_name': 'Uprawnienie',
+                'verbose_name_plural': 'Klcze - Uprawnienia',
             },
             bases=(models.Model,),
         ),
@@ -208,6 +238,8 @@ class Migration(migrations.Migration):
                 ('cardNumber', models.CharField(max_length=15)),
             ],
             options={
+                'verbose_name': 'Osoba',
+                'verbose_name_plural': 'Osoby',
             },
             bases=(models.Model,),
         ),
@@ -218,6 +250,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=25)),
             ],
             options={
+                'verbose_name': 'Grupa osób',
+                'verbose_name_plural': 'Grupy osób',
             },
             bases=(models.Model,),
         ),

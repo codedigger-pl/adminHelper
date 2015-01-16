@@ -19,7 +19,7 @@ class PersonGroup(models.Model):
         verbose_name_plural = 'Grupy osób'
 
     def __str__(self):
-        print(self.name)
+        return self.name
 
 
 class Person(models.Model):
@@ -39,7 +39,7 @@ class Person(models.Model):
         verbose_name_plural = 'Osoby'
 
     def __str__(self):
-        print('%s %s' % self.firstName, self.lastName)
+        return '%s %s' % (self.firstName, self.lastName)
 
 
 class SysUser(AbstractUser):
@@ -60,10 +60,10 @@ class AlarmZone(models.Model):
 
     class Meta:
         verbose_name = 'Strefa systemu alarmowego'
-        verbose_name_plural = 'Strefy systemu alarmowego'
+        verbose_name_plural = 'SSWiN - Strefy systemu'
 
     def __str__(self):
-        print(self.name)
+        return self.name
 
 
 class AlarmRule(models.Model):
@@ -77,10 +77,10 @@ class AlarmRule(models.Model):
 
     class Meta:
         verbose_name = 'Uprawnienie'
-        verbose_name_plural = 'Uprawnienia'
+        verbose_name_plural = 'SSWiN - Uprawnienia'
 
     def __str___(self):
-        print('%s %s -> %s' % self.user.firstName, self.user.lastName, self.zone.name)
+        return '%s %s -> %s' % (self.user.firstName, self.user.lastName, self.zone.name)
 
 
 class AlarmRequest(models.Model):
@@ -95,11 +95,11 @@ class AlarmRequest(models.Model):
 
     class Meta:
         verbose_name = 'Prośba zmiany uprawnień'
-        verbose_name_plural = 'Prośby zmiany uprawnień'
+        verbose_name_plural = 'SSWiN - Prośby zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s -> %s' % self.user, self.zone.name)
+        return '%s -> %s' % (self.user, self.rule.zone.name)
 
 
 class AlarmOrder(models.Model):
@@ -114,11 +114,11 @@ class AlarmOrder(models.Model):
 
     class Meta:
         verbose_name = 'Polecenie zmiany uprawnień'
-        verbose_name_plural = 'Polecenia zmiany uprawnień'
+        verbose_name_plural = 'SSWiN - Polecenia zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s: %s' % self.user, self.rule)
+        return '%s: %s' % (self.user, self.rule)
 
 
 class AlarmConfirm(models.Model):
@@ -132,11 +132,11 @@ class AlarmConfirm(models.Model):
 
     class Meta:
         verbose_name = 'Potwierdzenie zmiany uprawnień'
-        verbose_name_plural = 'Potwierdzenia zmiany uprawnień'
+        verbose_name_plural = 'SSWiN - Potwierdzenia zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s :%s' % self.user, self.order)
+        return '%s :%s' % (self.user, self.order)
 
 
 class ACSZone(models.Model):
@@ -149,11 +149,11 @@ class ACSZone(models.Model):
 
     class Meta:
         verbose_name = 'Strefa systemu KD'
-        verbose_name_plural = 'Strefy systemu KD'
+        verbose_name_plural = 'SKD - Strefy systemu'
 
     def __str__(self):
         """String repr"""
-        print(self.name)
+        return self.name
 
 
 class ACSRule(models.Model):
@@ -167,11 +167,11 @@ class ACSRule(models.Model):
 
     class Meta:
         verbose_name = 'Uprawnienie'
-        verbose_name_plural = 'Uprawnienia'
+        verbose_name_plural = 'SKD - Uprawnienia'
 
     def __str__(self):
         """String repr"""
-        print('%s %s -> %s' % self.user.firstName, self.user.lastName, self.zone.name)
+        return '%s %s -> %s' % (self.person.firstName, self.person.lastName, self.zone.name)
 
 
 class ACSRequest(models.Model):
@@ -186,11 +186,11 @@ class ACSRequest(models.Model):
 
     class Meta:
         verbose_name = 'Prośba zmiany uprawnień'
-        verbose_name_plural = 'Prośby zmiany uprawnień'
+        verbose_name_plural = 'SKD - Prośby zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s %s -> %s' % self.user.firstName, self.user.lastName, self.zone.name)
+        return '%s %s -> %s' % (self.user.first_name, self.user.last_name, self.rule.zone.name)
 
 
 class ACSOrder(models.Model):
@@ -205,11 +205,11 @@ class ACSOrder(models.Model):
 
     class Meta:
         verbose_name = 'Polecenie zmiany uprawnień'
-        verbose_name_plural = 'Polecenia zmiany uprawnień'
+        verbose_name_plural = 'SKD - Polecenia zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s: %s' % self.user, self.rule)
+        return '%s: %s' % (self.user, self.rule)
 
 
 class ACSConfirm(models.Model):
@@ -223,11 +223,11 @@ class ACSConfirm(models.Model):
 
     class Meta:
         verbose_name = 'Potwierdzenie zmiany uprawnień'
-        verbose_name_plural = 'Potwierdzenia zmiany uprawnień'
+        verbose_name_plural = 'SKD - Potwierdzenia zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s :%s' % self.user, self.order)
+        return '%s :%s' % (self.user, self.order)
 
 
 class Key(models.Model):
@@ -244,7 +244,7 @@ class Key(models.Model):
 
     def __str__(self):
         """String repr"""
-        print(self.name)
+        return self.name
 
 
 class KeyRule(models.Model):
@@ -258,11 +258,11 @@ class KeyRule(models.Model):
 
     class Meta:
         verbose_name = 'Uprawnienie'
-        verbose_name_plural = 'Uprawnienia'
+        verbose_name_plural = 'Klcze - Uprawnienia'
 
-    def __str___(self):
+    def __str__(self):
         """String repr"""
-        print('%s %s -> %s' % self.user.firstName, self.user.lastName, self.zone.name)
+        return '%s %s -> %s' % (self.person.firstName, self.person.lastName, self.key.name)
 
 
 class KeyRequest(models.Model):
@@ -277,11 +277,11 @@ class KeyRequest(models.Model):
 
     class Meta:
         verbose_name = 'Prośba zmiany uprawnień'
-        verbose_name_plural = 'Prośby zmiany uprawnień'
+        verbose_name_plural = 'Klucze - Prośby zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s %s -> %s' % self.user.firstName, self.user.lastName, self.zone.name)
+        return '%s %s -> %s' % (self.user.first_name, self.user.last_name, self.rule.key.name)
 
 
 class KeyOrder(models.Model):
@@ -296,11 +296,11 @@ class KeyOrder(models.Model):
 
     class Meta:
         verbose_name = 'Polecenie zmiany uprawnień'
-        verbose_name_plural = 'Polecenia zmiany uprawnień'
+        verbose_name_plural = 'Klucze - Polecenia zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s: %s' % self.user, self.rule)
+        return '%s: %s' % (self.user, self.rule)
 
 
 class KeyConfirm(models.Model):
@@ -314,8 +314,8 @@ class KeyConfirm(models.Model):
 
     class Meta:
         verbose_name = 'Potwierdzenie zmiany uprawnień'
-        verbose_name_plural = 'Potwierdzenia zmiany uprawnień'
+        verbose_name_plural = 'Klucze - Potwierdzenia zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
-        print('%s :%s' % self.user, self.order)
+        return '%s :%s' % (self.user, self.order)
