@@ -142,6 +142,7 @@ class AlarmZoneTest(TestCase):
         self.assertEqual(zone1.manager, manager1)
         self.assertEqual(zone2.manager, manager1)
 
+
 class AlarmRuleTest(TestCase):
     def setUp(self):
         create_Person1()
@@ -214,6 +215,7 @@ class AlarmConfirmtTest(TestCase):
         self.assertEqual(confirm.user, user)
         self.assertEqual(confirm.order, order)
         self.assertIsNotNone(confirm.executionDate)
+
 
 class KeyTest(TestCase):
     def setUp(self):
@@ -318,6 +320,7 @@ class PersonGroupTest(TestCase):
 
         self.assertEqual(group1.name, 'Group 1')
         self.assertEqual(group2.name, 'Group 2')
+
 
 class PersonTest(TestCase):
     def setUp(self):

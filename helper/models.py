@@ -14,6 +14,10 @@ class PersonGroup(models.Model):
     """
     name = CharField(max_length=25)
 
+    class Meta:
+        verbose_name = 'Grupa osób'
+        verbose_name_plural = 'Grupy osób'
+
     def __str__(self):
         print(self.name)
 
@@ -29,6 +33,10 @@ class Person(models.Model):
     cardNumber = CharField(max_length=15)
 
     group = ForeignKey('PersonGroup')
+
+    class Meta:
+        verbose_name = 'Osoba'
+        verbose_name_plural = 'Osoby'
 
     def __str__(self):
         print('%s %s' % self.firstName, self.lastName)
@@ -50,6 +58,10 @@ class AlarmZone(models.Model):
     name = CharField(max_length=50)
     manager = ForeignKey('SysUser')
 
+    class Meta:
+        verbose_name = 'Strefa systemu alarmowego'
+        verbose_name_plural = 'Strefy systemu alarmowego'
+
     def __str__(self):
         print(self.name)
 
@@ -62,6 +74,10 @@ class AlarmRule(models.Model):
     person = ForeignKey('Person')
     zone = ForeignKey('AlarmZone')
     confirmed = BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Uprawnienie'
+        verbose_name_plural = 'Uprawnienia'
 
     def __str___(self):
         print('%s %s -> %s' % self.user.firstName, self.user.lastName, self.zone.name)
@@ -76,6 +92,10 @@ class AlarmRequest(models.Model):
     user = ForeignKey('SysUser')
     creationDate = DateTimeField(auto_now_add=True)
     addRule = BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Prośba zmiany uprawnień'
+        verbose_name_plural = 'Prośby zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
@@ -92,6 +112,10 @@ class AlarmOrder(models.Model):
     creationDate = DateTimeField(auto_now_add=True)
     addRule = BooleanField(default=False)
 
+    class Meta:
+        verbose_name = 'Polecenie zmiany uprawnień'
+        verbose_name_plural = 'Polecenia zmiany uprawnień'
+
     def __str__(self):
         """String repr"""
         print('%s: %s' % self.user, self.rule)
@@ -106,6 +130,10 @@ class AlarmConfirm(models.Model):
     executionDate = DateTimeField(auto_now_add=True)
     user = ForeignKey('SysUser')
 
+    class Meta:
+        verbose_name = 'Potwierdzenie zmiany uprawnień'
+        verbose_name_plural = 'Potwierdzenia zmiany uprawnień'
+
     def __str__(self):
         """String repr"""
         print('%s :%s' % self.user, self.order)
@@ -118,6 +146,10 @@ class ACSZone(models.Model):
     """
     name = CharField(max_length=50)
     manager = ForeignKey('SysUser')
+
+    class Meta:
+        verbose_name = 'Strefa systemu KD'
+        verbose_name_plural = 'Strefy systemu KD'
 
     def __str__(self):
         """String repr"""
@@ -132,6 +164,10 @@ class ACSRule(models.Model):
     person = ForeignKey('Person')
     zone = ForeignKey('ACSZone')
     confirmed = BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Uprawnienie'
+        verbose_name_plural = 'Uprawnienia'
 
     def __str__(self):
         """String repr"""
@@ -148,6 +184,10 @@ class ACSRequest(models.Model):
     creationDate = DateTimeField(auto_now_add=True)
     addRule = BooleanField(default=True)
 
+    class Meta:
+        verbose_name = 'Prośba zmiany uprawnień'
+        verbose_name_plural = 'Prośby zmiany uprawnień'
+
     def __str__(self):
         """String repr"""
         print('%s %s -> %s' % self.user.firstName, self.user.lastName, self.zone.name)
@@ -163,6 +203,10 @@ class ACSOrder(models.Model):
     creationDate = DateTimeField(auto_now_add=True)
     addRule = BooleanField(default=True)
 
+    class Meta:
+        verbose_name = 'Polecenie zmiany uprawnień'
+        verbose_name_plural = 'Polecenia zmiany uprawnień'
+
     def __str__(self):
         """String repr"""
         print('%s: %s' % self.user, self.rule)
@@ -177,6 +221,10 @@ class ACSConfirm(models.Model):
     executionDate = DateTimeField(auto_now_add=True)
     user = ForeignKey('SysUser')
 
+    class Meta:
+        verbose_name = 'Potwierdzenie zmiany uprawnień'
+        verbose_name_plural = 'Potwierdzenia zmiany uprawnień'
+
     def __str__(self):
         """String repr"""
         print('%s :%s' % self.user, self.order)
@@ -189,6 +237,10 @@ class Key(models.Model):
     """
     name = CharField(max_length=50)
     manager = ForeignKey('SysUser')
+
+    class Meta:
+        verbose_name = 'Klucz'
+        verbose_name_plural = 'Klucze'
 
     def __str__(self):
         """String repr"""
@@ -203,6 +255,10 @@ class KeyRule(models.Model):
     person = ForeignKey('Person')
     key = ForeignKey('Key')
     confirmed = BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Uprawnienie'
+        verbose_name_plural = 'Uprawnienia'
 
     def __str___(self):
         """String repr"""
@@ -219,6 +275,10 @@ class KeyRequest(models.Model):
     creationDate = DateTimeField(auto_now_add=True)
     addRule = BooleanField(default=True)
 
+    class Meta:
+        verbose_name = 'Prośba zmiany uprawnień'
+        verbose_name_plural = 'Prośby zmiany uprawnień'
+
     def __str__(self):
         """String repr"""
         print('%s %s -> %s' % self.user.firstName, self.user.lastName, self.zone.name)
@@ -234,6 +294,10 @@ class KeyOrder(models.Model):
     creationDate = DateTimeField(auto_now_add=True)
     addRule = BooleanField(default=True)
 
+    class Meta:
+        verbose_name = 'Polecenie zmiany uprawnień'
+        verbose_name_plural = 'Polecenia zmiany uprawnień'
+
     def __str__(self):
         """String repr"""
         print('%s: %s' % self.user, self.rule)
@@ -247,6 +311,10 @@ class KeyConfirm(models.Model):
     order = ForeignKey('KeyOrder')
     executionDate = DateTimeField(auto_now_add=True)
     user = ForeignKey('SysUser')
+
+    class Meta:
+        verbose_name = 'Potwierdzenie zmiany uprawnień'
+        verbose_name_plural = 'Potwierdzenia zmiany uprawnień'
 
     def __str__(self):
         """String repr"""
