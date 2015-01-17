@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{% block pageTitle %} {% endblock %}</title>
+
+    {% block cssFiles %}
+        <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    {% endblock %}
+
+  </head>
+
+  <body ng-app="adminHelper.usersApp">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid" ng-controller="userOptions">
+
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'homepage' %}">Pomocnik Administratora</a>
+          </div>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <div class="nav navbar-nav navbar-right btn-group" dropdown >
+                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                    Ustawienia <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Edytuj swoje dane</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Wyloguj się</a></li>
+                </ul>
+            </div>
+          </div>
+
+      </div>
+    </nav>
+
+        {% block content %} {% endblock %}
+
+    {% block jsFiles %}
+        <script src="{% static 'js/angular/angular.js' %}"></script>
+        <script src="{% static 'js/angular/angular-resource.js' %}"></script>
+        <script src="{% static 'js/angular/angular-route.js' %}"></script>
+        <script src="{% static 'js/angular/angular-ui.js' %}"></script>
+    {% endblock %}
+
+  </body>
+</html>

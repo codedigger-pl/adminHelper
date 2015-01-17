@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block pageTitle %} Użytkownicy {% endblock %}
+
+{% block cssFiles %}
+    {{ block.super }}
+    <link href="{% static 'css/users.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <tabset justified="true">
+                    <tab heading="Użytkownicy"></tab>
+                    <tab heading="Pracownicy"></tab>
+                </tabset>
+
+{#                <div class="btn-group" dropdown >#}
+{#                    <button type="button" class="btn btn-default">Użytkownicy</button>#}
+{#                    <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>#}
+{#                        <span class="caret"></span>#}
+{#                    </button>#}
+{#                    <ul class="dropdown-menu" role="menu">#}
+{#                        <li><a href="#">Lista</a></li>#}
+{#                        <li><a href="#">Dodaj użytkownika systemu</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="btn-group" dropdown >#}
+{#                    <button type="button" class="btn btn-default">Pracownicy</button>#}
+{#                    <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>#}
+{#                        <span class="caret"></span>#}
+{#                    </button>#}
+{#                    <ul class="dropdown-menu" role="menu">#}
+{#                        <li><a href="#">Lista</a></li>#}
+{#                        <li><a href="#">Dodaj pracownika</a></li>#}
+{#                        <li class="divider"></li>#}
+{#                        <li><a href="#">Grupy</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block jsFiles %}
+    {{ block.super }}
+    <script src="{% static 'js/users.js' %}"></script>
+{% endblock %}
