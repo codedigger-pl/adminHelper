@@ -4,7 +4,7 @@
 
 
 from django.test import TestCase
-from django.db.models import DateTimeField
+
 from .models import (ACSConfirm, ACSRequest, ACSOrder, ACSRule, ACSZone,
                      AlarmConfirm, AlarmOrder, AlarmRequest, AlarmRule, AlarmZone,
                      Key, KeyConfirm, KeyOrder, KeyRequest, KeyRule,
@@ -15,22 +15,25 @@ def create_SysUser1(): return SysUser.objects.create_user(username='Manager 1')
 
 def create_PersonGroup1(): return PersonGroup.objects.create(name='Group 1')
 def create_Person1(): return Person.objects.create(firstName='First name',
-                                                   lastName='Last ma,e',
+                                                   lastName='Last name',
                                                    isActive=True,
                                                    cardNumber='123',
                                                    group=create_PersonGroup1())
 
 def create_ACSZone1(): return ACSZone.objects.create(name='Zone 1', manager=create_SysUser1())
 def create_ACSRule1(): return ACSRule.objects.create(person=create_Person1(), zone=create_ACSZone1())
-def create_ACSOrder(): return ACSOrder.objects.create(rule=create_ACSRule1(), user=SysUser.objects.create_user(username='Manager 2'))
+def create_ACSOrder(): return ACSOrder.objects.create(rule=create_ACSRule1(),
+                                                      user=SysUser.objects.create_user(username='Manager 2'))
 
 def create_AlarmZone1(): return AlarmZone.objects.create(name='Zone 1', manager=create_SysUser1())
 def create_AlarmRule1(): return AlarmRule.objects.create(person=create_Person1(), zone=create_AlarmZone1())
-def create_AlarmOrder(): return AlarmOrder.objects.create(rule=create_AlarmRule1(), user=SysUser.objects.create_user(username='Manager 2'))
+def create_AlarmOrder(): return AlarmOrder.objects.create(rule=create_AlarmRule1(),
+                                                          user=SysUser.objects.create_user(username='Manager 2'))
 
 def create_Key1(): return Key.objects.create(name='Key 1', manager=create_SysUser1())
 def create_KeyRule1(): return KeyRule.objects.create(person=create_Person1(), key=create_Key1())
-def create_KeyOrder(): return KeyOrder.objects.create(rule=create_KeyRule1(), user=SysUser.objects.create_user(username='Manager 2'))
+def create_KeyOrder(): return KeyOrder.objects.create(rule=create_KeyRule1(),
+                                                      user=SysUser.objects.create_user(username='Manager 2'))
 
 
 class ACSZoneTest(TestCase):
