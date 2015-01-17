@@ -30,7 +30,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'helper',
+    'users',
+    'alarm',
+    'acs',
+    'key',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -84,4 +87,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'helper.SysUser'
+AUTH_USER_MODEL = 'users.SysUser'
