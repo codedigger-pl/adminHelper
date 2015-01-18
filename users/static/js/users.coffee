@@ -3,29 +3,21 @@ angular.module('adminHelper.usersApp', ['ui.bootstrap'])
 angular.module('adminHelper.usersApp').controller 'userOptions', ($scope, $log) ->
 
 angular.module('adminHelper.usersApp').controller 'pageCtr', ($scope, $log) ->
-  class OverviewPage
+  class Page
     constructor: () ->
       @pageClosed = true
 
-  class UsersPage
-    constructor: () ->
-      @pageClosed = true
+  class OverviewPage extends Page
 
-  class PersonsPage
-    constructor: () ->
-      @pageClosed = true
+  class UsersPage extends Page
 
-  class SecuritySystemsPage
-    constructor: () ->
-      @pageClosed = true
+  class PersonsPage extends Page
 
-  class ACSPage
-    constructor: () ->
-      @pageClosed = true
+  class SecuritySystemsPage extends Page
 
-  class KeysPage
-    constructor: () ->
-      @pageClosed = true
+  class ACSPage extends Page
+
+  class KeysPage extends Page
 
   $scope.overviewPage = new OverviewPage()
   $scope.usersPage = new UsersPage()
