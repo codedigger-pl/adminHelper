@@ -9,7 +9,18 @@ from .models import Person, PersonGroup, SysUser
 class DefPersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ('id', 'firstName', 'lastName', 'cardNumber', 'isActive')
+        fields = ('id', 'firstName', 'lastName', 'group', 'cardNumber', 'isActive')
+
+class PersonSerializer(serializers.ModelSerializer):
+    """ PersonSerializer
+
+    Default Person serializer with all fields in string format
+    """
+    group = serializers.StringRelatedField()
+
+    class Meta:
+        model = Person
+        fields = ('id', 'firstName', 'lastName', 'group', 'cardNumber', 'isActive')
 
 class DefPersonGroupSerializer(serializers.ModelSerializer):
     class Meta:
