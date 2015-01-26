@@ -7,7 +7,7 @@ from .models import PersonGroup, Person, SysUser
 from .apiSerializers import DefPersonGroupSerializer, PersonSerializer
 
 class UserHomepage(TemplateView):
-    template_name = 'users.html'
+    template_name = 'base.html'
 
 class PersonGroupViewset(viewsets.ModelViewSet):
     queryset = PersonGroup.objects.all()

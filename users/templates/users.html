@@ -41,11 +41,19 @@
 
         <div class="'row" collapse="personsPage.pageClosed">
             <div class="col-md-2">
-                <p>Pracownicy</p>
-                <p>Grupy pracowników</p>
+                <p><a href="" ng-click="personsPage.openPage('personsPage')" >Pracownicy</a></p>
+                <p><a href="" ng-click="personsPage.openPage('personGroupsPage')">Grupy</a></p>
             </div>
             <div class="col-md-10">
-                <p>{% lorem 15 %}</p>
+                <div collapse="personsPage.personsPageClosed">
+                    PersonsPage<br>{% lorem 5 %}
+                </div>
+                <div collapse="personsPage.personPageClosed">
+                    PersonPage<br>{% lorem 5 %}
+                </div>
+                <div collapse="personsPage.personGroupsPageClosed">
+                    PersonGroups<br>{% lorem 5 %}
+                </div>
             </div>
         </div>
 

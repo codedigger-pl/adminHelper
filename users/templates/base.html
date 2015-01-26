@@ -14,14 +14,15 @@
     {% block cssFiles %}
         <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet">
         <link href="{% static 'css/base.css' %}" rel="stylesheet">
+        <link href="{% static 'css/main.css' %}" rel="stylesheet">
     {% endblock %}
 
   </head>
 
-  <body ng-app="adminHelper.usersApp">
+  <body ng-app="adminHelper.mainApp">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid" ng-controller="userOptions">
+      <div class="container-fluid">
 
           <div class="navbar-header">
             <a class="navbar-brand" href="{% url 'homepage' %}">Pomocnik Administratora</a>
@@ -43,13 +44,38 @@
       </div>
     </nav>
 
-        {% block content %} {% endblock %}
+{#        {% block content %} {% endblock %}#}
+    <div class="container-fluid" ng-controller="MainCtrl">
+        <div class="row">
+            <div class="col-md-12">
+                <tabset justified="true" type="pills">
+                    <tab heading="Przegląd" select="openPage('overview')"></tab>
+                    <tab heading="Użytkownicy" select="openPage('users')"></tab>
+                    <tab heading="Pracownicy" select="openPage('persons')"></tab>
+                    <tab heading="System alarmowy" select="openPage('sswin')"></tab>
+                    <tab heading="System kontroli dostepu" select="openPage('acs')"></tab>
+                    <tab heading="Klucze" select="openPage('keys')"></tab>
+                </tabset>
+            </div>
+        </div>
+
+        <a href="persons">LINK</a>
+
+        <div class="row">
+            <div class="view-animate-container">
+                <div ng-view class="view-animate">
+                </div>
+            </div>
+        </div>
+    </div>
 
     {% block jsFiles %}
         <script src="{% static 'js/angular/angular.js' %}"></script>
+        <script src="{% static 'js/angular/angular-animate.js' %}"></script>
         <script src="{% static 'js/angular/angular-resource.js' %}"></script>
         <script src="{% static 'js/angular/angular-route.js' %}"></script>
         <script src="{% static 'js/angular/angular-ui.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
 
   </body>

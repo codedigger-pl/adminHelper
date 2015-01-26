@@ -12,6 +12,25 @@ angular.module('adminHelper.usersApp').controller 'pageCtr', ($scope, $log) ->
   class UsersPage extends Page
 
   class PersonsPage extends Page
+    constructor: () ->
+      @personsPageClosed = false
+      @personPageClosed = true
+      @personGroupsPageClosed = true
+
+    closeAllPages: () ->
+      @personsPageClosed = true
+      @personPageClosed = true
+      @personGroupsPageClosed = true
+
+    openPage: (page) ->
+      @closeAllPages()
+      switch page
+        when 'personsPage'
+          @personsPageClosed = false
+        when 'personPage'
+          @personPageClosed = false
+        when 'personGroupsPage'
+          @personGroupsPageClosed = false
 
   class SecuritySystemsPage extends Page
 
@@ -35,24 +54,19 @@ angular.module('adminHelper.usersApp').controller 'pageCtr', ($scope, $log) ->
     $scope.keysPage.pageClosed = true
 
   $scope.openPage = (page) ->
+    closeAllPages()
     switch page
       when 'overview'
-        closeAllPages()
         $scope.overviewPage.pageClosed = false
       when 'users'
-        closeAllPages()
         $scope.usersPage.pageClosed = false
       when 'persons'
-        closeAllPages()
         $scope.personsPage.pageClosed = false
       when 'sswin'
-        closeAllPages()
         $scope.securitySystemsPage.pageClosed = false
       when 'acs'
-        closeAllPages()
         $scope.acsPage.pageClosed = false
       when 'keys'
-        closeAllPages()
         $scope.keysPage.pageClosed = false
 
   $scope.openPage 'overview'

@@ -10,6 +10,7 @@ from .views import UserHomepage
 
 # api
 from .views import PersonGroupViewset, PersonViewset
+from .api import PersonDetail, PersonList, PersonGroupDetail, PersonGroupList
 
 router = DefaultRouter()
 router.register(r'personGroups', PersonGroupViewset)
