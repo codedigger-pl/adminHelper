@@ -1,17 +1,29 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 from rest_framework import viewsets
 
 from .models import PersonGroup, Person, SysUser
 from .apiSerializers import DefPersonGroupSerializer, PersonSerializer
 
+
 class UserHomepage(TemplateView):
     template_name = 'base.html'
+
+
+class PersonsList(ListView):
+    model = Person
+    template_name = 'personsList.html'
+
+
+class UsersOverview(TemplateView):
+    template_name = 'usersOverview.html'
+
 
 class PersonGroupViewset(viewsets.ModelViewSet):
     queryset = PersonGroup.objects.all()
     serializer_class = DefPersonGroupSerializer
+
 
 class PersonViewset(viewsets.ModelViewSet):
     queryset = Person.objects.all()

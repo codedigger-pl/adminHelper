@@ -20,6 +20,7 @@
   </head>
 
   <body ng-app="adminHelper.mainApp">
+  {% verbatim %}
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -44,30 +45,19 @@
       </div>
     </nav>
 
-{#        {% block content %} {% endblock %}#}
     <div class="container-fluid" ng-controller="MainCtrl">
         <div class="row">
             <div class="col-md-12">
-                <tabset justified="true" type="pills">
-                    <tab heading="Przegląd" select="openPage('overview')"></tab>
-                    <tab heading="Użytkownicy" select="openPage('users')"></tab>
-                    <tab heading="Pracownicy" select="openPage('persons')"></tab>
-                    <tab heading="System alarmowy" select="openPage('sswin')"></tab>
-                    <tab heading="System kontroli dostepu" select="openPage('acs')"></tab>
-                    <tab heading="Klucze" select="openPage('keys')"></tab>
-                </tabset>
+                <ul class="nav nav-justified nav-tabs">
+                    <li ng-repeat="tab in tabs"><a href="{{ tab.url }}">{{ tab.label }}</a></li>
+                </ul>
             </div>
         </div>
 
-        <a href="persons">LINK</a>
+        <div ng-view></div>
 
-        <div class="row">
-            <div class="view-animate-container">
-                <div ng-view class="view-animate">
-                </div>
-            </div>
-        </div>
     </div>
+    {% endverbatim %}
 
     {% block jsFiles %}
         <script src="{% static 'js/angular/angular.js' %}"></script>

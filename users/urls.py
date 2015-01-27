@@ -1,12 +1,9 @@
 #!/usr/bin/env python
-
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import patterns, include, url
-
 from rest_framework.routers import DefaultRouter
-
-from .views import UserHomepage
+from .views import UsersOverview, PersonsList
 
 # api
 from .views import PersonGroupViewset, PersonViewset
@@ -17,6 +14,8 @@ router.register(r'personGroups', PersonGroupViewset)
 router.register(r'persons', PersonViewset)
 
 urlpatterns = patterns('',
-    url(r'^$', UserHomepage.as_view(), name='usersHomepage'),
+    url(r'^$', PersonsList.as_view(), name='usersHomepage'),
+    url(r'^overview', UsersOverview.as_view(), name='usersOverview'),
+    url(r'^list', PersonsList.as_view(), name='personsList'),
     url(r'^api/', include(router.urls))
 )
