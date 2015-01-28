@@ -1,1 +1,4 @@
 Django==1.7.3
+django-angular==0.7.10
+djangorestframework==3.0.3
+pep8==1.5.7
