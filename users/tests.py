@@ -3,6 +3,9 @@
 
 import pep8
 from django.test import TestCase
+from autofixture import AutoFixture
+
+from .models import PersonGroup, Person
 
 
 class HomePageTest(TestCase):
@@ -37,6 +40,24 @@ class APITest(TestCase):
         """
         resp = self.client.get('/api/users/personGroups/')
         self.assertEqual(resp.status_code, 200)
+
+    def test_random_personGroups_access(self):
+        """ Testing access to random created PersonGroup objects
+        """
+        fixture = AutoFixture(PersonGroup)
+        fixture.create(20)
+        for i in range(1, 21):
+            resp = self.client.get('/api/users/personGroups/' + str(i) + '/')
+            self.assertEqual(resp.status_code, 200)
+
+    def test_random_persons_access(self):
+        """ Testing access to random created Person objects
+        """
+        fixture = AutoFixture(Person, generate_fk=True)
+        fixture.create(20)
+        for i in range(1, 21):
+            resp = self.client.get('/api/users/persons/' + str(i) + '/')
+            self.assertEqual(resp.status_code, 200)
 
 
 class PEP8Test(TestCase):
