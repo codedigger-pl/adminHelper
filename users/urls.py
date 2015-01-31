@@ -15,6 +15,6 @@ router.register(r'persons', PersonViewset)
 
 urlpatterns = patterns('',
     url(r'^$', PersonsList.as_view(), name='usersHomepage'),
-    url(r'^overview', UsersOverview.as_view(), name='usersOverview'),
+    url(r'^overview', UsersOverview, name='usersOverview'),
     url(r'^list', PersonsList.as_view(), name='personsList'),
 )

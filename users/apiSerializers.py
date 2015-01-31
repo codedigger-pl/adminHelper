@@ -9,7 +9,7 @@ from .models import Person, PersonGroup
 class DefPersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ('id', 'firstName', 'lastName', 'group', 'cardNumber', 'isActive')
+        fields = ('id', 'first_name', 'last_name', 'group', 'card_number', 'is_active')
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -21,7 +21,19 @@ class PersonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Person
-        fields = ('id', 'firstName', 'lastName', 'group', 'cardNumber', 'isActive')
+        fields = ('id', 'first_name', 'last_name', 'group', 'card_number', 'is_active')
+
+
+class MinimalPersonSerializer(serializers.ModelSerializer):
+    """ PersonSerializer
+
+    Person serializer with minimal information about person: first name, last name and group
+    """
+    group = serializers.StringRelatedField()
+
+    class Meta:
+        model = Person
+        fields = ('id', 'first_name', 'last_name', 'group')
 
 
 class DefPersonGroupSerializer(serializers.ModelSerializer):

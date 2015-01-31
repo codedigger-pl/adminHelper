@@ -38,7 +38,27 @@ mainApp.controller 'MainCtrl', ['$route', '$routeParams', '$location', '$scope',
 ]
 
 # Persons list page controller
-mainApp.controller 'UsersCtrl', ['$routeParams', ($routeParams) ->
+mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', ($routeParams, $http, $scope) ->
+
+  class Person
+    constructor: (@id=0, @first_name='', @last_name='', @group='') ->
+
+  class PersonList
+    constructor: (@url='/api/users/persons/?onlyLastItems=5&modelType=minimal') ->
+      @persons = []
+
+    get_from_server: ->
+      $http.get(@url).then \
+        (result) =>
+          angular.forEach result.data, (item) =>
+            @persons.push item
+        ,
+        =>
+          alert 'Problem with downloading Persons from server'
+
   @name = 'UsersCtrl'
   @params = $routeParams
+
+  $scope.personList = new PersonList()
+  $scope.personList.get_from_server()
 ]

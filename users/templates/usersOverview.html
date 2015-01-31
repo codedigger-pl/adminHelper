@@ -12,9 +12,9 @@
     <div class="col-md-6">
         <dl class="dl-horizontal">
             <dt>Ilość zarejestrowanych pracowników:</dt>
-            <dd>...</dd>
+            <dd>{{ personsCount }}</dd>
             <dt>Ostatni zarejestrowany pracownik:</dt>
-            <dd>...</dd>
+            <dd>{{ lastRegisteredPerson }}</dd>
         </dl>
     </div>
     <div class="col-md-6">
@@ -29,7 +29,7 @@
 
 <div class="row">
     <div class="col-md-6 text-center">
-        <h4>Lista pracowników</h4>
+        <h4>Lista pracowników (ostatnie 5)</h4>
         <table class="table table-responsive table-condensed table-hover text-left">
             <tr>
                 <th>Lp</th>
@@ -37,12 +37,14 @@
                 <th>Nazwisko</th>
                 <th>Grupa</th>
             </tr>
-            <tr>
-                <td>sd</td>
-                <td>sd</td>
-                <td>we</td>
-                <td>qw</td>
+            {% verbatim %}
+            <tr ng-repeat="person in personList.persons">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ person.first_name }}</td>
+                <td>{{ person.last_name }}</td>
+                <td>{{ person.group }}</td>
             </tr>
+            {% endverbatim %}
         </table>
     </div>
 

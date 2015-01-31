@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from .models import PersonGroup, Person, SysUser
-from .apiSerializers import DefPersonGroupSerializer, PersonSerializer
+from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalPersonSerializer
 
 
 class UserHomepage(TemplateView):
@@ -17,8 +17,15 @@ class PersonsList(ListView):
     template_name = 'personsList.html'
 
 
-class UsersOverview(TemplateView):
-    template_name = 'usersOverview.html'
+def UsersOverview(request):
+    resp = {}
+    resp['personsCount'] = Person.objects.count()
+
+    lastRegisteredPerson = Person.objects.last()
+    if lastRegisteredPerson is not None:
+        resp['lastRegisteredPerson'] = lastRegisteredPerson.last_name + ' ' + lastRegisteredPerson.first_name
+
+    return render(request, 'usersOverview.html', resp)
 
 
 class PersonGroupViewset(viewsets.ModelViewSet):
@@ -35,6 +42,10 @@ class PersonViewset(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = Person.objects.all()
+
+        if 'modelType' in request.QUERY_PARAMS:
+            if request.QUERY_PARAMS['modelType'] == 'minimal':
+                self.serializer_class = MinimalPersonSerializer
 
         if 'onlyLastItems' in request.QUERY_PARAMS:
             lastItems = int(request.QUERY_PARAMS['onlyLastItems'])
