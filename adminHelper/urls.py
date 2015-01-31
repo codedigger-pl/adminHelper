@@ -13,6 +13,6 @@ urlpatterns = patterns('',
     url(r'^users/', include('users.urls')),
 
     # including API urls
-    url(r'^api/users/', include(users_router.urls))
+    url(r'^api/users/', include(users_router.urls, namespace='api'))
 
 )
