@@ -20,9 +20,9 @@
     <div class="col-md-6">
         <dl class="dl-horizontal">
             <dt>Ilość zarejestrowanych grup:</dt>
-            <dd>...</dd>
+            <dd>{{ groupsCount }}</dd>
             <dt>Ostatnia zarejestrowana grupa:</dt>
-            <dd>...</dd>
+            <dd>{{ lastRegisteredGroup }}</dd>
         </dl>
     </div>
 </div>
@@ -49,18 +49,18 @@
     </div>
 
     <div class="col-md-6 text-center">
-        <h4>Lista grup pracowników</h4>
+        <h4>Lista grup pracowników (ostatnie 5)</h4>
         <table class="table table-responsive table-condensed table-hover text-left">
             <tr>
                 <th>Lp</th>
                 <th>Nazwa grupy</th>
-                <th>ilość członków</th>
             </tr>
-            <tr>
-                <td>sd</td>
-                <td>sd</td>
-                <td>we</td>
+            {% verbatim %}
+            <tr ng-repeat="group in personGroupList.groups">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ group.name }}</td>
             </tr>
+            {% endverbatim %}
         </table>
     </div>
 </div>

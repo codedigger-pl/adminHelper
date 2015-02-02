@@ -99,6 +99,32 @@ class APITest_Person_serializerSwitcher(APITestCase):
         self.assertEqual('group' in respData, True)
 
 
+class APITest_PersonGroups_last(APITestCase):
+    """Class for testing PersonGroup - last items API requests"""
+
+    def test_last_items(self):
+        """Testing access to some last groups - primary use"""
+        fixture = AutoFixture(PersonGroup)
+        groupsGenerated = fixture.create(20)[-5:]
+        resp = self.client.get(reverse('api:persongroup-list') + '?onlyLastItems=5')
+        for (i, group) in enumerate(resp.data):
+            # checking only id field.
+            # If this is correct and other fields aren't, something wrong is happening in serializer
+            self.assertEqual(groupsGenerated[i].id, group['id'])
+
+    def test_empty_database(self):
+        """Testing access to last groups, when database is empty"""
+        resp = self.client.get(reverse('api:persongroup-list') + '?onlyLastItems=5')
+        self.assertEqual(resp.data, [])
+
+    def test_not_enough(self):
+        """Testing last groups, when in database isn't enough data"""
+        fixture = AutoFixture(PersonGroup, generate_fk=True)
+        groupsGenerated = fixture.create(5)
+        resp = self.client.get(reverse('api:persongroup-list') + '?onlyLastItems=20')
+        self.assertEqual(len(resp.data), len(groupsGenerated))
+
+
 class PEP8Test(TestCase):
     """All PEP8 tests"""
     def test_pep8(self):
