@@ -34,11 +34,10 @@ mainApp.controller 'MainCtrl', ['$route', '$routeParams', '$location', '$scope',
       url: tab.url
       label: tab.label
 
-
 ]
 
 # Persons list page controller
-mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', ($routeParams, $http, $scope) ->
+mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', '$modal', '$log', ($routeParams, $http, $scope, $modal, $log) ->
 
   class PersonList
     constructor: (@url='/api/users/persons/?onlyLastItems=5&modelType=minimal') ->
@@ -77,4 +76,25 @@ mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', ($routeParam
 
   $scope.personGroupList = new PersonGroupList()
   $scope.personGroupList.get_from_server()
+
+  $scope.openGroupAddModal = () ->
+    instance = $modal.open
+      templateUrl: '/users/addPersonGroup'
+      controller: 'GroupAddCtrl'
+    instance.result.then \
+      () =>
+        $log.info 'THEN CLOSED'
+      ,
+      () =>
+        $log.info 'THEN SECOND'
+
+]
+
+mainApp.controller 'GroupAddCtrl', ['$scope', '$modalInstance', ($scope, $modalInstance) ->
+
+  $scope.ok = () ->
+    $modalInstance.close()
+
+  $scope.cancel = () ->
+    $modalInstance.dismiss('cancel')
 ]

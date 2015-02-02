@@ -37,6 +37,7 @@ INSTALLED_APPS = (
 
     'rest_framework',
     'autofixture',
+    'djangular',
 
     'django.contrib.admin',
     'django.contrib.auth',
