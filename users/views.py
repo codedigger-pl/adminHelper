@@ -12,11 +12,6 @@ class UserHomepage(TemplateView):
     template_name = 'base.html'
 
 
-class PersonsList(ListView):
-    model = Person
-    template_name = 'personsList.html'
-
-
 def UsersOverview(request):
     resp = {}
     resp['personsCount'] = Person.objects.count()

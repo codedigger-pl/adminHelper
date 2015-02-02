@@ -47,6 +47,7 @@ mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', ($routeParam
     get_from_server: ->
       $http.get(@url).then \
         (result) =>
+          @persons = []
           angular.forEach result.data, (item) =>
             @persons.push item
         ,
@@ -60,6 +61,7 @@ mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', ($routeParam
     get_from_server: ->
       $http.get(@url).then \
         (result) =>
+          @groups = []
           angular.forEach result.data, (item) =>
             @groups.push item
         ,
