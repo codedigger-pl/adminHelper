@@ -68,5 +68,6 @@ class PersonViewset(viewsets.ModelViewSet):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
+
 class personGroupAddForm(TemplateView):
     template_name = 'personGroupAddForm.html'

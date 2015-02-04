@@ -45,16 +45,16 @@
       </div>
     </nav>
 
-    <div class="container-fluid" ng-controller="MainCtrl">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row" ng-controller="MainController">
             <div class="col-md-12">
                 <ul class="nav nav-justified nav-tabs">
-                    <li ng-repeat="tab in tabs"><a href="{{ tab.url }}">{{ tab.label }}</a></li>
+                    <li ng-repeat="tab in tabs"><a ui-sref="{{ tab.stateName }}">{{ tab.label }}</a></li>
                 </ul>
             </div>
         </div>
 
-        <div ng-view></div>
+        <div ui-view></div>
 
     </div>
     {% endverbatim %}
@@ -65,6 +65,7 @@
         <script src="{% static 'js/angular/angular-resource.js' %}"></script>
         <script src="{% static 'js/angular/angular-route.js' %}"></script>
         <script src="{% static 'js/angular/angular-ui.js' %}"></script>
+        <script src="{% static 'js/angular/angular-ui-router.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
 

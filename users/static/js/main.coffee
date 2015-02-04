@@ -1,43 +1,63 @@
 class Page
-  constructor: (@label='', @url='', @templateUrl='', @controller='', @controllerAs='') ->
-
-# registering all pages
+  constructor: (@label='', @url='', @stateName='') ->
+#
+## registering all pages
 allPages = []
-allPages.push(new Page('Przegląd', '/overview', '/overview', 'OverviewCtrl', 'overview'))
-allPages.push(new Page('Użytkownicy i pracownicy', '/users/overview', '/users/overview', 'UsersCtrl', 'users'))
-allPages.push(new Page('System alarmowy', '/sswin/overview', '/sswin/overview', 'SSWiNCtrl', 'sswin'))
-allPages.push(new Page('System kontroli dostępu', '/acs/overview', '/acs/overview', 'ACSCtrl', 'acs'))
-allPages.push(new Page('Klucze', '/keys/overview', '/acs/overview', 'KeysCtrl', 'keys'))
+allPages.push(new Page('Przegląd', '/overview', 'overview'))
+allPages.push(new Page('Użytkownicy i pracownicy', '/users/overview', 'users'))
+allPages.push(new Page('System alarmowy', '/sswin/overview', 'sswin'))
+allPages.push(new Page('System kontroli dostępu', '/acs/overview', 'acs'))
+allPages.push(new Page('Klucze', '/keys/overview', 'keys'))
 
-mainApp = angular.module 'adminHelper.mainApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap']
-mainApp.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+mainApp = angular.module 'adminHelper.mainApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.router']
 
-  # setting route for registered pages
-  for page in allPages
-    $routeProvider.when page.url,
-      templateUrl: page.templateUrl
-      controller: page.controller
-      controllerAs: page.controllerAs
+mainApp.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
 
-  $locationProvider.html5Mode true
+  $urlRouterProvider.otherwise('/users')
+
+  $stateProvider.state 'overview',
+    url: '/'
+    templateUrl: '/'
+    controller: 'UsersController'
+
+  $stateProvider.state 'users',
+    url: '/users'
+    templateUrl: '/users/overview'
+    controller: 'UsersController'
+
+  $stateProvider.state 'sswin',
+    url: '/sswin'
+    templateUrl: '/sswin/overview'
+    controller: 'UsersController'
+
+  $stateProvider.state 'acs',
+    url: '/acs'
+    templateUrl: '/acs/overview'
+    controller: 'UsersController'
+
+  $stateProvider.state 'keys',
+    url: '/keys'
+    templateUrl: '/keys/overview'
+    controller: 'UsersController'
 ]
 
 # Main controller
-mainApp.controller 'MainCtrl', ['$route', '$routeParams', '$location', '$scope', ($route, $routeParams, $location, $scope) ->
-  @$route = $route
-  @$location = $location
-  @$routeParams = $routeParams
+mainApp.controller 'MainController', ['$scope', ($scope) ->
+
+  class Page
+    constructor: (@label='', @url='', @stateName='') ->
 
   $scope.tabs = []
-  for tab in allPages
-    $scope.tabs.push
-      url: tab.url
-      label: tab.label
+  $scope.tabs.push(new Page('Przegląd', '/overview', 'overview'))
+  $scope.tabs.push(new Page('Użytkownicy i pracownicy', '/users/overview', 'users'))
+  $scope.tabs.push(new Page('System alarmowy', '/sswin/overview', 'sswin'))
+  $scope.tabs.push(new Page('System kontroli dostępu', '/acs/overview', 'acs'))
+  $scope.tabs.push(new Page('Klucze', '/keys/overview', 'keys'))
 
 ]
 
 # Persons list page controller
-mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', '$modal', '$log', ($routeParams, $http, $scope, $modal, $log) ->
+mainApp.controller 'UsersController', ['$http', '$scope', '$modal', '$log', ($http, $scope, $modal, $log) ->
 
   class PersonList
     constructor: (@url='/api/users/persons/?onlyLastItems=5&modelType=minimal') ->
@@ -53,6 +73,7 @@ mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', '$modal', '$
         =>
           alert 'Problem with downloading Persons from server'
 
+
   class PersonGroupList
     constructor: (@url='/api/users/personGroups/?onlyLastItems=5') ->
       @groups = []
@@ -67,9 +88,6 @@ mainApp.controller 'UsersCtrl', ['$routeParams', '$http', '$scope', '$modal', '$
         =>
           alert 'Problem with downloading Persons from server'
 
-
-  @name = 'UsersCtrl'
-  @params = $routeParams
 
   $scope.personList = new PersonList()
   $scope.personList.get_from_server()
