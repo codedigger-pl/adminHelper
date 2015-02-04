@@ -50,7 +50,7 @@
                 <th>Grupa</th>
             </tr>
             {% verbatim %}
-            <tr ng-repeat="person in personList.persons">
+            <tr ng-repeat="person in persons">
                 <td>{{ $index + 1 }}</td>
                 <td>{{ person.first_name }}</td>
                 <td>{{ person.last_name }}</td>
@@ -68,7 +68,7 @@
                 <th>Nazwa grupy</th>
             </tr>
             {% verbatim %}
-            <tr ng-repeat="group in personGroupList.groups">
+            <tr ng-repeat="group in groups">
                 <td>{{ $index + 1 }}</td>
                 <td>{{ group.name }}</td>
             </tr>

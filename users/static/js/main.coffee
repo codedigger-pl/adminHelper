@@ -9,7 +9,7 @@ allPages.push(new Page('System alarmowy', '/sswin/overview', 'sswin'))
 allPages.push(new Page('System kontroli dostępu', '/acs/overview', 'acs'))
 allPages.push(new Page('Klucze', '/keys/overview', 'keys'))
 
-mainApp = angular.module 'adminHelper.mainApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.router']
+mainApp = angular.module 'adminHelper.mainApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.router', 'restangular']
 
 mainApp.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
 
@@ -57,48 +57,20 @@ mainApp.controller 'MainController', ['$scope', ($scope) ->
 ]
 
 # Persons list page controller
-mainApp.controller 'UsersController', ['$http', '$scope', '$modal', '$log', ($http, $scope, $modal, $log) ->
+mainApp.controller 'UsersController', ['$http', '$scope', '$modal', '$log', 'Restangular', ($http, $scope, $modal, $log, Restangular) ->
 
-  class PersonList
-    constructor: (@url='/api/users/persons/?onlyLastItems=5&modelType=minimal') ->
-      @persons = []
+  # Fetching last 5 persons
+  Restangular.allUrl('api/users/persons/?onlyLastItems=5').getList().then (persons) ->
+    $scope.persons = persons
 
-    get_from_server: ->
-      $http.get(@url).then \
-        (result) =>
-          @persons = []
-          angular.forEach result.data, (item) =>
-            @persons.push item
-        ,
-        =>
-          alert 'Problem with downloading Persons from server'
-
-
-  class PersonGroupList
-    constructor: (@url='/api/users/personGroups/?onlyLastItems=5') ->
-      @groups = []
-
-    get_from_server: ->
-      $http.get(@url).then \
-        (result) =>
-          @groups = []
-          angular.forEach result.data, (item) =>
-            @groups.push item
-        ,
-        =>
-          alert 'Problem with downloading Persons from server'
-
-
-  $scope.personList = new PersonList()
-  $scope.personList.get_from_server()
-
-  $scope.personGroupList = new PersonGroupList()
-  $scope.personGroupList.get_from_server()
+  # Fetching last 5 groups
+  Restangular.allUrl('api/users/personGroups/?onlyLastItems=5').getList().then (groups) ->
+    $scope.groups = groups
 
   $scope.openGroupAddModal = () ->
     instance = $modal.open
       templateUrl: '/users/addPersonGroup'
-      controller: 'GroupAddCtrl'
+      controller: 'GroupAddController'
     instance.result.then \
       () =>
         $log.info 'THEN CLOSED'
@@ -108,7 +80,7 @@ mainApp.controller 'UsersController', ['$http', '$scope', '$modal', '$log', ($ht
 
 ]
 
-mainApp.controller 'GroupAddCtrl', ['$scope', '$modalInstance', ($scope, $modalInstance) ->
+mainApp.controller 'GroupAddController', ['$scope', '$modalInstance', ($scope, $modalInstance) ->
 
   $scope.ok = () ->
     $modalInstance.close()

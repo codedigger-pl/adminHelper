@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models import ForeignKey, CharField, BooleanField
+from django.db.models import ForeignKey, CharField, BooleanField, TextField
 
 
 class PersonGroup(models.Model):
@@ -12,7 +11,8 @@ class PersonGroup(models.Model):
 
     Describes all information about persons groups
     """
-    name = CharField(max_length=25)
+    name = CharField(max_length=25, unique=True)
+    description = TextField(blank=True)
 
     class Meta:
         verbose_name = 'Grupa osób'
