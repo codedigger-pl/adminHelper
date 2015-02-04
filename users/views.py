@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 
 from rest_framework import viewsets
 from rest_framework.response import Response
 
 from .models import PersonGroup, Person, SysUser
+from .forms import PersonGroupAddForm
 from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalPersonSerializer
 
 
@@ -72,5 +73,6 @@ class PersonViewset(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class personGroupAddForm(TemplateView):
+class PersonGroupAddView(FormView):
     template_name = 'personGroupAddForm.html'
+    form_class = PersonGroupAddForm

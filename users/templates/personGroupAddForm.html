@@ -2,7 +2,8 @@
     <h3 class="modal-title">Dodaj grupę pracowników</h3>
 </div>
 <div class="modal-body">
-    dfg
+    {% load crispy_forms_tags %}
+    {% crispy form %}
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>

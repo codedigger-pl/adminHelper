@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 from .views import UsersOverview
 
 # api
-from .views import PersonGroupViewset, PersonViewset, personGroupAddForm
+from .views import PersonGroupViewset, PersonViewset, PersonGroupAddView
 from .api import PersonDetail, PersonList, PersonGroupDetail, PersonGroupList
 
 router = DefaultRouter()
@@ -15,5 +15,5 @@ router.register(r'persons', PersonViewset)
 
 urlpatterns = patterns('',
     url(r'^overview', UsersOverview, name='usersOverview'),
-    url(r'^addPersonGroup', personGroupAddForm.as_view(), name='add_personGroup'),
+    url(r'^addPersonGroup', PersonGroupAddView.as_view(), name='add_personGroup'),
 )
