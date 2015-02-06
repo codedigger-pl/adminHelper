@@ -1,6 +1,6 @@
 overviewController = angular.module 'adminHelper.users.controllers'
 
-overviewController.controller 'GroupAddModalController', ['$scope', '$modalInstance', ($scope, $modalInstance) ->
+overviewController.controller 'PGroupAddModalController', ['$scope', '$modalInstance', ($scope, $modalInstance) ->
 
   $scope.ok = () ->
     $modalInstance.close()

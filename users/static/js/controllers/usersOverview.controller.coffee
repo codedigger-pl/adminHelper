@@ -8,7 +8,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$modal', 'P
   $scope.openGroupAddModal = () ->
     instance = $modal.open
       templateUrl: '/users/addPersonGroup'
-      controller: 'GroupAddModalController'
+      controller: 'PGroupAddModalController'
     instance.result.then \
       () =>
         console.log 'THEN CLOSED'
