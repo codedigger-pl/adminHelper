@@ -2,8 +2,9 @@
     <h3 class="modal-title">Dodaj grupę pracowników</h3>
 </div>
 <div class="modal-body">
-    {% load crispy_forms_tags %}
-    {% crispy form %}
+    <form ng-controller="GroupAddModalController" name="persongroup_form">
+        {{ form.as_div }}
+    </form>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>

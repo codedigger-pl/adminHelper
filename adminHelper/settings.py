@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'autofixture',
     'djangular',
-    'crispy_forms',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -95,4 +94,3 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.SysUser'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'

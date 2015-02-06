@@ -19,7 +19,7 @@
 
   </head>
 
-  <body ng-app="adminHelper.mainApp">
+  <body ng-app="adminHelper">
   {% verbatim %}
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -69,6 +69,12 @@
 
         <script src="{% static 'js/angular/underscore.js' %}"></script>
         <script src="{% static 'js/angular/restangular.js' %}"></script>
+
+        <script src="{% static 'js/modules/users.module.js' %}"></script>
+        <script src="{% static 'js/services/personGroup.service.js' %}"></script>
+        <script src="{% static 'js/services/person.service.js' %}"></script>
+        <script src="{% static 'js/controllers/usersOverview.controller.js' %}"></script>
+        <script src="{% static 'js/controllers/addUGroup.controller.js' %}"></script>
 
         <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}

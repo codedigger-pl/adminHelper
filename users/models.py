@@ -3,7 +3,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models import ForeignKey, CharField, BooleanField, TextField
+from django.db.models import ForeignKey, CharField, BooleanField, TextField, DateTimeField
 
 
 class PersonGroup(models.Model):
@@ -13,6 +13,7 @@ class PersonGroup(models.Model):
     """
     name = CharField(max_length=25, unique=True)
     description = TextField(blank=True)
+    creation_date = DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Grupa osób'
