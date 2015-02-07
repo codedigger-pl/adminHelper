@@ -32,12 +32,17 @@ class Person(models.Model):
     last_name = CharField(max_length=25)
     is_active = BooleanField(default=True)
     card_number = CharField(max_length=15)
+    rank = CharField(max_length=25)
 
     group = ForeignKey('PersonGroup')
+
+    creation_date = DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Osoba'
         verbose_name_plural = 'Osoby'
+
+        unique_together = (('first_name', 'last_name'))
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)

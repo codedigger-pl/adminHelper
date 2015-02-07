@@ -3,8 +3,11 @@ personService = angular.module 'adminHelper.users.services'
 personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
   new class Person
     constructor: (@url='api/users/persons/') ->
-      @last_items = []
+      @base = Restangular.all(@url)
 
     get_last_items: (count=5) ->
-      Restangular.allUrl(@url+'?modelType=minimal&onlyLastItems='+count).getList().$object
+      @base.getList({modelType: 'minimal', onlyLastItems: 5}).$object
+
+    post: (new_person) ->
+      @base.post(new_person)
 ]

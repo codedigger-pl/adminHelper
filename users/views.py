@@ -8,7 +8,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from .models import PersonGroup, Person, SysUser
-from .forms import AngularPGroupAddForm
+from .forms import AngularPGroupAddForm, AngularPersonAddForm
 from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalPersonSerializer
 
 
@@ -79,4 +79,14 @@ class PersonGroupAddView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PersonGroupAddView, self).get_context_data(**kwargs)
         context.update(form=AngularPGroupAddForm())
+        return context
+
+
+class PersonAddView(TemplateView):
+    template_name = 'defaultForm.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PersonAddView, self).get_context_data(**kwargs)
+        context.update(form=AngularPersonAddForm())
+        context.update(form_title='Dodaj pracownika')
         return context

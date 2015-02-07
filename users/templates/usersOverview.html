@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-md-6">
         <button type="button" class="btn-default" ng-click="persons.get_last_items()">Odśwież</button>
-        <button type="button" class="btn-default" ng-click="">Dodaj</button>
+        <button type="button" class="btn-default" ng-click="openPersonAddModal()">Dodaj</button>
     </div>
 
     <div class="col-md-6">
@@ -45,6 +45,7 @@
         <table class="table table-responsive table-condensed table-hover text-left">
             <tr>
                 <th>Lp</th>
+                <th>Stopień</th>
                 <th>Imię</th>
                 <th>Nazwisko</th>
                 <th>Grupa</th>
@@ -52,6 +53,7 @@
             {% verbatim %}
             <tr ng-repeat="person in persons">
                 <td>{{ $index + 1 }}</td>
+                <td>{{ person.rank }}</td>
                 <td>{{ person.first_name }}</td>
                 <td>{{ person.last_name }}</td>
                 <td>{{ person.group }}</td>

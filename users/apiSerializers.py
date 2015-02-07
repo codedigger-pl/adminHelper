@@ -6,6 +6,12 @@ from rest_framework import serializers
 from .models import Person, PersonGroup
 
 
+class DefPersonGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PersonGroup
+        fields = ('id', 'name')
+
+
 class DefPersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
@@ -17,12 +23,11 @@ class PersonSerializer(serializers.ModelSerializer):
 
     Default Person serializer with all fields in string format
     """
-    group = serializers.StringRelatedField()
+    group = DefPersonGroupSerializer
 
     class Meta:
         model = Person
-        fields = ('id', 'first_name', 'last_name', 'group', 'card_number', 'is_active')
-
+        fields = ('id', 'rank', 'first_name', 'last_name', 'group', 'card_number', 'is_active')
 
 class MinimalPersonSerializer(serializers.ModelSerializer):
     """ PersonSerializer
@@ -33,10 +38,4 @@ class MinimalPersonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Person
-        fields = ('id', 'first_name', 'last_name', 'group')
-
-
-class DefPersonGroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PersonGroup
-        fields = ('id', 'name')
+        fields = ('id', 'rank', 'first_name', 'last_name', 'group')

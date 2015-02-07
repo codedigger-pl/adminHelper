@@ -14,6 +14,17 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$modal', 'P
         $scope.groups = PersonGroup.get_last_items()
       ,
       () =>
-        console.log 'THEN SECOND'
+        console.log 'GroupAdd modal closed'
+
+  $scope.openPersonAddModal = () ->
+    instance = $modal.open
+      templateUrl: '/users/addPerson'
+      controller: 'PersonAddModalController'
+    instance.result.then \
+      () =>
+        $scope.persons = Person.get_last_items()
+      ,
+      () =>
+        console.log 'PersonAdd modal closed'
 
 ]
