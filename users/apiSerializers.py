@@ -29,6 +29,7 @@ class PersonSerializer(serializers.ModelSerializer):
         model = Person
         fields = ('id', 'rank', 'first_name', 'last_name', 'group', 'card_number', 'is_active')
 
+
 class MinimalPersonSerializer(serializers.ModelSerializer):
     """ PersonSerializer
 

@@ -74,11 +74,12 @@ class PersonViewset(viewsets.ModelViewSet):
 
 
 class PersonGroupAddView(TemplateView):
-    template_name = 'personGroupAddForm.html'
+    template_name = 'defaultForm.html'
 
     def get_context_data(self, **kwargs):
         context = super(PersonGroupAddView, self).get_context_data(**kwargs)
         context.update(form=AngularPGroupAddForm())
+        context.update(form_title='Dodaj grupę pracowników')
         return context
 
 
