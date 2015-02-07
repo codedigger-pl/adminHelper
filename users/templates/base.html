@@ -12,9 +12,13 @@
     <title>{% block pageTitle %} {% endblock %}</title>
 
     {% block cssFiles %}
-        <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet">
-        <link href="{% static 'css/base.css' %}" rel="stylesheet">
-        <link href="{% static 'css/main.css' %}" rel="stylesheet">
+        <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet" />
+
+        <link href="{% static 'djangular/css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'djangular/css/bootstrap3.css' %}" rel="stylesheet" />
+
+        <link href="{% static 'css/base.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/main.css' %}" rel="stylesheet" />
     {% endblock %}
 
   </head>
@@ -69,6 +73,8 @@
 
         <script src="{% static 'js/angular/underscore.js' %}"></script>
         <script src="{% static 'js/angular/restangular.js' %}"></script>
+
+        <script src="{% static 'djangular/js/django-angular.js' %}"></script>
 
         <script src="{% static 'js/modules/users.module.js' %}"></script>
         <script src="{% static 'js/services/personGroup.service.js' %}"></script>

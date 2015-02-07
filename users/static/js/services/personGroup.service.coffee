@@ -4,7 +4,11 @@ pGroupService.factory 'PersonGroup', ['$http', 'Restangular', ($http, Restangula
   new class PersonGroup
     constructor: (@url='api/users/personGroups/') ->
       @last_items = []
+      @base = Restangular.all(@url)
 
     get_last_items: (count=5) ->
       Restangular.allUrl(@url+'?modelType=minimal&onlyLastItems='+count).getList().$object
+
+    post: (new_group) ->
+      @base.post(new_group)
 ]

@@ -11,7 +11,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$modal', 'P
       controller: 'PGroupAddModalController'
     instance.result.then \
       () =>
-        console.log 'THEN CLOSED'
+        $scope.groups = PersonGroup.get_last_items()
       ,
       () =>
         console.log 'THEN SECOND'
