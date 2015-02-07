@@ -1,5 +1,11 @@
+# namespace
 overviewController = angular.module 'adminHelper.users.controllers'
 
+###
+  Controller UsersOverview
+
+  Angular controller for person add form.
+###
 overviewController.controller 'PersonAddModalController', ['$scope', '$modalInstance', 'Person', 'djangoForm', ($scope, $modalInstance, Person, djangoForm) ->
 
   $scope.ok = () ->

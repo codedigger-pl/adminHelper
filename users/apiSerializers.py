@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from rest_framework import serializers
@@ -7,21 +6,30 @@ from .models import Person, PersonGroup
 
 
 class DefPersonGroupSerializer(serializers.ModelSerializer):
+    """
+    Default person group serializer.
+    """
     class Meta:
         model = PersonGroup
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'creation_date')
 
 
 class DefPersonSerializer(serializers.ModelSerializer):
+    """
+    Default person serializer
+    """
+
+    group = DefPersonGroupSerializer
+
     class Meta:
         model = Person
-        fields = ('id', 'first_name', 'last_name', 'group', 'card_number', 'is_active')
+        fields = ('id', 'first_name', 'last_name', 'rank', 'group', 'card_number', 'is_active', 'creation_date')
 
 
 class PersonSerializer(serializers.ModelSerializer):
     """ PersonSerializer
 
-    Default Person serializer with all fields in string format
+    Default Person serializer used in API
     """
     group = DefPersonGroupSerializer
 

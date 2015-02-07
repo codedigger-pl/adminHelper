@@ -1,14 +1,14 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
+
 from rest_framework.routers import DefaultRouter
-from .views import UsersOverview
 
-# api
-from .views import PersonGroupViewset, PersonViewset, PersonGroupAddView, PersonAddView
-from .api import PersonDetail, PersonList, PersonGroupDetail, PersonGroupList
+from .views import UsersOverview, PersonAddView, PersonGroupAddView
+from .views import PersonGroupViewset, PersonViewset
 
+
+# TODO: move this to main API generating after finish
 router = DefaultRouter()
 router.register(r'personGroups', PersonGroupViewset)
 router.register(r'persons', PersonViewset)

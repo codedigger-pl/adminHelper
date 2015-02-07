@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from django.db import models
@@ -11,8 +10,14 @@ class PersonGroup(models.Model):
 
     Describes all information about persons groups
     """
-    name = CharField(max_length=25, unique=True)
+    # group name
+    name = CharField(max_length=25,
+                     unique=True)
+    # group description
     description = TextField(blank=True)
+
+    # ---== read only fields ==---
+    # group creation date
     creation_date = DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -28,14 +33,22 @@ class Person(models.Model):
 
     Describes all information about person in any system
     """
+    # person first name
     first_name = CharField(max_length=25)
+    # person last name
     last_name = CharField(max_length=25)
+    # person is active?
     is_active = BooleanField(default=True)
+    # person access system card number
     card_number = CharField(max_length=15)
+    # person rank (pan/pani/kpt./mjr/por. etc
+    # TODO: change this to CHOICE field after collecting all ranks
     rank = CharField(max_length=25)
-
+    # person group
     group = ForeignKey('PersonGroup')
 
+    # ---== read only fields ==---
+    # person creation date
     creation_date = DateTimeField(auto_now_add=True)
 
     class Meta:

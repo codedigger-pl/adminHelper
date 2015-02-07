@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
@@ -13,30 +12,64 @@ from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalP
 
 
 class UserHomepage(TemplateView):
+
+    """ Homepage view.
+
+    Display homepage. Class based on TemplateView.
+    :return: generated base.html
+    """
+
     template_name = 'base.html'
 
 
 def UsersOverview(request):
+
+    """ Users overview view.
+
+    Generate part of main page containing all overview information about persons, person groups and users.
+    Give access to adding persons, etc...
+    :param request: request
+    :return: generated Users overview page based on usersOverview.html template
+    """
+
     resp = {}
+
+    # getting objects counts
+    # TODO: do this with API call and change view to TemplateView
     resp['personsCount'] = Person.objects.count()
     resp['groupsCount'] = PersonGroup.objects.count()
 
+    # getting last registered objects
+    # TODO: do this with API call and change view to TemplateView
     lastRegisteredPerson = Person.objects.last()
     if lastRegisteredPerson is not None:
         resp['lastRegisteredPerson'] = lastRegisteredPerson.last_name + ' ' + lastRegisteredPerson.first_name
-
     lastRegisteredGroup = PersonGroup.objects.last()
     if lastRegisteredGroup is not None:
         resp['lastRegisteredGroup'] = lastRegisteredGroup.name
 
+    # return prepared data
     return render(request, 'usersOverview.html', resp)
 
 
 class PersonGroupViewset(viewsets.ModelViewSet):
+    """
+    Person API viewset.
+
+    """
     queryset = PersonGroup.objects.all()
     serializer_class = DefPersonGroupSerializer
 
     def list(self, request, *args, **kwargs):
+        """
+        Return person groups list based on params.
+
+        :param request: request
+        :param args: not used
+        :param kwargs: dictionary can be:
+            onlyLastItems: {int} - how many last items return
+        :return: list of person groups based on params
+        """
 
         queryset = PersonGroup.objects.all()
 
@@ -57,6 +90,15 @@ class PersonViewset(viewsets.ModelViewSet):
     serializer_class = PersonSerializer
 
     def list(self, request, *args, **kwargs):
+        """
+        Return person list based on params.
+        :param request: request
+        :param args: not used
+        :param kwargs: dictionary can be:
+            modelType: 'minimal' - return minimal information about persons
+            onlyLastItems: {int} - how many last items return
+        :return: list of persons based on params
+        """
 
         queryset = Person.objects.all()
 
@@ -74,9 +116,19 @@ class PersonViewset(viewsets.ModelViewSet):
 
 
 class PersonGroupAddView(TemplateView):
+    """
+    Template view used for generating form to add person groups.
+    """
     template_name = 'defaultForm.html'
 
     def get_context_data(self, **kwargs):
+        """
+        Return generated context data used to generating template. Added fields:
+          form: what form to generate
+          form_title: form title
+        :param kwargs:
+        :return: generated context data
+        """
         context = super(PersonGroupAddView, self).get_context_data(**kwargs)
         context.update(form=AngularPGroupAddForm())
         context.update(form_title='Dodaj grupę pracowników')
@@ -84,9 +136,19 @@ class PersonGroupAddView(TemplateView):
 
 
 class PersonAddView(TemplateView):
+    """
+    Template view used for generating form to add persons
+    """
     template_name = 'defaultForm.html'
 
     def get_context_data(self, **kwargs):
+        """
+        Return generated context data used to generating template. Added fields:
+          form: what form to generate
+          form title: form title
+        :param kwargs:
+        :return: generated context data
+        """
         context = super(PersonAddView, self).get_context_data(**kwargs)
         context.update(form=AngularPersonAddForm())
         context.update(form_title='Dodaj pracownika')
