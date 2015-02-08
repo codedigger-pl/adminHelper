@@ -52,6 +52,28 @@ def UsersOverview(request):
     return render(request, 'usersOverview.html', resp)
 
 
+class PersonList(TemplateView):
+
+    """ Person list view.
+
+    Display list of persons in all systems. Class based on TemplateView.
+    :return: generated personList.html
+    """
+
+    template_name = 'personList.html'
+
+
+class PGroupList(TemplateView):
+
+    """ Person group list view.
+
+    Display list of person groups in system. Class based on TemplateView.
+    :return: generated pgroupList.html
+    """
+
+    template_name = 'pgroupList.html'
+
+
 class PersonGroupViewset(viewsets.ModelViewSet):
     """
     Person API viewset.
