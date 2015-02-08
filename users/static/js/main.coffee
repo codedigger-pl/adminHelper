@@ -28,12 +28,12 @@ mainApp.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRou
   $stateProvider.state 'users.person_list',
     url: '/person_list'
     templateUrl: '/users/person_list'
-    controller: 'UsersOverviewController'
+    controller: 'PersonListController'
 
   $stateProvider.state 'users.personGroup_list',
     url: '/personGroup_list'
     templateUrl: '/users/personGroup_list'
-    controller: 'UsersOverviewController'
+    controller: 'PersonGroupListController'
 
   $stateProvider.state 'sswin',
     url: '/sswin'
