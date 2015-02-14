@@ -27,6 +27,16 @@ class UsersPageTest(TestCase):
         self.assertEqual(resp.status_code, 200)
 
 
+class PersonClassTest(TestCase):
+    """ All test for class Person.
+    """
+    def test_last_name_uppercase(self):
+        fixture = AutoFixture(Person, generate_fk=True)
+        fixture.create(1)
+        person = Person.objects.get(id=1)
+        self.assertEqual(str(person.last_name).isupper(), True)
+
+
 class APITest(APITestCase):
     """All primary API tests"""
 

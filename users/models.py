@@ -111,6 +111,19 @@ class Person(models.Model):
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)
 
+    def save(self, *args, **kwargs):
+        """ save
+
+        Saving Person information to database with:
+        - changed last_name to uppercase
+
+        :param args: args params
+        :param kwargs: kwargs params
+        :return:
+        """
+        self.last_name = str(self.last_name).upper()
+        super(Person, self).save(args, kwargs)
+
 
 class SysUser(AbstractUser):
     """ Class SysUser
