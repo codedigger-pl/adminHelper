@@ -7,5 +7,5 @@ overviewController = angular.module 'adminHelper.users.controllers'
   Angular controller for person group list view.
 ###
 overviewController.controller 'PersonGroupListController', ['$scope', 'PersonGroup', ($scope, PersonGroup) ->
-
+  $scope.groups = PersonGroup.list()
 ]

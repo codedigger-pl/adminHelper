@@ -29,4 +29,10 @@ pGroupService.factory 'PersonGroup', ['$http', 'Restangular', ($http, Restangula
         :param new_group: {PersonGroup} - post new group to API
       ###
       @base.post(new_group)
+
+    list: () ->
+      ###
+        Gets all groups from server
+      ###
+      @base.getList().$object
 ]

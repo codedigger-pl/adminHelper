@@ -11,7 +11,7 @@ class DefPersonGroupSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = PersonGroup
-        fields = ('id', 'name', 'creation_date')
+        fields = ('id', 'name', 'creation_date_date', 'creation_date_time', 'description')
 
 
 class DefPersonSerializer(serializers.ModelSerializer):

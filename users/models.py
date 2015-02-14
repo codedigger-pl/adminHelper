@@ -19,6 +19,8 @@ class PersonGroup(models.Model):
     # ---== read only fields ==---
     # group creation date
     creation_date = DateTimeField(auto_now_add=True)
+    creation_date_date = property(lambda self: self.creation_date.date())
+    creation_date_time = property(lambda self: self.creation_date.time())
 
     class Meta:
         verbose_name = 'Grupa osób'

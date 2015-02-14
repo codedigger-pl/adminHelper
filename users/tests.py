@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import pep8
+from django.utils import timezone
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from rest_framework.test import APITestCase
 from autofixture import AutoFixture
-
 from .models import PersonGroup, Person
 
 
@@ -35,6 +35,23 @@ class PersonClassTest(TestCase):
         fixture.create(1)
         person = Person.objects.get(id=1)
         self.assertEqual(str(person.last_name).isupper(), True)
+
+
+class PersonGroupClassTest(TestCase):
+    """ All test for PersonGroup class
+    """
+    def test_get_creation_date_date(self):
+        """ Testing correct date and time returning from creation_date field
+        :return:
+        """
+        fixture = AutoFixture(PersonGroup)
+        fixture.create(1)
+        group = PersonGroup.objects.get(id=1)
+        someDate = timezone.now()
+        group.creation_date = someDate
+        group.save()
+        self.assertEqual(someDate.date(), group.creation_date_date)
+        self.assertEqual(someDate.time(), group.creation_date_time)
 
 
 class APITest(APITestCase):
