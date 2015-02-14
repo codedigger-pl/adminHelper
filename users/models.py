@@ -126,7 +126,7 @@ class Person(models.Model):
         :return:
         """
         self.last_name = str(self.last_name).upper()
-        super(Person, self).save(args, kwargs)
+        super(Person, self).save(*args, **kwargs)
 
 
 class SysUser(AbstractUser):

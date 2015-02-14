@@ -12,6 +12,7 @@ class DefPersonGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = PersonGroup
         fields = ('id', 'name', 'creation_date_date', 'creation_date_time', 'description')
+        read_only_fields = ('id', 'creation_date_date', 'creation_date_time')
 
 
 class DefPersonSerializer(serializers.ModelSerializer):
@@ -24,6 +25,7 @@ class DefPersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ('id', 'first_name', 'last_name', 'rank', 'group', 'card_number', 'is_active', 'creation_date')
+        read_only_fields = ('id', 'creation_date')
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -43,7 +45,10 @@ class PersonSerializer(serializers.ModelSerializer):
                   'card_number',
                   'is_active',
                   'creation_date_date',
-                  'creation_date_time')
+                  'creation_date_time',)
+        read_only_fields = ('id',
+                            'creation_date_date',
+                            'creation_date_time',)
 
 
 class MinimalPersonSerializer(serializers.ModelSerializer):
