@@ -35,7 +35,15 @@ class PersonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Person
-        fields = ('id', 'rank', 'first_name', 'last_name', 'group', 'card_number', 'is_active')
+        fields = ('id',
+                  'rank',
+                  'first_name',
+                  'last_name',
+                  'group',
+                  'card_number',
+                  'is_active',
+                  'creation_date_date',
+                  'creation_date_time')
 
 
 class MinimalPersonSerializer(serializers.ModelSerializer):

@@ -2,5 +2,29 @@
     <div class="col-md-12">
         <h3>Lista pracowników</h3>
     </div>
+</div>
 
+<div class="row">
+    <div class="col-md-12 text-center">
+        <table class="table table-responsive table-condensed table-hover text-left">
+            <tr>
+                <th>Lp</th>
+                <th>Nazwisko</th>
+                <th>Imię</th>
+                <th>Stopień</th>
+                <th>Czy aktywny?</th>
+                <th>Data utworzenia</th>
+            </tr>
+            {% verbatim %}
+            <tr ng-repeat="person in persons">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ person.last_name }}</td>
+                <td>{{ person.first_name }}</td>
+                <td>{{ person.rank }}</td>
+                <td><input type="checkbox" ng-disabled="true" ng-model=person.is_active></td>
+                <td>{{ person.creation_date_date }}</td>
+            </tr>
+            {% endverbatim %}
+        </table>
+    </div>
 </div>

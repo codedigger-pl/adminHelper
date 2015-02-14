@@ -29,4 +29,10 @@ personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
         :param new_person: {Person} - post new person to API
       ###
       @base.post(new_person)
+
+    list: () ->
+      ###
+        Gets all persons from server
+      ###
+      @base.getList().$object
 ]
