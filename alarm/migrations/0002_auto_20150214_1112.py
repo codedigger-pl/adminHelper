@@ -8,57 +8,63 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('key', '0001_initial'),
-        ('users', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('users', '0001_initial'),
+        ('alarm', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='keyrule',
+            model_name='alarmzone',
+            name='manager',
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='alarmrule',
             name='person',
             field=models.ForeignKey(to='users.Person'),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='keyrequest',
-            name='rule',
-            field=models.ForeignKey(to='key.KeyRule'),
+            model_name='alarmrule',
+            name='zone',
+            field=models.ForeignKey(to='alarm.AlarmZone'),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='keyrequest',
+            model_name='alarmrequest',
+            name='rule',
+            field=models.ForeignKey(to='alarm.AlarmRule'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='alarmrequest',
             name='user',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='keyorder',
+            model_name='alarmorder',
             name='rule',
-            field=models.ForeignKey(to='key.KeyRule'),
+            field=models.ForeignKey(to='alarm.AlarmRule'),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='keyorder',
+            model_name='alarmorder',
             name='user',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='keyconfirm',
+            model_name='alarmconfirm',
             name='order',
-            field=models.ForeignKey(to='key.KeyOrder'),
+            field=models.ForeignKey(to='alarm.AlarmOrder'),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='keyconfirm',
+            model_name='alarmconfirm',
             name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='key',
-            name='manager',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),

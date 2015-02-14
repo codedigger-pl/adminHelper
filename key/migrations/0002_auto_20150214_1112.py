@@ -10,61 +10,55 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('users', '0001_initial'),
-        ('acs', '0001_initial'),
+        ('key', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='acszone',
-            name='manager',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='acsrule',
+            model_name='keyrule',
             name='person',
             field=models.ForeignKey(to='users.Person'),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='acsrule',
-            name='zone',
-            field=models.ForeignKey(to='acs.ACSZone'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='acsrequest',
+            model_name='keyrequest',
             name='rule',
-            field=models.ForeignKey(to='acs.ACSRule'),
+            field=models.ForeignKey(to='key.KeyRule'),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='acsrequest',
+            model_name='keyrequest',
             name='user',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='acsorder',
+            model_name='keyorder',
             name='rule',
-            field=models.ForeignKey(to='acs.ACSRule'),
+            field=models.ForeignKey(to='key.KeyRule'),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='acsorder',
+            model_name='keyorder',
             name='user',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='acsconfirm',
+            model_name='keyconfirm',
             name='order',
-            field=models.ForeignKey(to='acs.ACSOrder'),
+            field=models.ForeignKey(to='key.KeyOrder'),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='acsconfirm',
+            model_name='keyconfirm',
             name='user',
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='key',
+            name='manager',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),

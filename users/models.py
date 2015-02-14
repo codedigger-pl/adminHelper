@@ -28,6 +28,58 @@ class PersonGroup(models.Model):
         return self.name
 
 
+# Military ranks
+# in Polish, it is hard to translate this
+RANK_PAN = 'pan'
+RANK_PANI = 'pani'
+RANK_SZEREGOWY = 'szer.'
+RANK_ST_SZEREGOWY = 'st. szer.'
+RANK_KAPRAL = 'kpr.'
+RANK_ST_KAPRAL = 'st. kpr.'
+RANK_PLUTONOWY = 'plut.'
+RANK_SIERZANT = 'sierż'
+RANK_ST_SIERZANT = 'st. sierż.'
+RANK_ML_CHORAZY = 'mł. chor.'
+RANK_CHORAZY = 'chor.'
+RANK_ST_CHORAZY = 'st. chor.'
+RANK_ST_CHORAZY_SZTAB = 'st. chor. sztab.'
+RANK_PODPORUCZNIK = 'ppor.'
+RANK_PORUCZNIK = 'por'
+RANK_KAPITAN = 'kpt.'
+RANK_MAJOR = 'mjr'
+RANK_PODPULKOWNIK = 'ppłk'
+RANK_PULKOWNIK = 'płk'
+RANK_GEN_BRYGADY = 'gen. bryg.'
+RANK_GEN_DYWIZJI = 'gen. dyw.'
+RANK_GEN_BRONI = 'gen. broni'
+RANK_GENERAL = 'gen.'
+
+RANK_CHOICES = (
+    (RANK_PAN, 'pan'),
+    (RANK_PANI, 'pani'),
+    (RANK_SZEREGOWY, 'szeregowy'),
+    (RANK_ST_SZEREGOWY, 'starszy szeregowy'),
+    (RANK_KAPRAL, 'kapral'),
+    (RANK_ST_KAPRAL, 'starszy kapral'),
+    (RANK_PLUTONOWY, 'plutonowy'),
+    (RANK_SIERZANT, 'sierżant'),
+    (RANK_ST_SIERZANT, 'starszy sierżant'),
+    (RANK_ML_CHORAZY, 'młodszt chorąży'),
+    (RANK_CHORAZY, 'chorąży'),
+    (RANK_ST_CHORAZY, 'starszy chorąży'),
+    (RANK_ST_CHORAZY_SZTAB, 'starszy chorąży sztabowy'),
+    (RANK_PODPORUCZNIK, 'podporucznik'),
+    (RANK_PORUCZNIK, 'porucznik'),
+    (RANK_KAPITAN, 'kapitan'),
+    (RANK_PODPULKOWNIK, 'podpułkownik'),
+    (RANK_PULKOWNIK, 'pułkownik'),
+    (RANK_GEN_BRYGADY, 'generał brygady'),
+    (RANK_GEN_DYWIZJI, 'generał dywizji'),
+    (RANK_GEN_BRONI, 'generał broni'),
+    (RANK_GENERAL, 'generał'),
+)
+
+
 class Person(models.Model):
     """ Class Person
 
@@ -42,8 +94,7 @@ class Person(models.Model):
     # person access system card number
     card_number = CharField(max_length=15)
     # person rank (pan/pani/kpt./mjr/por. etc
-    # TODO: change this to CHOICE field after collecting all ranks
-    rank = CharField(max_length=25)
+    rank = CharField(max_length=20, choices=RANK_CHOICES)
     # person group
     group = ForeignKey('PersonGroup')
 
