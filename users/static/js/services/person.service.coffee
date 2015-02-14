@@ -30,9 +30,16 @@ personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
       ###
       @base.post(new_person)
 
-    list: () ->
+    list: (promise=false) ->
       ###
         Gets all persons from server
+        :param promise: {bool} - should we return promise? True as default value.
+        :returns List or promise of list
       ###
-      @base.getList().$object
+      ret = []
+      if promise
+        ret = @base.getList()
+      else
+        ret = @base.getList().$object
+      ret
 ]

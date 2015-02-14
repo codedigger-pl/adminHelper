@@ -94,7 +94,7 @@ class Person(models.Model):
     # person is active?
     is_active = BooleanField(default=True)
     # person access system card number
-    card_number = CharField(max_length=15)
+    card_number = CharField(max_length=15, blank=True)
     # person rank (pan/pani/kpt./mjr/por. etc
     rank = CharField(max_length=20, choices=RANK_CHOICES)
     # person group
