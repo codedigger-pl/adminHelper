@@ -6,7 +6,7 @@ overviewController = angular.module 'adminHelper.users.controllers'
 
   Angular controller for person list view.
 ###
-overviewController.controller 'PersonListController', ['$scope', 'Person', ($scope, Person) ->
+overviewController.controller 'PersonListController', ['$scope', '$state', 'Person', ($scope, $state, Person) ->
 
   class Paginator
     constructor: () ->
@@ -40,6 +40,8 @@ overviewController.controller 'PersonListController', ['$scope', 'Person', ($sco
         stopIndex = Math.min(19, @itemsCount)
         @currVisItems = @items[0..stopIndex]
 
+  $scope.showPersonDetails = (id) =>
+    $state.go('users.person_detail', { id: id })
 
   $scope.pager = new Paginator()
   $scope.pager.loadData()
