@@ -25,4 +25,4 @@ class AngularPersonAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
 
     class Meta:
         model = Person
-        fields = ('last_name', 'first_name', 'rank', 'card_number', 'group')
+        fields = ('last_name', 'first_name', 'rank', 'card_number', 'group', 'photo')

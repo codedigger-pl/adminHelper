@@ -1,15 +1,15 @@
-{% load staticfiles %}
-
 <div class="row">
+
+    {% verbatim %}
 
     <div class="col-md-3" style="height: 500px;">
         <h3>Szczegóły pracownika</h3>
         <div>
-            <img class="img-rounded" src="{% static 'img/unknown_user.jpg' %}">
+            <img class="img-rounded" ng-src="{{ person.photo }}" width="100%">
         </div>
     </div>
 
-    {% verbatim %}
+
 
     <accordion close-others="false">
 

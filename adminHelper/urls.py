@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 
 from users.views import UserHomepage
@@ -15,4 +17,4 @@ urlpatterns = patterns('',
     # including API urls
     url(r'^api/users/', include(users_router.urls, namespace='api'))
 
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

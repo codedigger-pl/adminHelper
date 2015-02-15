@@ -6,6 +6,10 @@
         {{ form.as_div }}
     </form>
 </div>
+{% verbatim %}
+photo: {{ photo }}<br>
+last_name: {{ last_name }}
+{% endverbatim %}
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>

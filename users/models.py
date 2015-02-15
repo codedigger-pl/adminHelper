@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from django.conf import settings
 from django.db import models
+from django.db.models import ForeignKey, CharField, BooleanField, TextField, DateTimeField, ImageField
 from django.contrib.auth.models import AbstractUser
-from django.db.models import ForeignKey, CharField, BooleanField, TextField, DateTimeField
 
 
 class PersonGroup(models.Model):
@@ -99,6 +100,8 @@ class Person(models.Model):
     rank = CharField(max_length=20, choices=RANK_CHOICES)
     # person group
     group = ForeignKey('PersonGroup')
+    # person photo
+    photo = ImageField(upload_to='photos/', default=settings.STATIC_URL + 'img/unknown_user.jpg')
 
     # ---== read only fields ==---
     # person creation date

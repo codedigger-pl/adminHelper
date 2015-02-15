@@ -33,7 +33,7 @@ class PersonSerializer(serializers.ModelSerializer):
 
     Default Person serializer used in API
     """
-    group = serializers.StringRelatedField()
+    group = DefPersonGroupSerializer
 
     class Meta:
         model = Person
@@ -44,6 +44,7 @@ class PersonSerializer(serializers.ModelSerializer):
                   'group',
                   'card_number',
                   'is_active',
+                  'photo',
                   'creation_date_date',
                   'creation_date_time',)
         read_only_fields = ('id',
