@@ -33,7 +33,7 @@ class PersonSerializer(serializers.ModelSerializer):
 
     Default Person serializer used in API
     """
-    group = DefPersonGroupSerializer
+    group = serializers.StringRelatedField()
 
     class Meta:
         model = Person

@@ -16,6 +16,7 @@ class AngularPGroupAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
         model = PersonGroup
         fields = ('name', 'description')
 
+
 class AngularPersonAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
     """
     Form allowing manipulating persons.

@@ -170,5 +170,5 @@ class PEP8Test(TestCase):
         """Testing PEP8"""
         pep8style = pep8.StyleGuide(quiet=False, ignore=['E501'])
         result = pep8style.check_files(['users/admin.py', 'users/apiSerializers.py', 'users/models.py',
-                                        'users/tests.py', 'users/views.py'])
+                                        'users/tests.py', 'users/views.py', 'users/filters.py'])
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')

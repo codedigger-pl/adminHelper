@@ -10,6 +10,7 @@ class PersonFilter(FilterSet):
     """
     first_name = CharFilter(lookup_type='icontains', name='first_name')
     last_name = CharFilter(lookup_type='icontains', name='last_name')
+
     class Meta:
         model = Person
         fields = ('first_name', 'last_name')
