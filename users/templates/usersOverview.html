@@ -53,7 +53,7 @@
                 <th>Grupa</th>
             </tr>
             {% verbatim %}
-            <tr ng-repeat="person in persons">
+            <tr ng-repeat="person in persons" ng-click="showPersonDetails(person.id)">
                 <td>{{ $index + 1 }}</td>
                 <td>{{ person.rank }}</td>
                 <td>{{ person.first_name }}</td>

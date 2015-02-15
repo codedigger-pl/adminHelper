@@ -6,7 +6,7 @@ overviewController = angular.module 'adminHelper.users.controllers'
 
   Angular controller for main view to person overview part.
 ###
-overviewController.controller 'UsersOverviewController', ['$scope', '$modal', 'PersonGroup', 'Person', ($scope, $modal, PersonGroup, Person) ->
+overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$modal', 'PersonGroup', 'Person', ($scope, $state, $modal, PersonGroup, Person) ->
 
   # retrieve last registered items
   $scope.persons = Person.get_last_items()
@@ -37,5 +37,8 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$modal', 'P
       ,
       () =>
         console.log 'PersonAdd modal closed'
+
+  $scope.showPersonDetails = (id) =>
+    $state.go('users.person_detail', { id: id })
 
 ]
