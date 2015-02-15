@@ -7,5 +7,6 @@ overviewController = angular.module 'adminHelper.users.controllers'
   Angular controller for person list view.
 ###
 overviewController.controller 'PersonDetailController', ['$scope', '$stateParams', 'Person', ($scope, $stateParams, Person) ->
-  console.log($stateParams.id)
+  $scope.person = Person.get($stateParams.id)
+
 ]

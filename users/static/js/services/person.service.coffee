@@ -45,4 +45,13 @@ personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
       else
         ret = @base.getList({last_name: lastName, first_name: firstName}).$object
       ret
+
+    get: (id=1) ->
+      ###
+        Gets person detail information
+
+        :param id: {int} - person ID
+        :returns person detail
+      ###
+      @base.get(id).$object
 ]
