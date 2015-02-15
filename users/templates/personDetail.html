@@ -8,24 +8,33 @@
 
 <div class="row">
     <accordion close-others="false">
-        <accordion-group is-open="true">
-            <accordion-heading>Dane systemowe</accordion-heading>
-            <div class="col-md-12">ID: {{ person.id }}</div>
-            <div class="col-md-12">Data dodania: {{ person.creation_date_date }}, {{ person.creation_date_time }}</div>
-        </accordion-group>
 
-        <accordion-group is-open="true">
-            <accordion-heading>Dane personalne</accordion-heading>
-            <div class="col-md-12">Imię: {{ person.first_name }}</div>
-            <div class="col-md-12">Nazwisko: {{ person.last_name }}</div>
-            <div class="col-md-12">Stopień: {{ person.rank }}</div>
-            <div class="col-md-12">Grupa: {{ person.group }}</div>
-        </accordion-group>
+        <div class="col-md-3">
+            <p>User photo</p>
+        </div>
 
-        <accordion-group is-open="true">
-            <accordion-heading>Dane identyfikacyjne</accordion-heading>
-            <div class="col-md-12">Numer karty: {{ person.card_number }}</div>
-        </accordion-group>
+        <div class="col-md-9">
+
+            <accordion-group is-open="true">
+                <accordion-heading>Dane systemowe</accordion-heading>
+                <div class="">ID: {{ person.id }}</div>
+                <div class="">Data dodania: {{ person.creation_date_date }}, {{ person.creation_date_time }}</div>
+            </accordion-group>
+
+            <accordion-group is-open="true">
+                <accordion-heading>Dane personalne</accordion-heading>
+                <div class="">Imię: {{ person.first_name }}</div>
+                <div class="">Nazwisko: {{ person.last_name }}</div>
+                <div class="">Stopień: {{ person.rank }}</div>
+                <div class="">Grupa: {{ person.group }}</div>
+            </accordion-group>
+
+            <accordion-group is-open="true">
+                <accordion-heading>Dane identyfikacyjne</accordion-heading>
+                <div class="">Numer karty: {{ person.card_number }}</div>
+            </accordion-group>
+
+        </div>
 
         <accordion-group is-open="false">
             <accordion-heading>Dostęp do stref systemu alarmowego</accordion-heading>
