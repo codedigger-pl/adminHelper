@@ -94,3 +94,6 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.SysUser'
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+}

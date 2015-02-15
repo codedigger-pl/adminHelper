@@ -8,6 +8,7 @@ from rest_framework.response import Response
 
 from .models import PersonGroup, Person, SysUser
 from .forms import AngularPGroupAddForm, AngularPersonAddForm
+from .filters import PersonFilter
 from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalPersonSerializer
 
 
@@ -110,6 +111,7 @@ class PersonViewset(viewsets.ModelViewSet):
     Defines API all methods to Person"""
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+    filter_class = PersonFilter
 
     def list(self, request, *args, **kwargs):
         """
@@ -122,7 +124,7 @@ class PersonViewset(viewsets.ModelViewSet):
         :return: list of persons based on params
         """
 
-        queryset = Person.objects.all()
+        queryset = self.filter_queryset(self.get_queryset())
 
         if 'modelType' in request.QUERY_PARAMS:
             if request.QUERY_PARAMS['modelType'] == 'minimal':

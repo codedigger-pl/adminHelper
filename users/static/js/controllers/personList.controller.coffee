@@ -9,21 +9,39 @@ overviewController = angular.module 'adminHelper.users.controllers'
 overviewController.controller 'PersonListController', ['$scope', 'Person', ($scope, Person) ->
 
   class Paginator
-    constructor: (itemsPromise) ->
+    constructor: () ->
       @currPage = 1
       @items = []
-      itemsPromise.then (items) =>
-        for item in items
-          @items.push(item)
-        @itemsCount = @items.length
-        stopIndex = Math.min(19, @itemsCount)
-        @currVisData = @items[0..stopIndex]
+      @itemsCount = 0
+      @currVisItems = []
+      @lastNameFilter=''
+      @firstNameFilter=''
+#      Person.list(promise=true).then (items) =>
+#        for item in items
+#          @items.push(item)
+#        @itemsCount = @items.length
+#        stopIndex = Math.min(19, @itemsCount)
+#        @currVisData = @items[0..stopIndex]
 
     changePage: () =>
       startIndex = 20*(@currPage-1)
       stopIndex = Math.min(startIndex + 19, @itemsCount)
-      @currVisData = @items[startIndex..stopIndex]
+      @currVisItems = @items[startIndex..stopIndex]
 
-  $scope.pager = new Paginator(Person.list(promise=true))
+    newSearch: () =>
+
+    loadData: () =>
+      @currVisItems = []
+      @items = []
+      Person.list(promise=true, lastName=@lastNameFilter, firstName=@firstNameFilter).then (items) =>
+        for item in items
+          @items.push(item)
+        @itemsCount = @items.length
+        stopIndex = Math.min(19, @itemsCount)
+        @currVisItems = @items[0..stopIndex]
+
+
+  $scope.pager = new Paginator()
+  $scope.pager.loadData()
 
 ]

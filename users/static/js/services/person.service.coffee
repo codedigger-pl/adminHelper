@@ -30,16 +30,19 @@ personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
       ###
       @base.post(new_person)
 
-    list: (promise=false) ->
+    list: (promise=false, lastName='', firstName='') ->
       ###
-        Gets all persons from server
+        Gets all persons from server with filter functionality
+
         :param promise: {bool} - should we return promise? True as default value.
+        :param lastName: {string} - filter for last_name in person
+        :param firstName: {string} = filter for first_name in person
         :returns List or promise of list
       ###
       ret = []
       if promise
-        ret = @base.getList()
+        ret = @base.getList({last_name: lastName, first_name: firstName})
       else
-        ret = @base.getList().$object
+        ret = @base.getList({last_name: lastName, first_name: firstName}).$object
       ret
 ]
