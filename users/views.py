@@ -64,6 +64,17 @@ class PersonList(TemplateView):
     template_name = 'personList.html'
 
 
+class PersonDetail(TemplateView):
+
+    """ Person detail view.
+
+    Display persons detail info. Class based on TemplateView.
+    :return: generated personDetail.html
+    """
+
+    template_name = 'personDetail.html'
+
+
 class PGroupList(TemplateView):
 
     """ Person group list view.

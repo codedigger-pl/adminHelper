@@ -30,6 +30,11 @@ mainApp.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRou
     templateUrl: '/users/person_list'
     controller: 'PersonListController'
 
+  $stateProvider.state 'users.person_detail',
+    url: '^/person_detail/{id:int}'
+    templateUrl: '/users/person_detail'
+    controller: 'PersonDetailController'
+
   $stateProvider.state 'users.personGroup_list',
     url: '/personGroup_list'
     templateUrl: '/users/personGroup_list'

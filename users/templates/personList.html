@@ -1,3 +1,6 @@
+<div ui-view>
+
+
 <div class="row">
     <div class="col-md-12">
         <h3>Lista pracowników</h3>
@@ -26,7 +29,7 @@
             {% verbatim %}
             <tr ng-repeat="person in pager.currVisItems">
                 <td>{{ $index + 1 + (pager.currPage-1)*20 }}</td>
-                <td>{{ person.last_name }}</td>
+                <td><a ui-sref='users.person_detail({id: {{ person.id }} })' >{{ person.last_name }}</a></td>
                 <td>{{ person.first_name }}</td>
                 <td>{{ person.rank }}</td>
                 <td><input type="checkbox" ng-disabled="true" ng-model=person.is_active></td>
@@ -49,4 +52,7 @@
                     ng-change="pager.changePage()"></pagination>
     </div>
     {% endverbatim %}
+</div>
+
+
 </div>
