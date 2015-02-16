@@ -19,16 +19,18 @@ personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
     get_last_items: (count=5) ->
       ###
         Gets last items from database
+
         :param count: {int} - how many last items retrieve
       ###
       @base.getList({modelType: 'minimal', onlyLastItems: 5}).$object
 
     post: (new_person) ->
       ###
-        Posts new data to API
-        :param new_person: {Person} - post new person to API
+        Posts new data to API with modified contentType header - needed for multipart POST request.
+
+        :param new_person: {Person-FormData} - post new person to API
       ###
-      @base.post(new_person)
+      @base.withHttpConfig({transformRequest: angular.identity}).post(new_person, {}, {'Content-Type': undefined})
 
     list: (promise=false, lastName='', firstName='') ->
       ###
