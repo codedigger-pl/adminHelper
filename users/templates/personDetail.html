@@ -1,12 +1,12 @@
 <div class="row">
 
-    {% verbatim %}
-
     <div class="col-md-3" style="height: 500px;">
+        {%  verbatim %}
         <h3>Szczegóły pracownika</h3>
         <div>
             <img class="img-rounded" ng-src="{{ person.photo }}" width="100%">
         </div>
+        {% endverbatim %}
     </div>
 
 
@@ -14,6 +14,7 @@
     <accordion close-others="false">
 
         <div class="col-md-9">
+            {% verbatim %}
             <accordion-group is-open="true">
                 <accordion-heading>Dane systemowe</accordion-heading>
                 <form class="form-horizontal" role="form">
@@ -39,10 +40,12 @@
                     </div>
                 </form>
             </accordion-group>
+            {% endverbatim %}
         </div>
 
 
         <div class="col-md-9">
+            {% verbatim %}
             <accordion-group is-open="true">
                 <accordion-heading>Dane personalne</accordion-heading>
                 <form class="form-horizontal" role="form">
@@ -54,39 +57,60 @@
                     </div>
 
                     <div class="form-group form-group-sm">
-                    <label class="control-label col-md-2"> Nazwisko </label>
+                        <label class="control-label col-md-2"> Nazwisko </label>
                         <div class="col-md-7">
-                        <input type="text" ng-model="person.last_name" class="form-control">
+                            <input type="text" ng-model="person.last_name" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group form-group-sm">
-                    <label class="control-label col-md-2"> Stopień </label>
+                        <label class="control-label col-md-2"> Stopień </label>
                         <div class="col-md-7">
-                        <input type="text" ng-model="person.rank" class="form-control">
+                            <input type="text" ng-model="person.rank" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group form-group-sm">
-                    <label class="control-label col-md-2"> Grupa </label>
+                        <label class="control-label col-md-2"> Grupa </label>
                         <div class="col-md-7">
-                        <input type="text" ng-model="person.group" class="form-control">
+                            <input type="text" ng-model="person.group" class="form-control">
                         </div>
+                        <button type="button" class="btn-primary" ng-click="">Uaktualnij</button>
                     </div>
+
                 </form>
             </accordion-group>
+            {% endverbatim %}
         </div>
 
         <div class="col-md-9">
             <accordion-group is-open="true">
                 <accordion-heading>Dane identyfikacyjne</accordion-heading>
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" name="cardNumberForm">
+
+                    {# generated {{ cardNumberForm.as_div }} with custom changes#}
                     <div class="form-group form-group-sm">
-                    <label class="control-label col-md-2"> Numer karty </label>
-                        <div class="col-md-7">
-                        <input type="text" ng-model="person.card_number" class="form-control">
+                        <div class="djng-line-spreader">
+                            <ul class="djng-form-errors" ng-show="cardNumberForm.$dirty" ng-cloak></ul>
+                            <ul class="djng-form-errors" ng-show="cardNumberForm.$pristine" ng-cloak>
+                                <li ng-show="cardNumberForm.$message" class="invalid" ng-bind="cardNumberForm.$message"></li>
+                            </ul>
+                        </div>
+                        <div class="form-group has-feedback">
+
+                            <label for="id_card_number" class="control-label col-md-2">Numer karty</label>
+                            <div class="col-md-7">
+                                <input class="form-control" id="id_card_number" maxlength="15" name="card_number" ng-model="person.card_number" type="text" />
+                                <ul class="djng-field-errors" ng-show="cardNumberForm.card_number.$dirty" ng-cloak></ul>
+                                <ul class="djng-field-errors" ng-show="cardNumberForm.card_number.$pristine" ng-cloak>
+                                    <li ng-show="cardNumberForm.card_number.$message" class="invalid" ng-bind="cardNumberForm.card_number.$message"></li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn-primary" ng-click="updateCardNumber()">Uaktualnij</button>
                         </div>
                     </div>
+                    {#------------------------------------#}
+
                 </form>
             </accordion-group>
         </div>
@@ -110,6 +134,3 @@
     </accordion>
 
 </div>
-
-
-{% endverbatim %}

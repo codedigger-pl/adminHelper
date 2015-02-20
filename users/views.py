@@ -7,7 +7,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from .models import PersonGroup, Person, SysUser
-from .forms import AngularPGroupAddForm, AngularPersonAddForm
+from .forms import AngularPGroupAddForm, AngularPersonAddForm, AngularPersonCardNumberForm
 from .filters import PersonFilter
 from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalPersonSerializer
 
@@ -73,6 +73,17 @@ class PersonDetail(TemplateView):
     """
 
     template_name = 'personDetail.html'
+
+    def get_context_data(self, **kwargs):
+        """
+        Return generated context data used to generating template. Added fields:
+          cardNumberForm: form allowing change person's card number
+        :param kwargs:
+        :return: generated context data
+        """
+        context = super(PersonDetail, self).get_context_data(**kwargs)
+        context.update(cardNumberForm=AngularPersonCardNumberForm())
+        return context
 
 
 class PGroupList(TemplateView):

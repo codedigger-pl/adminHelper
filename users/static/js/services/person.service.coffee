@@ -9,7 +9,7 @@ personService = angular.module 'adminHelper.users.services'
 personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
   new class Person
 
-    constructor: (@url='api/users/persons/') ->
+    constructor: (@url='api/users/persons') ->
       ###
         Class constructor
         :param url: {str} - API url
@@ -56,4 +56,16 @@ personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
         :returns person detail
       ###
       @base.get(id).$object
+
+    patch: (id, data) ->
+      ###
+        Update information about person
+
+        :param id: {int} - person ID
+        :param data: {{objects}} - person fields dictionary
+        :returns API PATCH response
+      ###
+      @base.get(id).then \
+        (person) ->
+          person.patch(data)
 ]
