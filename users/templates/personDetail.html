@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="form-group has-feedback">
-                    <input class="form-control" id="id_photo" name="photo" ng-model="person.photo" type="file" onchange="console.log('test')"/>
+                    <input class="form-control" id="id_photo" name="photo" ng-model="person.photo" type="file" onchange="angular.element(this).scope().updatePhoto()"/>
                     <ul class="djng-field-errors" ng-show="personPhotoForm.photo.$pristine" ng-cloak>
                         <li ng-show="personPhotoForm.photo.$message" class="invalid" ng-bind="personPhotoForm.photo.$message"></li>
                     </ul>
@@ -67,40 +67,9 @@
         <div class="col-md-9">
             <accordion-group is-open="true">
                 <accordion-heading>Dane personalne</accordion-heading>
-                <!-- <form class="form-horizontal" role="form">
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-md-2"> Imię </label>
-                        <div class="col-md-7">
-                            <input type="text" ng-model="person.first_name" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-md-2"> Nazwisko </label>
-                        <div class="col-md-7">
-                            <input type="text" ng-model="person.last_name" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-md-2"> Stopień </label>
-                        <div class="col-md-7">
-                            <input type="text" ng-model="person.rank" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-md-2"> Grupa </label>
-                        <div class="col-md-7">
-                            <input type="text" ng-model="person.group" class="form-control">
-                        </div>
-                        <button type="button" class="btn-primary" ng-click="">Uaktualnij</button>
-                    </div>
-
-                </form> -->
                 <form class="form-horizontal" role="form" name="dataForm">
-                    {#                    {{ dataForm.as_div }}#}
 
+                    {#                    {{ dataForm.as_div }}#}
                     <div class="djng-line-spreader form-group form-group-sm">
                         <ul class="djng-form-errors" ng-show="personDataForm.$pristine" ng-cloak>
                             <li ng-show="personDataForm.$message" class="invalid" ng-bind="personDataForm.$message"></li>

@@ -32,4 +32,8 @@ overviewController.controller 'PersonDetailController', ['$scope', '$stateParams
       (response) ->
         if response.status == 400
           djangoForm.setErrors($scope.dataForm, response.data)
+
+  $scope.updatePhoto = () ->
+    # FormData: only by PUT request?
+    console.log('updatePhoto called')
 ]
