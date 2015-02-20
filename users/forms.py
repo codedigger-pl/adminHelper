@@ -56,3 +56,18 @@ class AngularPersonDataForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
     def __init__(self, *args, **kwargs):
         kwargs.update(scope_prefix='person')
         super(AngularPersonDataForm, self).__init__(*args, **kwargs)
+
+
+class AngularPersonPhotoForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+    """
+    Form allowing change person photo.
+    """
+    form_name = 'personPhotoForm'
+
+    class Meta:
+        model = Person
+        fields = ('photo', )
+
+    def __init__(self, *args, **kwargs):
+        kwargs.update(scope_prefix='person')
+        super(AngularPersonPhotoForm, self).__init__(*args, **kwargs)

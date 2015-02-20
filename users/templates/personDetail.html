@@ -1,12 +1,32 @@
 <div class="row">
 
     <div class="col-md-3" style="height: 500px;">
-        {%  verbatim %}
         <h3>Szczegóły pracownika</h3>
         <div>
+            <form class="form-horizontal" role="form" name="photoForm">
+                {#                {{ photoForm.as_div }}#}
+                {% verbatim %}
+                <div class="djng-line-spreader">
+                    <ul class="djng-form-errors" ng-show="personPhotoForm.$pristine" ng-cloak>
+                        <li ng-show="personPhotoForm.$message" class="invalid" ng-bind="personPhotoForm.$message"></li>
+                    </ul>
+                    <ul class="djng-form-errors" ng-show="personPhotoForm.$dirty" ng-cloak></ul>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <input class="form-control" id="id_photo" name="photo" ng-model="person.photo" type="file" onchange="console.log('test')"/>
+                    <ul class="djng-field-errors" ng-show="personPhotoForm.photo.$pristine" ng-cloak>
+                        <li ng-show="personPhotoForm.photo.$message" class="invalid" ng-bind="personPhotoForm.photo.$message"></li>
+                    </ul>
+                    <ul class="djng-field-errors" ng-show="personPhotoForm.photo.$dirty" ng-cloak></ul>
+                </div>
+                {% endverbatim %}
+            </form>
+
+            {% verbatim %}
             <img class="img-rounded" ng-src="{{ person.photo }}" width="100%">
+            {% endverbatim %}
         </div>
-        {% endverbatim %}
     </div>
 
 

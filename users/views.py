@@ -7,7 +7,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from .models import PersonGroup, Person, SysUser
-from .forms import AngularPGroupAddForm, AngularPersonAddForm, AngularPersonCardNumberForm, AngularPersonDataForm
+from .forms import AngularPGroupAddForm, AngularPersonAddForm, AngularPersonCardNumberForm, AngularPersonDataForm, AngularPersonPhotoForm
 from .filters import PersonFilter
 from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalPersonSerializer
 
@@ -84,6 +84,7 @@ class PersonDetail(TemplateView):
         context = super(PersonDetail, self).get_context_data(**kwargs)
         context.update(cardNumberForm=AngularPersonCardNumberForm())
         context.update(dataForm=AngularPersonDataForm())
+        context.update(photoForm=AngularPersonPhotoForm())
         return context
 
 
