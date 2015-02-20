@@ -45,10 +45,9 @@
 
 
         <div class="col-md-9">
-            {% verbatim %}
             <accordion-group is-open="true">
                 <accordion-heading>Dane personalne</accordion-heading>
-                <form class="form-horizontal" role="form">
+                <!-- <form class="form-horizontal" role="form">
                     <div class="form-group form-group-sm">
                         <label class="control-label col-md-2"> Imię </label>
                         <div class="col-md-7">
@@ -78,9 +77,100 @@
                         <button type="button" class="btn-primary" ng-click="">Uaktualnij</button>
                     </div>
 
+                </form> -->
+                <form class="form-horizontal" role="form" name="dataForm">
+                    {#                    {{ dataForm.as_div }}#}
+
+                    <div class="djng-line-spreader form-group form-group-sm">
+                        <ul class="djng-form-errors" ng-show="personDataForm.$pristine" ng-cloak>
+                            <li ng-show="personDataForm.$message" class="invalid" ng-bind="personDataForm.$message"></li>
+                        </ul>
+                        <ul class="djng-form-errors" ng-show="personDataForm.$dirty" ng-cloak></ul>
+                    </div>
+
+                    <div class="form-group has-feedback form-group form-group-sm">
+                        <label for="id_first_name" class="control-label col-md-2">Imię</label>
+                        <div class="col-md-7">
+                            <input class="form-control" id="id_first_name" maxlength="25" name="first_name" ng-model="person.first_name" type="text" />
+                            <ul class="djng-field-errors" ng-show="personDataForm.first_name.$pristine" ng-cloak>
+                                <li ng-show="personDataForm.first_name.$message" class="invalid" ng-bind="personDataForm.first_name.$message"></li>
+                            </ul>
+                            <ul class="djng-field-errors" ng-show="personDataForm.first_name.$dirty" ng-cloak></ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback form-group form-group-sm">
+                        <label for="id_last_name" class="control-label col-md-2">Nazwisko</label>
+                        <div class="col-md-7">
+                            <input class="form-control" id="id_last_name" maxlength="25" name="last_name" ng-model="person.last_name" type="text" />
+                            <ul class="djng-field-errors" ng-show="personDataForm.last_name.$pristine" ng-cloak>
+                                <li ng-show="personDataForm.last_name.$message" class="invalid" ng-bind="personDataForm.last_name.$message"></li>
+                            </ul>
+                            <ul class="djng-field-errors" ng-show="personDataForm.last_name.$dirty" ng-cloak></ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback form-group form-group-sm">
+                        <label for="id_rank" class="control-label col-md-2">Stopień</label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="id_rank" name="rank" ng-model="person.rank">
+                                <option value="" selected="selected">---------</option>
+                                <option value="pan">pan</option>
+                                <option value="pani">pani</option>
+                                <option value="szer.">szeregowy</option>
+                                <option value="st. szer.">starszy szeregowy</option>
+                                <option value="kpr.">kapral</option>
+                                <option value="st. kpr.">starszy kapral</option>
+                                <option value="plut.">plutonowy</option>
+                                <option value="sierż">sierżant</option>
+                                <option value="st. sierż.">starszy sierżant</option>
+                                <option value="mł. chor.">młodszt chorąży</option>
+                                <option value="chor.">chorąży</option>
+                                <option value="st. chor.">starszy chorąży</option>
+                                <option value="st. chor. sztab.">starszy chorąży sztabowy</option>
+                                <option value="ppor.">podporucznik</option>
+                                <option value="por">porucznik</option>
+                                <option value="kpt.">kapitan</option>
+                                <option value="ppłk">podpułkownik</option>
+                                <option value="płk">pułkownik</option>
+                                <option value="gen. bryg.">generał brygady</option>
+                                <option value="gen. dyw.">generał dywizji</option>
+                                <option value="gen. broni">generał broni</option>
+                                <option value="gen.">generał</option>
+                            </select>
+                            <ul class="djng-field-errors" ng-show="personDataForm.rank.$pristine" ng-cloak>
+                                <li ng-show="personDataForm.rank.$message" class="invalid" ng-bind="personDataForm.rank.$message"></li>
+                            </ul>
+                            <ul class="djng-field-errors" ng-show="personDataForm.rank.$dirty" ng-cloak></ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback form-group form-group-sm">
+                        <label for="id_group" class="control-label col-md-2">Grupa</label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="id_group" name="group" ng-model="person.group">
+                                <option value="" selected="selected">---------</option>
+                                <option value="1">Rei</option>
+                                <option value="2">Ani</option>
+                                <option value="3">Debit</option>
+                                <option value="4">Repre</option>
+                                <option value="5">In qu</option>
+                                <option value="6">Fugi</option>
+                                <option value="7">Impedit non quae quam sun</option>
+                                <option value="8">Sit mo</option>
+                                <option value="9">Debitis autem ne</option>
+                                <option value="10">Illo modi dolor sequi qu</option>
+                            </select>
+                            <ul class="djng-field-errors" ng-show="personDataForm.group.$pristine" ng-cloak>
+                                <li ng-show="personDataForm.group.$message" class="invalid" ng-bind="personDataForm.group.$message"></li>
+                            </ul>
+                            <ul class="djng-field-errors" ng-show="personDataForm.group.$dirty" ng-cloak></ul>
+                        </div>
+                        <button type="button" class="btn-primary" ng-click="updateData()">Uaktualnij</button>
+                    </div>
+
                 </form>
             </accordion-group>
-            {% endverbatim %}
         </div>
 
         <div class="col-md-9">
@@ -89,25 +179,23 @@
                 <form class="form-horizontal" role="form" name="cardNumberForm">
 
                     {# generated {{ cardNumberForm.as_div }} with custom changes#}
-                    <div class="form-group form-group-sm">
-                        <div class="djng-line-spreader">
-                            <ul class="djng-form-errors" ng-show="cardNumberForm.$dirty" ng-cloak></ul>
-                            <ul class="djng-form-errors" ng-show="cardNumberForm.$pristine" ng-cloak>
-                                <li ng-show="cardNumberForm.$message" class="invalid" ng-bind="cardNumberForm.$message"></li>
+                    <div class="djng-line-spreader">
+                        <ul class="djng-form-errors" ng-show="cardNumberForm.$dirty" ng-cloak></ul>
+                        <ul class="djng-form-errors" ng-show="cardNumberForm.$pristine" ng-cloak>
+                            <li ng-show="cardNumberForm.$message" class="invalid" ng-bind="cardNumberForm.$message"></li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group has-feedback form-group form-group-sm">
+                        <label for="id_card_number" class="control-label col-md-2">Numer karty</label>
+                        <div class="col-md-7">
+                            <input class="form-control" id="id_card_number" maxlength="15" name="card_number" ng-model="person.card_number" type="text" />
+                            <ul class="djng-field-errors" ng-show="cardNumberForm.card_number.$dirty" ng-cloak></ul>
+                            <ul class="djng-field-errors" ng-show="cardNumberForm.card_number.$pristine" ng-cloak>
+                                <li ng-show="cardNumberForm.card_number.$message" class="invalid" ng-bind="cardNumberForm.card_number.$message"></li>
                             </ul>
                         </div>
-                        <div class="form-group has-feedback">
-
-                            <label for="id_card_number" class="control-label col-md-2">Numer karty</label>
-                            <div class="col-md-7">
-                                <input class="form-control" id="id_card_number" maxlength="15" name="card_number" ng-model="person.card_number" type="text" />
-                                <ul class="djng-field-errors" ng-show="cardNumberForm.card_number.$dirty" ng-cloak></ul>
-                                <ul class="djng-field-errors" ng-show="cardNumberForm.card_number.$pristine" ng-cloak>
-                                    <li ng-show="cardNumberForm.card_number.$message" class="invalid" ng-bind="cardNumberForm.card_number.$message"></li>
-                                </ul>
-                            </div>
-                            <button type="button" class="btn-primary" ng-click="updateCardNumber()">Uaktualnij</button>
-                        </div>
+                        <button type="button" class="btn-primary" ng-click="updateCardNumber()">Uaktualnij</button>
                     </div>
                     {#------------------------------------#}
 

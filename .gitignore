@@ -1,0 +1,7 @@
+.project
+JIM.fdb.zip
+.settings
+__pycache__
+.pydevproject
+*.pyc
+.idea

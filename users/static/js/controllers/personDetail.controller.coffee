@@ -18,4 +18,18 @@ overviewController.controller 'PersonDetailController', ['$scope', '$stateParams
       (response) ->
         if response.status == 400
           djangoForm.setErrors($scope.cardNumberForm, response.data)
+
+  $scope.updateData = () ->
+    request = Person.patch $scope.person.id,
+      first_name: $scope.person.first_name
+      last_name: $scope.person.last_name
+      rank: $scope.person.rank
+      group: $scope.person.group
+    request.then \
+      (person) ->
+        $scope.person = person
+      ,
+      (response) ->
+        if response.status == 400
+          djangoForm.setErrors($scope.dataForm, response.data)
 ]

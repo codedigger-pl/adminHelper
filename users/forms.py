@@ -27,6 +27,7 @@ class AngularPersonAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
         model = Person
         fields = ('last_name', 'first_name', 'rank', 'card_number', 'group', 'photo')
 
+
 class AngularPersonCardNumberForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
     """
     Form allowing change person card number.
@@ -36,3 +37,22 @@ class AngularPersonCardNumberForm(NgModelFormMixin, NgModelForm, Bootstrap3FormM
     class Meta:
         model = Person
         fields = ('card_number', )
+
+    def __init__(self, *args, **kwargs):
+        kwargs.update(scope_prefix='person')
+        super(AngularPersonCardNumberForm, self).__init__(*args, **kwargs)
+
+
+class AngularPersonDataForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+    """
+    Form allowing change person data.
+    """
+    form_name = 'personDataForm'
+
+    class Meta:
+        model = Person
+        fields = ('first_name', 'last_name', 'rank', 'group')
+
+    def __init__(self, *args, **kwargs):
+        kwargs.update(scope_prefix='person')
+        super(AngularPersonDataForm, self).__init__(*args, **kwargs)
