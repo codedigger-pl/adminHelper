@@ -21,7 +21,7 @@ class AngularPersonAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
     """
     Form allowing manipulating persons.
     """
-    form_name = 'form'
+    form_name = 'personAddForm'
 
     class Meta:
         model = Person

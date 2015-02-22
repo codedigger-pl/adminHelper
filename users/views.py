@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
+from django.conf import settings
 from django.views.generic import TemplateView, FormView
 
 from rest_framework import viewsets, status
@@ -166,6 +167,9 @@ class PersonViewset(viewsets.ModelViewSet):
 
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+
+    # def create(self, request, *args, **kwargs):
+    #     print(request.data)
 
 
 class UserViewset(viewsets.ModelViewSet):

@@ -10,7 +10,7 @@ overviewController.controller 'PersonAddModalController', ['$scope', '$modalInst
 
   $scope.ok = () ->
     # in template is one form with this name
-    form = document.getElementsByName('form')[0]
+    form = document.getElementsByName('personAddForm')[0]
     formData = new FormData(form)
 
     # direct request - left for future tests
@@ -25,7 +25,7 @@ overviewController.controller 'PersonAddModalController', ['$scope', '$modalInst
       ,
       (response) ->
         if response.status == 400
-          djangoForm.setErrors($scope.form, response.data)
+          djangoForm.setErrors($scope.personAddForm, response.data)
 
   $scope.cancel = () ->
     $modalInstance.dismiss('cancel')

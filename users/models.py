@@ -101,7 +101,7 @@ class Person(models.Model):
     # person group
     group = ForeignKey('PersonGroup')
     # person photo
-    photo = ImageField(upload_to='photos/', default=settings.STATIC_URL + 'img/unknown_user.jpg')
+    photo = ImageField(upload_to='photos/', blank=True, default=settings.STATIC_URL + 'img/unknown_user.jpg', null=True)
 
     # ---== read only fields ==---
     # person creation date

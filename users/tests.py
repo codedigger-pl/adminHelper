@@ -3,6 +3,8 @@
 import pep8
 
 from subprocess import call
+import os
+from time import sleep
 
 from django.utils import timezone
 from django.test import TestCase
@@ -172,19 +174,33 @@ class APITest_PersonGroups_last(APITestCase):
 
 
 class WEBTests(StaticLiveServerTestCase):
-    """ Here are all tests with real browser. Using nightwatch - see tests directory to properly set invironment
+    """ Here are all tests with real browser. Using nightwatch - see tests directory to properly set environment
     """
-    def setUp(self):
-        super(WEBTests, self).setUp()
+    # def setUp(self):
+    #     super(WEBTests, self).setUp()
 
     def test_pgroupAddForm(self):
         call('cd users/tests && nightwatch --test forms/pgroupAddForm.js', shell=True)
-        group = PersonGroup.objects.get(id=1)
-        self.assertEqual(group.name, 'Some group name')
+        # strange: get(id=1) isn't working
+        group = PersonGroup.objects.all()[0]
+        self.assertEqual(group.name, 'Group name')
         self.assertEqual(group.description, 'This is some group description')
 
-    def tearDown(self):
-        super(WEBTests,self).tearDown()
+    def test_personAddForm(self):
+        fixture = AutoFixture(PersonGroup)
+        fixture.create(1)
+        group = PersonGroup.objects.get(id=1)
+        call('cd users/tests && nightwatch --test forms/personAddForm.js', shell=True)
+        person = Person.objects.get(id=1)
+        self.assertEqual(person.first_name, 'First name')
+        self.assertEqual(person.last_name, 'LAST NAME')
+        self.assertEqual(person.rank, 'kpr.')
+        self.assertEqual(person.card_number, '1111111111111')
+        # self.assertEqual(person.group.name, group.name)
+
+    # def tearDown(self):
+    #     super(WEBTests,self).tearDown()
+
 
 class PEP8Test(TestCase):
     """All PEP8 tests"""

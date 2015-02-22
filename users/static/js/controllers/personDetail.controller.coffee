@@ -8,6 +8,8 @@ overviewController = angular.module 'adminHelper.users.controllers'
 ###
 overviewController.controller 'PersonDetailController', ['$scope', '$stateParams', 'Person', 'djangoForm', ($scope, $stateParams, Person, djangoForm) ->
   $scope.person = Person.get($stateParams.id)
+  if not $scope.person.photo
+    $scope.person.photo = '/static/img/unknown_user.jpg'
 
   $scope.updateCardNumber = () ->
     request = Person.patch($scope.person.id, {card_number: $scope.person.card_number })

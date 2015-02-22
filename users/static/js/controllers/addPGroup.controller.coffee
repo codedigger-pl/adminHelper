@@ -18,7 +18,7 @@ overviewController.controller 'PGroupAddModalController', ['$scope', '$modalInst
       ,
       (response) ->
         if response.status == 400
-          djangoForm.setErrors($scope.form, response.data)
+          djangoForm.setErrors($scope.pgroupAddForm, response.data)
 
   $scope.cancel = () ->
     $modalInstance.dismiss('cancel')

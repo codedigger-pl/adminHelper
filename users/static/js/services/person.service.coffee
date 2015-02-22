@@ -9,7 +9,7 @@ personService = angular.module 'adminHelper.users.services'
 personService.factory 'Person', ['$http', 'Restangular', ($http, Restangular) ->
   new class Person
 
-    constructor: (@url='api/users/persons') ->
+    constructor: (@url='api/users/persons/') ->
       ###
         Class constructor
         :param url: {str} - API url
