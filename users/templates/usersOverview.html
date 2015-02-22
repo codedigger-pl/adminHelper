@@ -1,115 +1,120 @@
 <div ui-view>
 
-<div class="row">
-    <div class="col-md-6">
-        <a ui-sref='users.person_list'><h3>Pracownicy</h3></a>
+    <div class="row">
+        <div class="col-md-6">
+            <a ui-sref='users.person_list'><h3>Pracownicy</h3></a>
+        </div>
+
+        <div class="col-md-6">
+            <a ui-sref="users.personGroup_list"><h3>Grupy pracowników</h3></a>
+        </div>
     </div>
 
-    <div class="col-md-6">
-        <a ui-sref="users.personGroup_list"><h3>Grupy pracowników</h3></a>
+    <div class="row">
+        <div class="col-md-6">
+            <button type="button" class="btn-default" ng-click="persons.get_last_items()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openPersonAddModal()">Dodaj</button>
+        </div>
+
+        <div class="col-md-6">
+            <button type="button" class="btn-default" ng-click="groups.get_last_items()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openGroupAddModal()">Dodaj</button>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>Ilość zarejestrowanych pracowników:</dt>
+                <dd>{{ personsCount }}</dd>
+                <dt>Ostatni zarejestrowany pracownik:</dt>
+                <dd>{{ lastRegisteredPerson }}</dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>Ilość zarejestrowanych grup:</dt>
+                <dd>{{ groupsCount }}</dd>
+                <dt>Ostatnia zarejestrowana grupa:</dt>
+                <dd>{{ lastRegisteredGroup }}</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <h4>Lista pracowników (ostatnie 5)</h4>
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Stopień</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Grupa</th>
+                </tr>
+                {% verbatim %}
+                <tr ng-repeat="person in persons" ng-click="showPersonDetails(person.id)">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ person.rank }}</td>
+                    <td>{{ person.first_name }}</td>
+                    <td>{{ person.last_name }}</td>
+                    <td>{{ person.group }}</td>
+                </tr>
+                {% endverbatim %}
+            </table>
+        </div>
+
+        <div class="col-md-6 text-center">
+            <h4>Lista grup pracowników (ostatnie 5)</h4>
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa grupy</th>
+                </tr>
+                {% verbatim %}
+                <tr ng-repeat="group in groups">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ group.name }}</td>
+                </tr>
+                {% endverbatim %}
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3>Użytkownicy systemu</h3>
+        </div>
+
+        <div class="col-md-12">
+            <button type="button" class="btn-default" ng-click="groups.get_last_items()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openUserAddModal()">Dodaj</button>
+        </div>
+
+        <div class="col-md-12">
+            <dl class="dl-horizontal">
+                <dt>Ilość zarejestrowanych użytkowników:</dt>
+                <dd>...</dd>
+                <dt>Ostatnio zarejestrowany użytkownik:</dt>
+                <dd>...</dd>
+            </dl>
+        </div>
+
+        <div class="col-md-12">
+            <h4>Lista użytkowników</h4>
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa grupy</th>
+                    <th>ilość członków</th>
+                </tr>
+                <tr>
+                    <td>sd</td>
+                    <td>sd</td>
+                    <td>we</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 </div>
-
-<div class="row">
-    <div class="col-md-6">
-        <button type="button" class="btn-default" ng-click="persons.get_last_items()">Odśwież</button>
-        <button type="button" class="btn-default" ng-click="openPersonAddModal()">Dodaj</button>
-    </div>
-
-    <div class="col-md-6">
-        <button type="button" class="btn-default" ng-click="groups.get_last_items()">Odśwież</button>
-        <button type="button" class="btn-default" ng-click="openGroupAddModal()">Dodaj</button>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <dl class="dl-horizontal">
-            <dt>Ilość zarejestrowanych pracowników:</dt>
-            <dd>{{ personsCount }}</dd>
-            <dt>Ostatni zarejestrowany pracownik:</dt>
-            <dd>{{ lastRegisteredPerson }}</dd>
-        </dl>
-    </div>
-    <div class="col-md-6">
-        <dl class="dl-horizontal">
-            <dt>Ilość zarejestrowanych grup:</dt>
-            <dd>{{ groupsCount }}</dd>
-            <dt>Ostatnia zarejestrowana grupa:</dt>
-            <dd>{{ lastRegisteredGroup }}</dd>
-        </dl>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6 text-center">
-        <h4>Lista pracowników (ostatnie 5)</h4>
-        <table class="table table-responsive table-condensed table-hover text-left">
-            <tr>
-                <th>Lp</th>
-                <th>Stopień</th>
-                <th>Imię</th>
-                <th>Nazwisko</th>
-                <th>Grupa</th>
-            </tr>
-            {% verbatim %}
-            <tr ng-repeat="person in persons" ng-click="showPersonDetails(person.id)">
-                <td>{{ $index + 1 }}</td>
-                <td>{{ person.rank }}</td>
-                <td>{{ person.first_name }}</td>
-                <td>{{ person.last_name }}</td>
-                <td>{{ person.group }}</td>
-            </tr>
-            {% endverbatim %}
-        </table>
-    </div>
-
-    <div class="col-md-6 text-center">
-        <h4>Lista grup pracowników (ostatnie 5)</h4>
-        <table class="table table-responsive table-condensed table-hover text-left">
-            <tr>
-                <th>Lp</th>
-                <th>Nazwa grupy</th>
-            </tr>
-            {% verbatim %}
-            <tr ng-repeat="group in groups">
-                <td>{{ $index + 1 }}</td>
-                <td>{{ group.name }}</td>
-            </tr>
-            {% endverbatim %}
-        </table>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12 text-center">
-        <h3>Użytkownicy systemu</h3>
-    </div>
-
-    <div class="col-md-12">
-        <dl class="dl-horizontal">
-            <dt>Ilość zarejestrowanych użytkowników:</dt>
-            <dd>...</dd>
-            <dt>Ostatnio zarejestrowany użytkownik:</dt>
-            <dd>...</dd>
-        </dl>
-    </div>
-
-    <div class="col-md-12">
-        <h4>Lista użytkowników</h4>
-        <table class="table table-responsive table-condensed table-hover text-left">
-            <tr>
-                <th>Lp</th>
-                <th>Nazwa grupy</th>
-                <th>ilość członków</th>
-            </tr>
-            <tr>
-                <td>sd</td>
-                <td>sd</td>
-                <td>we</td>
-            </tr>
-        </table>
-    </div>
-</div>
-
-    </div>

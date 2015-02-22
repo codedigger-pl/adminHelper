@@ -3,13 +3,18 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, FormView
 
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.decorators import detail_route
 
 from .models import PersonGroup, Person, SysUser
-from .forms import AngularPGroupAddForm, AngularPersonAddForm, AngularPersonCardNumberForm, AngularPersonDataForm, AngularPersonPhotoForm
+from .forms import (AngularPGroupAddForm,
+                    AngularPersonAddForm, AngularPersonCardNumberForm, AngularPersonDataForm, AngularPersonPhotoForm,
+                    AngularUserAddForm, )
 from .filters import PersonFilter
+
 from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalPersonSerializer
+from .apiSerializers import DefUserSerializer, UserPasswordSerializer
 
 
 class UserHomepage(TemplateView):
@@ -163,6 +168,26 @@ class PersonViewset(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+class UserViewset(viewsets.ModelViewSet):
+    """User viewset
+
+    Defines API all methods to User"""
+    queryset = SysUser.objects.all()
+    serializer_class = DefUserSerializer
+
+    @detail_route(methods=['post'])
+    def set_password(self, request, pk=None):
+        user = self.get_object()
+        serializer = UserPasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            user.set_password(serializer.data['password'])
+            user.save()
+            return Response({'status': 'hasło zmienione'})
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+
 class PersonGroupAddView(TemplateView):
     """
     Template view used for generating form to add person groups.
@@ -200,4 +225,24 @@ class PersonAddView(TemplateView):
         context = super(PersonAddView, self).get_context_data(**kwargs)
         context.update(form=AngularPersonAddForm())
         context.update(form_title='Dodaj pracownika')
+        return context
+
+
+class UserAddView(TemplateView):
+    """
+    Template view used for generating form to add persons
+    """
+    template_name = 'defaultForm.html'
+
+    def get_context_data(self, **kwargs):
+        """
+        Return generated context data used to generating template. Added fields:
+          form: what form to generate
+          form title: form title
+        :param kwargs:
+        :return: generated context data
+        """
+        context = super(UserAddView, self).get_context_data(**kwargs)
+        context.update(form=AngularUserAddForm())
+        context.update(form_title='Dodaj użytkownika')
         return context

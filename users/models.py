@@ -137,4 +137,5 @@ class SysUser(AbstractUser):
 
     Django User class
     """
-    pass
+    # user rank (pan/pani/kpt./mjr/por. etc
+    rank = CharField(max_length=20, choices=RANK_CHOICES, blank=True)

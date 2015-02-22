@@ -38,6 +38,19 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
       () =>
         console.log 'PersonAdd modal closed'
 
+  # open form allowing add users
+  $scope.openUserAddModal = () ->
+    instance = $modal.open
+      templateUrl: '/users/addUser'
+      controller: 'UserAddModalController'
+    instance.result.then \
+      () =>
+        # refresh last items list
+        $scope.users = Person.get_last_items()
+      ,
+      () =>
+        console.log 'PersonAdd modal closed'
+
   $scope.showPersonDetails = (id) =>
     $state.go('users.person_detail', { id: id })
 

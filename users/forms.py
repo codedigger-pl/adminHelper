@@ -3,7 +3,7 @@
 from djangular.forms import NgModelFormMixin, NgModelForm, NgFormValidationMixin, NgForm
 from djangular.styling.bootstrap3.forms import Bootstrap3FormMixin, Bootstrap3Form
 
-from .models import PersonGroup, Person
+from .models import PersonGroup, Person, SysUser
 
 
 class AngularPGroupAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
@@ -71,3 +71,18 @@ class AngularPersonPhotoForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin)
     def __init__(self, *args, **kwargs):
         kwargs.update(scope_prefix='person')
         super(AngularPersonPhotoForm, self).__init__(*args, **kwargs)
+
+
+class AngularUserAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+    """
+    Form allowing change person photo.
+    """
+    form_name = 'form'
+
+    class Meta:
+        model = SysUser
+        fields = ('username', 'first_name', 'last_name', 'rank', 'email' )
+
+    def __init__(self, *args, **kwargs):
+        kwargs.update(scope_prefix='user')
+        super(AngularUserAddForm, self).__init__(*args, **kwargs)

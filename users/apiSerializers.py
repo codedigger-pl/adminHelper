@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from .models import Person, PersonGroup
+from .models import Person, PersonGroup, SysUser
 
 
 class DefPersonGroupSerializer(serializers.ModelSerializer):
@@ -26,6 +26,27 @@ class DefPersonSerializer(serializers.ModelSerializer):
         model = Person
         fields = ('id', 'first_name', 'last_name', 'rank', 'group', 'card_number', 'is_active', 'creation_date')
         read_only_fields = ('id', 'creation_date')
+
+
+class DefUserSerializer(serializers.ModelSerializer):
+    """
+    Default person serializer
+    """
+
+    class Meta:
+        model = SysUser
+        fields = ('id', 'username', 'password', 'first_name', 'last_name', 'rank', 'email', )
+        read_only_fields = ('id', 'password')
+
+
+class UserPasswordSerializer(serializers.ModelSerializer):
+    """
+    Default user's password serializer
+    """
+
+    class Meta:
+        model = SysUser
+        fields = ('password', )
 
 
 class PersonSerializer(serializers.ModelSerializer):
