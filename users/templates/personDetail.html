@@ -4,7 +4,7 @@
         <h3>Szczegóły pracownika</h3>
         <div>
             <form class="form-horizontal" role="form" name="photoForm">
-                {#                {{ photoForm.as_div }}#}
+                {# personalized {{ photoForm.as_div }}#}
                 {% verbatim %}
                 <div class="djng-line-spreader">
                     <ul class="djng-form-errors" ng-show="personPhotoForm.$pristine" ng-cloak>
@@ -69,7 +69,7 @@
                 <accordion-heading>Dane personalne</accordion-heading>
                 <form class="form-horizontal" role="form" name="dataForm">
 
-                    {#                    {{ dataForm.as_div }}#}
+                    {# personalized {{ dataForm.as_div }}#}
                     <div class="djng-line-spreader form-group form-group-sm">
                         <ul class="djng-form-errors" ng-show="personDataForm.$pristine" ng-cloak>
                             <li ng-show="personDataForm.$message" class="invalid" ng-bind="personDataForm.$message"></li>
@@ -102,31 +102,7 @@
                     <div class="form-group has-feedback form-group form-group-sm">
                         <label for="id_rank" class="control-label col-md-2">Stopień</label>
                         <div class="col-md-7">
-                            <select class="form-control" id="id_rank" name="rank" ng-model="person.rank">
-                                <option value="" selected="selected">---------</option>
-                                <option value="pan">pan</option>
-                                <option value="pani">pani</option>
-                                <option value="szer.">szeregowy</option>
-                                <option value="st. szer.">starszy szeregowy</option>
-                                <option value="kpr.">kapral</option>
-                                <option value="st. kpr.">starszy kapral</option>
-                                <option value="plut.">plutonowy</option>
-                                <option value="sierż">sierżant</option>
-                                <option value="st. sierż.">starszy sierżant</option>
-                                <option value="mł. chor.">młodszt chorąży</option>
-                                <option value="chor.">chorąży</option>
-                                <option value="st. chor.">starszy chorąży</option>
-                                <option value="st. chor. sztab.">starszy chorąży sztabowy</option>
-                                <option value="ppor.">podporucznik</option>
-                                <option value="por">porucznik</option>
-                                <option value="kpt.">kapitan</option>
-                                <option value="ppłk">podpułkownik</option>
-                                <option value="płk">pułkownik</option>
-                                <option value="gen. bryg.">generał brygady</option>
-                                <option value="gen. dyw.">generał dywizji</option>
-                                <option value="gen. broni">generał broni</option>
-                                <option value="gen.">generał</option>
-                            </select>
+                            {{ dataForm.rank }}
                             <ul class="djng-field-errors" ng-show="personDataForm.rank.$pristine" ng-cloak>
                                 <li ng-show="personDataForm.rank.$message" class="invalid" ng-bind="personDataForm.rank.$message"></li>
                             </ul>
@@ -137,19 +113,7 @@
                     <div class="form-group has-feedback form-group form-group-sm">
                         <label for="id_group" class="control-label col-md-2">Grupa</label>
                         <div class="col-md-7">
-                            <select class="form-control" id="id_group" name="group" ng-model="person.group">
-                                <option value="" selected="selected">---------</option>
-                                <option value="1">Rei</option>
-                                <option value="2">Ani</option>
-                                <option value="3">Debit</option>
-                                <option value="4">Repre</option>
-                                <option value="5">In qu</option>
-                                <option value="6">Fugi</option>
-                                <option value="7">Impedit non quae quam sun</option>
-                                <option value="8">Sit mo</option>
-                                <option value="9">Debitis autem ne</option>
-                                <option value="10">Illo modi dolor sequi qu</option>
-                            </select>
+                            {{ dataForm.group }}
                             <ul class="djng-field-errors" ng-show="personDataForm.group.$pristine" ng-cloak>
                                 <li ng-show="personDataForm.group.$message" class="invalid" ng-bind="personDataForm.group.$message"></li>
                             </ul>
@@ -167,7 +131,7 @@
                 <accordion-heading>Dane identyfikacyjne</accordion-heading>
                 <form class="form-horizontal" role="form" name="cardNumberForm">
 
-                    {# generated {{ cardNumberForm.as_div }} with custom changes#}
+                    {# generated {{ cardNumberForm.as_div }} with custom changes #}
                     <div class="djng-line-spreader">
                         <ul class="djng-form-errors" ng-show="cardNumberForm.$dirty" ng-cloak></ul>
                         <ul class="djng-form-errors" ng-show="cardNumberForm.$pristine" ng-cloak>
