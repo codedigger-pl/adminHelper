@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
 
 import pep8
+
+from subprocess import call
+
 from django.utils import timezone
 from django.test import TestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core.urlresolvers import reverse
+
 from rest_framework.test import APITestCase
+
 from autofixture import AutoFixture
+
 from .models import PersonGroup, Person
 
 
@@ -163,6 +170,21 @@ class APITest_PersonGroups_last(APITestCase):
         resp = self.client.get(reverse('api:persongroup-list') + '?onlyLastItems=20')
         self.assertEqual(len(resp.data), len(groupsGenerated))
 
+
+class WEBTests(StaticLiveServerTestCase):
+    """ Here are all tests with real browser. Using nightwatch - see tests directory to properly set invironment
+    """
+    def setUp(self):
+        super(WEBTests, self).setUp()
+
+    def test_pgroupAddForm(self):
+        call('cd users/tests && nightwatch --test forms/pgroupAddForm.js', shell=True)
+        group = PersonGroup.objects.get(id=1)
+        self.assertEqual(group.name, 'Some group name')
+        self.assertEqual(group.description, 'This is some group description')
+
+    def tearDown(self):
+        super(WEBTests,self).tearDown()
 
 class PEP8Test(TestCase):
     """All PEP8 tests"""

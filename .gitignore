@@ -1,7 +1,7 @@
 .project
-JIM.fdb.zip
 .settings
 __pycache__
-.pydevproject
 *.pyc
 .idea
+selenium-debug.log
+selenium-server-standalone-2.44.0.jar

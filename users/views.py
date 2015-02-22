@@ -5,7 +5,7 @@ from django.views.generic import TemplateView, FormView
 
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import detail_route, list_route
 
 from .models import PersonGroup, Person, SysUser
 from .forms import (AngularPGroupAddForm,

@@ -10,7 +10,7 @@ class AngularPGroupAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
     """
     Form allowing manipulating person groups.
     """
-    form_name = 'form'
+    form_name = 'pgroupAddForm'
 
     class Meta:
         model = PersonGroup
