@@ -2,9 +2,7 @@ module.exports = {
     'testing person data change form': function (browser) {
         browser
             .maximizeWindow()
-            .pause(2000)
             .url('http://127.0.0.1:8081/#/person_detail/2')
-            .pause(2000)
             .waitForElementVisible('button[ng-click="updateData()"]', 5000)
             .setValue('input[id="id_first_name"]', [
                 browser.Keys.BACK_SPACE,

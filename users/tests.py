@@ -256,26 +256,26 @@ Process finished with exit code 0
     #     for g in PersonGroup.objects.all():
     #         print('ID:', str(g.id), 'name:', str(g))
 
-    def test_pgroupAddForm(self):
+    def test_001_pgroupAddForm(self):
         call('cd users/tests && nightwatch --test forms/pgroupAddForm.js', shell=True)
         # strange: get(id=1) isn't working
         group = PersonGroup.objects.all()[0]
         self.assertEqual(group.name, 'Group name')
         self.assertEqual(group.description, 'This is some group description')
 
-    def test_personAddForm(self):
+    def test_002_personAddForm(self):
         fixture = AutoFixture(PersonGroup)
         fixture.create(1)
-        group = PersonGroup.objects.get(id=1)
+        group = PersonGroup.objects.all()[0]
         call('cd users/tests && nightwatch --test forms/personAddForm.js', shell=True)
-        person = Person.objects.get(id=1)
+        person = Person.objects.all()[0]
         self.assertEqual(person.first_name, 'First name')
         self.assertEqual(person.last_name, 'LAST NAME')
         self.assertEqual(person.rank, 'kpr.')
         self.assertEqual(person.card_number, '1111111111111')
         self.assertEqual(person.group, group)
 
-    def test_personDataChangeForm(self):
+    def test_003_personDataChangeForm(self):
         # creating groups
         group_fixture = AutoFixture(PersonGroup)
         group_fixture.create(2)
@@ -285,10 +285,6 @@ Process finished with exit code 0
         person = Person.objects.all()[0]
         person.group = PersonGroup.objects.all()[0]
         person.save()
-
-        # for p in Person.objects.all():
-        #     print('Person ID:',str(p.id),'nazwa:',str(p))
-
         # calling browser
         call('cd users/tests && nightwatch --test forms/personDataChange.js', shell=True)
         person = Person.objects.all()[0]
@@ -296,6 +292,19 @@ Process finished with exit code 0
         self.assertEqual(person.last_name, 'NEW LAST NAME')
         self.assertEqual(person.rank, 'pan')
         self.assertEqual(person.group, PersonGroup.objects.all()[1])
+
+    def test_004_personCardNumberChangeForm(self):
+        # creating groups
+        group_fixture = AutoFixture(PersonGroup)
+        group_fixture.create(1)
+        # creating person with first group
+        person_fixture = AutoFixture(Person)
+        person_fixture.create(1)
+        person = Person.objects.all()[0]
+        # calling browser
+        call('cd users/tests && nightwatch --test forms/personCardNumberChange.js', shell=True)
+        person = Person.objects.all()[0]
+        self.assertEqual(person.card_number, '2222222222')
 
 
 class PEP8Test(TestCase):
