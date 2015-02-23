@@ -77,7 +77,7 @@ class AngularUserAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
     """
     Form allowing change person photo.
     """
-    form_name = 'form'
+    form_name = 'userAddForm'
 
     class Meta:
         model = SysUser

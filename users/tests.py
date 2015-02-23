@@ -15,7 +15,7 @@ from rest_framework.test import APITestCase
 
 from autofixture import AutoFixture
 
-from .models import PersonGroup, Person
+from .models import PersonGroup, Person, SysUser
 
 
 class HomePageTest(TestCase):
@@ -305,6 +305,16 @@ Process finished with exit code 0
         call('cd users/tests && nightwatch --test forms/personCardNumberChange.js', shell=True)
         person = Person.objects.all()[0]
         self.assertEqual(person.card_number, '2222222222')
+
+    def test_005_userAddForm(self):
+        # calling browser
+        call('cd users/tests && nightwatch --test forms/userAddForm.js', shell=True)
+        user = SysUser.objects.all()[0]
+        self.assertEqual(user.username, 'username')
+        self.assertEqual(user.first_name, 'First name')
+        self.assertEqual(user.last_name, 'Last name')
+        self.assertEqual(user.rank, 'kpr.')
+        self.assertEqual(user.email, 'user@user.com')
 
 
 class PEP8Test(TestCase):
