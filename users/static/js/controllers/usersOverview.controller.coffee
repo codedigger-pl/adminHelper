@@ -12,6 +12,12 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
   $scope.persons = Person.get_last_items()
   $scope.groups = PersonGroup.get_last_items()
 
+  $scope.get_recent_persons = () ->
+    $scope.persons = Person.get_last_items()
+
+  $scope.get_recent_groups = () ->
+    $scope.groups = PersonGroup.get_last_items()
+
   # open form allowing add person groups
   $scope.openGroupAddModal = () ->
     instance = $modal.open
