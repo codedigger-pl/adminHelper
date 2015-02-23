@@ -9,7 +9,7 @@ pGroupService = angular.module 'adminHelper.users.services'
 pGroupService.factory 'PersonGroup', ['$http', 'Restangular', ($http, Restangular) ->
   new class PersonGroup
 
-    constructor: (@url='api/users/personGroups/') ->
+    constructor: (@url='api/users/personGroups') ->
       ###
         Class constructor
         :param url: {str} - API url

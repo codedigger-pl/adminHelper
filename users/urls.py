@@ -9,7 +9,7 @@ from .views import PersonGroupViewset, PersonViewset, UserViewset
 
 
 # TODO: move this to main API generating after finish
-router = DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 router.register(r'personGroups', PersonGroupViewset)
 router.register(r'persons', PersonViewset)
 router.register(r'users', UserViewset)

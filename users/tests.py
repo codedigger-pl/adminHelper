@@ -94,7 +94,8 @@ class APITest(APITestCase):
         fixture = AutoFixture(PersonGroup)
         fixture.create(20)
         for i in range(1, 21):
-            resp = self.client.get(reverse('api:persongroup-list') + str(i) + '/')
+            resp = self.client.get('/'.join([reverse('api:persongroup-list'),
+                                             str(i)]))
             self.assertEqual(resp.status_code, 200)
 
     def test_random_persons_access(self):
@@ -102,7 +103,8 @@ class APITest(APITestCase):
         fixture = AutoFixture(Person, generate_fk=True)
         fixture.create(20)
         for i in range(1, 21):
-            resp = self.client.get(reverse('api:person-list') + str(i) + '/')
+            resp = self.client.get('/'.join([reverse('api:person-list'),
+                                             str(i)]))
             self.assertEqual(resp.status_code, 200)
 
 
@@ -175,9 +177,84 @@ class APITest_PersonGroups_last(APITestCase):
 
 class WEBTests(StaticLiveServerTestCase):
     """ Here are all tests with real browser. Using nightwatch - see tests directory to properly set environment
+
+    Strange things happen in here:
+    - in test_personDataChangeForm, first created person has id=2
+    - in many places get(id=<>) don't work: strange ID's in database
+    It looks like AutoFixture.create() have problem in here (really? why?)
+    Uncomment test_test01, test_test02, test_test03 to see the problem.
+
+    When class inherits from StaticLiveServerTestCase:
+Testing started at 21:46 ...
+Creating test database for alias 'default'...
+Generated in test01:
+ID: 1 name: Quo perspiciati
+ID: 2 name: Possimus libero evenie
+ID: 3 name: Autem nostrum e
+ID: 4 name: Unde dolorem simi
+ID: 5 name: Omnis quidem esse
+Generated in test02:
+ID: 6 name: At ipsum explicabo
+ID: 7 name: Ip
+ID: 8 name: Ipsum culpa laudantium do
+ID: 9 name: Officiis vero expedit
+ID: 10 name: Cum dolorum
+Generated in test03:
+ID: 11 name: Omnis qu
+ID: 12 name: Volupta
+ID: 13 name: Itaque
+ID: 14 name: Ex
+ID: 15 name: Nam in p
+Destroying test database for alias 'default'...
+
+Process finished with exit code 0
+
+    When class inherits from TestCase:
+Testing started at 21:45 ...
+Creating test database for alias 'default'...
+Generated in test01:
+ID: 1 name: Minus suscipit voluptatem
+ID: 2 name: Animi quibusdam velit be
+ID: 3 name: Ea
+ID: 4 name: Quasi enim fugit
+ID: 5 name: Eveniet temp
+Generated in test02:
+ID: 1 name: Consecte
+ID: 2 name: Adipis
+ID: 3 name: Aut sapiente
+ID: 4 name: Odio ipsa veritatis quasi
+ID: 5 name: Te
+Generated in test03:
+ID: 1 name: Nostrum err
+ID: 2 name: Nihil enim nemo repudian
+ID: 3 name: Expedita
+ID: 4 name: Eius saepe
+ID: 5 name: Ea repellendus dolores
+Destroying test database for alias 'default'...
+
+Process finished with exit code 0
     """
-    # def setUp(self):
-    #     super(WEBTests, self).setUp()
+
+    # def test_test01(self):
+    #     fixture = AutoFixture(PersonGroup)
+    #     fixture.create(5)
+    #     print('Generated in test01:')
+    #     for g in PersonGroup.objects.all():
+    #         print('ID:', str(g.id), 'name:', str(g))
+    #
+    # def test_test02(self):
+    #     fixture = AutoFixture(PersonGroup)
+    #     fixture.create(5)
+    #     print('Generated in test02:')
+    #     for g in PersonGroup.objects.all():
+    #         print('ID:', str(g.id), 'name:', str(g))
+    #
+    # def test_test03(self):
+    #     fixture = AutoFixture(PersonGroup)
+    #     fixture.create(5)
+    #     print('Generated in test03:')
+    #     for g in PersonGroup.objects.all():
+    #         print('ID:', str(g.id), 'name:', str(g))
 
     def test_pgroupAddForm(self):
         call('cd users/tests && nightwatch --test forms/pgroupAddForm.js', shell=True)
@@ -196,10 +273,29 @@ class WEBTests(StaticLiveServerTestCase):
         self.assertEqual(person.last_name, 'LAST NAME')
         self.assertEqual(person.rank, 'kpr.')
         self.assertEqual(person.card_number, '1111111111111')
-        # self.assertEqual(person.group.name, group.name)
+        self.assertEqual(person.group, group)
 
-    # def tearDown(self):
-    #     super(WEBTests,self).tearDown()
+    def test_personDataChangeForm(self):
+        # creating groups
+        group_fixture = AutoFixture(PersonGroup)
+        group_fixture.create(2)
+        # creating person with first group
+        person_fixture = AutoFixture(Person)
+        person_fixture.create(1)
+        person = Person.objects.all()[0]
+        person.group = PersonGroup.objects.all()[0]
+        person.save()
+
+        # for p in Person.objects.all():
+        #     print('Person ID:',str(p.id),'nazwa:',str(p))
+
+        # calling browser
+        call('cd users/tests && nightwatch --test forms/personDataChange.js', shell=True)
+        person = Person.objects.all()[0]
+        self.assertEqual(person.first_name, 'New first name')
+        self.assertEqual(person.last_name, 'NEW LAST NAME')
+        self.assertEqual(person.rank, 'pan')
+        self.assertEqual(person.group, PersonGroup.objects.all()[1])
 
 
 class PEP8Test(TestCase):
