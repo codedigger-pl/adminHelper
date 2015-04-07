@@ -59,5 +59,4 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
 
   $scope.showPersonDetails = (id) =>
     $state.go('users.person_detail', { id: id })
-
 ]

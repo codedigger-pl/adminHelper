@@ -45,5 +45,4 @@ overviewController.controller 'PersonListController', ['$scope', '$state', 'Pers
 
   $scope.pager = new Paginator()
   $scope.pager.loadData()
-
 ]

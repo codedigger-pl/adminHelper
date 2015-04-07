@@ -5,3 +5,5 @@ __pycache__
 .idea
 selenium-debug.log
 selenium-server-standalone-2.44.0.jar
+selenium-server-standalone-2.45.0.jar
+sqlite3

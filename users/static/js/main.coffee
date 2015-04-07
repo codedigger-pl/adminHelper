@@ -56,7 +56,6 @@ mainApp.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRou
     controller: 'UsersOverviewController'
 ]
 
-
 # Main controller
 mainApp.controller 'MainController', ['$scope', ($scope) ->
 
