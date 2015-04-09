@@ -20,7 +20,9 @@ class PersonDataChangeTest(StaticLiveServerTestCase):
         person.group = group1
         person.save()
         # calling browser
-        call('cd users/allTests/e2eTests && nightwatch --test personDataChange.js', shell=True)
+        self.assertEqual(0,
+                         call('cd users/allTests/e2eTests && nightwatch --test personDataChange.js', shell=True),
+                         'Nighwatch tests failed')
         person = Person.objects.all()[0]
         self.assertEqual('New first name', person.first_name)
         self.assertEqual('NEW LAST NAME', person.last_name)

@@ -12,7 +12,9 @@ class PersonAddFormTest(StaticLiveServerTestCase):
     def test_personAddForm(self):
         fixture = AutoFixture(PersonGroup)
         group = fixture.create(1)[0]
-        call('cd users/allTests/e2eTests && nightwatch --test personAddForm.js', shell=True)
+        self.assertEqual(0,
+                         call('cd users/allTests/e2eTests && nightwatch --test personAddForm.js', shell=True),
+                         'Nighwatch tests failed')
         person = Person.objects.all()[0]
         self.assertEqual(person.first_name, 'First name')
         self.assertEqual(person.last_name, 'LAST NAME')
