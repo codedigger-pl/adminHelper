@@ -1,9 +1,15 @@
 module.exports = {
-    'testing person data change form': function (browser) {
+    'finding person': function (browser) {
         browser
             .maximizeWindow()
-            .url('http://127.0.0.1:8081/#/person_detail/3')
+            .url('http://127.0.0.1:8081/#/users/person_list')
+            .waitForElementVisible('tr[ng-click="showPersonDetails(person.id)"]', 2000)
+            .click('td')
+    },
+    'testing person card number change form': function (browser) {
+        browser
             .waitForElementVisible('button[ng-click="updateCardNumber()"]', 2000)
+            .waitForElementVisible('input[id="id_card_number"]', 2000)
             .setValue('input[id="id_card_number"]', [
                 browser.Keys.BACK_SPACE,
                 browser.Keys.BACK_SPACE,

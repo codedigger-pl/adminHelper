@@ -9,7 +9,7 @@ from django.contrib.auth.models import AbstractUser
 class PersonGroup(models.Model):
     """ Class PersonGroup
 
-    Describes all information about persons groups
+    Describes all information about person groups
     """
     # group name
     name = CharField(max_length=25,
@@ -96,7 +96,7 @@ class Person(models.Model):
     is_active = BooleanField(default=True)
     # person access system card number
     card_number = CharField(max_length=15, blank=True)
-    # person rank (pan/pani/kpt./mjr/por. etc
+    # person rank (pan/pani/kpt./mjr/por. etc)
     rank = CharField(max_length=20, choices=RANK_CHOICES)
     # person group
     group = ForeignKey('PersonGroup')

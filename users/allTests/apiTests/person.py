@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import reverse
+from django.test import TestCase
 from rest_framework.test import APITestCase
 from autofixture import AutoFixture
 

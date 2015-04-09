@@ -17,7 +17,12 @@ from .allTests.apiTests.person import APIPersonTest, APIPersonsTest_lastItems, A
 from .allTests.apiTests.personGroup import APIPersonGroupTest, APIPersonGroup_lastItems
 
 # Enabling WEB tests
-from .allTests.e2eTests.webTests import WEBTests
+# from .allTests.e2eTests.webTests import WEBTests
+from .allTests.e2eTests.personAddForm import PersonAddFormTest
+from .allTests.e2eTests.personDataChange import PersonDataChangeTest
+from .allTests.e2eTests.personCardNumberChange import PersonCardNumberChangeTest
+from .allTests.e2eTests.pgroupAddForm import PersonGroupAddFormTest
+from .allTests.e2eTests.userAddForm import UserAddFormTest
 
 
 class PEP8Test(TestCase):

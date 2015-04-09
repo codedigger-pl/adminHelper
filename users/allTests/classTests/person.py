@@ -13,8 +13,7 @@ class PersonClassTest(TestCase):
     """
     def test_last_name_uppercase(self):
         fixture = AutoFixture(Person, generate_fk=True)
-        fixture.create(1)
-        person = Person.objects.get(id=1)
+        person = fixture.create(1)[0]
         self.assertEqual(str(person.last_name).isupper(), True)
 
     def test_get_creation_date_properties(self):
@@ -22,8 +21,7 @@ class PersonClassTest(TestCase):
         :return:
         """
         fixture = AutoFixture(Person, generate_fk=True)
-        fixture.create(1)
-        person = Person.objects.get(id=1)
+        person = fixture.create(1)[0]
         someDate = timezone.now()
         person.creation_date = someDate
         person.save()

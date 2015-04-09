@@ -16,8 +16,7 @@ class PersonGroupClassTest(TestCase):
         :return:
         """
         fixture = AutoFixture(PersonGroup)
-        fixture.create(1)
-        group = PersonGroup.objects.get(id=1)
+        group = fixture.create(1)[0]
         someDate = timezone.now()
         group.creation_date = someDate
         group.save()
