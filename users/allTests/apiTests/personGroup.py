@@ -2,7 +2,10 @@
 
 from django.core.urlresolvers import reverse
 from rest_framework.test import APITestCase
+from rest_framework import status
 from autofixture import AutoFixture
+
+from random import randint
 
 from users.models import PersonGroup
 
@@ -18,10 +21,19 @@ class APIPersonGroupTest(APITestCase):
     def test_random_personGroups_access(self):
         """Testing access to random created PersonGroup objects"""
         fixture = AutoFixture(PersonGroup)
-        fixture.create(20)
-        for i in range(1, 21):
-            resp = self.client.get('/'.join([reverse('api:persongroup-list'),
-                                             str(i)]))
+        groups = fixture.create(20)
+        for g in groups:
+            resp = self.client.get(reverse('api:persongroup-detail', kwargs={'pk': g.id}))
+            self.assertEqual(status.HTTP_200_OK, resp.status_code)
+
+    def test_count(self):
+        """Testing elements count"""
+        count = randint(1, 20)
+        fixture = AutoFixture(PersonGroup)
+        fixture.create(count)
+        resp = self.client.get(reverse('api:persongroup-count'))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(count, resp.data['count'])
 
 
 class APIPersonGroup_lastItems(APITestCase):

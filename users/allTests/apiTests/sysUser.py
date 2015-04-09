@@ -6,6 +6,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 
 from autofixture import AutoFixture
+from random import randint
 
 from users.models import SysUser
 
@@ -38,3 +39,12 @@ class APISysUserTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK, 'Server returned ' + str(response.data))
         user = SysUser.objects.all()[0]
         self.assertNotEqual(old_password, user.password, 'Password not changed')
+
+    def test_count(self):
+        """Testing elements count"""
+        count = randint(1, 20)
+        fixture = AutoFixture(SysUser)
+        fixture.create(count)
+        resp = self.client.get(reverse('api:sysuser-count'))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(count, resp.data['count'])

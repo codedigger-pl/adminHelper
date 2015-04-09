@@ -2,7 +2,7 @@
 
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import detail_route, list_route
 
 from .models import PersonGroup, Person, SysUser
 
@@ -41,6 +41,12 @@ class PersonGroupViewset(viewsets.ModelViewSet):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
+    @list_route(methods=['get'])
+    def count(self, request):
+        resp = {}
+        resp['count'] = PersonGroup.objects.count()
+        return Response(resp, status=status.HTTP_200_OK)
+
 
 class PersonViewset(viewsets.ModelViewSet):
     """Person viewset
@@ -78,6 +84,12 @@ class PersonViewset(viewsets.ModelViewSet):
     # def create(self, request, *args, **kwargs):
     #     print(request.data)
 
+    @list_route(methods=['get'])
+    def count(self, request):
+        resp = {}
+        resp['count'] = Person.objects.count()
+        return Response(resp, status=status.HTTP_200_OK)
+
 
 class UserViewset(viewsets.ModelViewSet):
     """User viewset
@@ -97,3 +109,9 @@ class UserViewset(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
+    @list_route(methods=['get'])
+    def count(self, request):
+        resp = {}
+        resp['count'] = SysUser.objects.count()
+        return Response(resp, status=status.HTTP_200_OK)

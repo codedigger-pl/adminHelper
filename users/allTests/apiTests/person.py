@@ -2,7 +2,10 @@
 
 from django.core.urlresolvers import reverse
 from rest_framework.test import APITestCase
+from rest_framework import status
+
 from autofixture import AutoFixture
+from random import randint
 
 from users.models import Person
 
@@ -18,11 +21,19 @@ class APIPersonTest(APITestCase):
     def test_random_persons_access(self):
         """Testing access to random created Person objects"""
         fixture = AutoFixture(Person, generate_fk=True)
-        fixture.create(20)
-        for i in range(1, 21):
-            resp = self.client.get('/'.join([reverse('api:person-list'),
-                                             str(i)]))
-            self.assertEqual(resp.status_code, 200)
+        persons = fixture.create(20)
+        for p in persons:
+            resp = self.client.get(reverse('api:person-detail', kwargs={'pk': p.id}))
+            self.assertEqual(status.HTTP_200_OK, resp.status_code)
+
+    def test_count(self):
+        """Testing elements count"""
+        count = randint(1, 20)
+        fixture = AutoFixture(Person, generate_fk=True)
+        fixture.create(count)
+        resp = self.client.get(reverse('api:person-count'))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(count, resp.data['count'])
 
 
 class APIPersonsTest_lastItems(APITestCase):
