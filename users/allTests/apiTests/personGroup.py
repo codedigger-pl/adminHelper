@@ -6,6 +6,7 @@ from autofixture import AutoFixture
 
 from users.models import PersonGroup
 
+
 class APIPersonGroupTest(APITestCase):
     """All primary API tests"""
 

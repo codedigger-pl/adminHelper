@@ -81,7 +81,7 @@ class AngularUserAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
 
     class Meta:
         model = SysUser
-        fields = ('username', 'first_name', 'last_name', 'rank', 'email' )
+        fields = ('username', 'first_name', 'last_name', 'rank', 'email')
 
     def __init__(self, *args, **kwargs):
         kwargs.update(scope_prefix='user')

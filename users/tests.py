@@ -31,9 +31,51 @@ if ENABLE_E2E_TESTS:
 class PEP8Test(TestCase):
     """All PEP8 tests"""
 
-    def test_pep8(self):
-        """Testing PEP8"""
+    def check_PEP8_file(self, prefix, file_name):
         pep8style = pep8.StyleGuide(quiet=False, ignore=['E501', 'E402'])
-        result = pep8style.check_files(['users/admin.py', 'users/apiSerializers.py', 'users/models.py',
-                                        'users/tests.py', 'users/views.py', 'users/filters.py'])
+        files = []
+        for f in file_name:
+            files.append(prefix + f)
+        return pep8style.check_files(files)
+
+    def test_users_files(self):
+        """Testing main package files"""
+        files_prefix = 'users/'
+        files = ['admin.py',
+                 'apiSerializers.py',
+                 'apiViewsets.py',
+                 'forms.py',
+                 'models.py',
+                 'tests.py',
+                 'views.py',
+                 'filters.py']
+        result = self.check_PEP8_file(files_prefix, files)
+        self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
+
+    def test_tests_apiTests(self):
+        """Testing apiTests files"""
+        files_prefix = 'users/allTests/apiTests'
+        files = ['/']
+        result = self.check_PEP8_file(files_prefix, files)
+        self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
+
+    def test_tests_classTests(self):
+        """Testing classTests files"""
+        files_prefix = 'users/allTests/classTests'
+        files = ['/']
+        result = self.check_PEP8_file(files_prefix, files)
+        self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
+
+    def test_tests_e2eTests(self):
+        """Testing e2eTests files"""
+        files_prefix = 'users/allTests/e2eTests'
+        files = ['/']
+        result = self.check_PEP8_file(files_prefix, files)
+        self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
+
+    def test_tests_viewTests(self):
+        """Testing viewTests files"""
+        files_prefix = 'users/allTests/viewTests'
+        files = ['/']
+        result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')

@@ -9,6 +9,7 @@ from autofixture import AutoFixture
 
 from users.models import SysUser
 
+
 class APISysUserTest(APITestCase):
     """All primary API tests"""
 

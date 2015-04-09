@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import reverse
-from django.test import TestCase
 from rest_framework.test import APITestCase
 from autofixture import AutoFixture
 
 from users.models import Person
+
 
 class APIPersonTest(APITestCase):
     """All primary API tests"""
@@ -64,4 +64,3 @@ class APITest_Person_serializerSwitcher(APITestCase):
         self.assertEqual('first_name' in respData, True)
         self.assertEqual('last_name' in respData, True)
         self.assertEqual('group' in respData, True)
-

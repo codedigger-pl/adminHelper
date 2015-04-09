@@ -6,6 +6,7 @@ from subprocess import call
 
 from users.models import PersonGroup, Person
 
+
 class PersonCardNumberChangeTest(StaticLiveServerTestCase):
     """All tests with nightwatch and Selenium server"""
 
