@@ -5,7 +5,7 @@ from django.conf.urls import patterns, url
 from rest_framework.routers import DefaultRouter
 
 from .views import UsersOverview, PersonAddView, PersonGroupAddView, PersonList, PersonDetail, PGroupList, UserAddView
-from .views import PersonGroupViewset, PersonViewset, UserViewset
+from .apiViewsets import PersonGroupViewset, PersonViewset, UserViewset
 
 
 # TODO: move this to main API generating after finish
