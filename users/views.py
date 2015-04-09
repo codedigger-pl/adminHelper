@@ -45,15 +45,21 @@ def UsersOverview(request):
     # TODO: do this with API call and change view to TemplateView
     resp['personsCount'] = Person.objects.count()
     resp['groupsCount'] = PersonGroup.objects.count()
+    resp['usersCount'] = SysUser.objects.count()
 
     # getting last registered objects
     # TODO: do this with API call and change view to TemplateView
     lastRegisteredPerson = Person.objects.last()
     if lastRegisteredPerson is not None:
         resp['lastRegisteredPerson'] = lastRegisteredPerson.last_name + ' ' + lastRegisteredPerson.first_name
+
     lastRegisteredGroup = PersonGroup.objects.last()
     if lastRegisteredGroup is not None:
         resp['lastRegisteredGroup'] = lastRegisteredGroup.name
+
+    lastRegisteredUser = SysUser.objects.last()
+    if lastRegisteredUser is not None:
+        resp['lastRegisteredUser'] = lastRegisteredUser.last_name + ' ' + lastRegisteredUser.first_name
 
     # return prepared data
     return render(request, 'usersOverview.html', resp)

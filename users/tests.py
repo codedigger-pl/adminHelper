@@ -54,28 +54,28 @@ class PEP8Test(TestCase):
 
     def test_tests_apiTests(self):
         """Testing apiTests files"""
-        files_prefix = 'users/allTests/apiTests'
-        files = ['/']
+        files_prefix = 'users/allTests/apiTests/'
+        files = []
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
 
     def test_tests_classTests(self):
         """Testing classTests files"""
-        files_prefix = 'users/allTests/classTests'
-        files = ['/']
+        files_prefix = 'users/allTests/classTests/'
+        files = []
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
 
     def test_tests_e2eTests(self):
         """Testing e2eTests files"""
-        files_prefix = 'users/allTests/e2eTests'
-        files = ['/']
+        files_prefix = 'users/allTests/e2eTests/'
+        files = []
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
 
     def test_tests_viewTests(self):
         """Testing viewTests files"""
-        files_prefix = 'users/allTests/viewTests'
-        files = ['/']
+        files_prefix = 'users/allTests/viewTests/'
+        files = []
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
