@@ -21,7 +21,7 @@ pGroupService.factory 'PersonGroup', ['$http', 'Restangular', ($http, Restangula
         Gets last items from database
         :param count: {int} - how many last items retrieve
       ###
-      @base.getList({modelType: 'minimal', onlyLastItems: 5}).$object
+      @base.getList({modelType: 'minimal', onlyLastItems: count}).$object
 
     post: (new_group) ->
       ###
@@ -35,4 +35,12 @@ pGroupService.factory 'PersonGroup', ['$http', 'Restangular', ($http, Restangula
         Gets all groups from server
       ###
       @base.getList().$object
+
+    count: () ->
+      ###
+        Gets objects count
+      ###
+      o = @base.get('count').then (t) =>
+        console.log(t)
+      o.count
 ]

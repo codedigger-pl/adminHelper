@@ -25,16 +25,20 @@
     <div class="row">
         <div class="col-md-6">
             <dl class="dl-horizontal">
+                {% verbatim %}
                 <dt>Ilość zarejestrowanych pracowników:</dt>
                 <dd>{{ personsCount }}</dd>
+                {% endverbatim %}
                 <dt>Ostatni zarejestrowany pracownik:</dt>
                 <dd>{{ lastRegisteredPerson }}</dd>
             </dl>
         </div>
         <div class="col-md-6">
             <dl class="dl-horizontal">
+                {% verbatim %}
                 <dt>Ilość zarejestrowanych grup:</dt>
                 <dd>{{ groupsCount }}</dd>
+                {% endverbatim %}
                 <dt>Ostatnia zarejestrowana grupa:</dt>
                 <dd>{{ lastRegisteredGroup }}</dd>
             </dl>
