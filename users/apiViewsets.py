@@ -128,3 +128,10 @@ class UserViewset(viewsets.ModelViewSet):
         resp = {}
         resp['count'] = SysUser.objects.count()
         return Response(resp, status=status.HTTP_200_OK)
+
+    @list_route(methods=['get'])
+    def last_registered(self, request):
+        last_user = SysUser.objects.last()
+        resp = {}
+        resp['name'] = last_user.last_name + ' ' + last_user.first_name
+        return Response(resp, status=status.HTTP_200_OK)

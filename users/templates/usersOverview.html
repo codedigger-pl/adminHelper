@@ -91,16 +91,18 @@
         </div>
 
         <div class="col-md-12">
-            <button type="button" class="btn-default" ng-click="groups.get_last_items()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="users.refreshData()">Odśwież</button>
             <button type="button" class="btn-default" ng-click="openUserAddModal()">Dodaj</button>
         </div>
 
         <div class="col-md-12">
             <dl class="dl-horizontal">
+                {% verbatim %}
                 <dt>Ilość zarejestrowanych użytkowników:</dt>
-                <dd>{{ usersCount }}</dd>
+                <dd>{{ users.itemsCount }}</dd>
                 <dt>Ostatnio zarejestrowany użytkownik:</dt>
-                <dd>{{ lastRegisteredUser }}</dd>
+                <dd>{{ users.lastRegistered }}</dd>
+                {% endverbatim %}
             </dl>
         </div>
 
@@ -115,14 +117,16 @@
                     <th>Stopień</th>
                     <th>Adres mailowy</th>
                 </tr>
-                <tr>
-                    <td>sd</td>
-                    <td>sd</td>
-                    <td>we</td>
-                    <td>sd</td>
-                    <td>sd</td>
-                    <td>we</td>
+                {% verbatim %}
+                <tr ng-repeat="user in users.items">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.rank }}</td>
+                    <td>{{ user.email }}</td>
                 </tr>
+                {% endverbatim %}
             </table>
         </div>
     </div>

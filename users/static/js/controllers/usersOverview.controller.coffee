@@ -41,6 +41,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
 
   $scope.groups.refreshData()
   $scope.persons.refreshData()
+  $scope.users.refreshData()
 
   # open form allowing add person groups
   $scope.openGroupAddModal = () ->

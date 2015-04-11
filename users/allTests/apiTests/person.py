@@ -41,7 +41,7 @@ class APIPersonTest(APITestCase):
         last_registered = fixture.create(20)[-1]
         resp = self.client.get(reverse('api:person-last-registered'))
         self.assertEqual(status.HTTP_200_OK, resp.status_code)
-        self.assertEqual(last_registered.last_name + ' ' + last_registered.first_name, resp.data['full_name'])
+        self.assertEqual(last_registered.last_name + ' ' + last_registered.first_name, resp.data['name'])
 
 
 class APIPersonsTest_lastItems(APITestCase):

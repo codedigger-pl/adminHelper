@@ -48,3 +48,11 @@ class APISysUserTest(APITestCase):
         resp = self.client.get(reverse('api:sysuser-count'))
         self.assertEqual(status.HTTP_200_OK, resp.status_code)
         self.assertEqual(count, resp.data['count'])
+
+    def test_last_registered(self):
+        """Testing retrieve last registered group"""
+        fixture = AutoFixture(SysUser)
+        last_registered = fixture.create(20)[-1]
+        resp = self.client.get(reverse('api:sysuser-last-registered'))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(last_registered.last_name+ ' ' + last_registered.first_name, resp.data['name'])
