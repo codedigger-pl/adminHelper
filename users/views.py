@@ -43,8 +43,6 @@ def UsersOverview(request):
 
     # getting objects counts
     # TODO: do this with API call and change view to TemplateView
-    resp['personsCount'] = Person.objects.count()
-    resp['groupsCount'] = PersonGroup.objects.count()
     resp['usersCount'] = SysUser.objects.count()
 
     # getting last registered objects

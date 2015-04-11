@@ -35,6 +35,14 @@ class APIPersonGroupTest(APITestCase):
         self.assertEqual(status.HTTP_200_OK, resp.status_code)
         self.assertEqual(count, resp.data['count'])
 
+    def test_last_registered(self):
+        """Testing retrieve last registered group"""
+        fixture = AutoFixture(PersonGroup)
+        last_registered = fixture.create(20)[-1]
+        resp = self.client.get(reverse('api:persongroup-last-registered'))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(last_registered.name, resp.data['name'])
+
 
 class APIPersonGroup_lastItems(APITestCase):
     """Testing last items from API"""

@@ -8,41 +8,39 @@ overviewController = angular.module 'adminHelper.users.controllers'
 ###
 overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$modal', 'Restangular', ($scope, $state, $modal, Restangular) ->
 
-  $scope.groups = []
-  $scope.groupsCount = -1
-  $scope.persons = []
-  $scope.personsCount = -1
+  class ItemInfo
+    constructor: (url) ->
+      @base = Restangular.all(url)
+      @items = []
+      @itemsCount = -1
+      @lastRegistered = ''
 
-  base_personGroup = Restangular.all('api/users/personGroups')
-  base_person = Restangular.all('api/users/persons')
+    getItems: ->
+      @items = @base.getList({modelType: 'minimal', onlyLastItems: 5}).$object
 
-  refreshLastPersonGroups = () ->
-    $scope.groups = base_personGroup.getList({modelType: 'minimal', onlyLastItems: 5}).$object
+    getItemsCount: ->
+      @base.get('count').then (count) =>
+        @itemsCount = count.count
 
-  refreshLastPersons = () ->
-    $scope.persons = base_person.getList({modelType: 'minimal', onlyLastItems: 5}).$object
+    getLastRegistered: () ->
+      @base.get('last_registered').then (name) =>
+        @lastRegistered = name.name
 
-  refreshPersonGroupsCount = () ->
-    base_personGroup.get('count').then (count) =>
-      $scope.groupsCount = count.count
+    refreshData: ->
+      @getItems()
+      @getItemsCount()
+      @getLastRegistered()
 
-  refreshPersonsCount = () ->
-    base_person.get('count').then (count) =>
-      $scope.personsCount = count.count
+  class UserItemInfo extends ItemInfo
+    getItems: ->
+      @items = @base.getList().$object
 
-  $scope.refreshPersonGroupsData = () ->
-    refreshLastPersonGroups()
-    refreshPersonGroupsCount()
+  $scope.groups = new ItemInfo('api/users/personGroups')
+  $scope.persons = new ItemInfo('api/users/persons')
+  $scope.users = new UserItemInfo('api/users/users')
 
-  $scope.refreshPersonsData = () ->
-    refreshLastPersons()
-    refreshPersonsCount()
-
-  $scope.refreshPageData = () ->
-    $scope.refreshPersonGroupsData()
-    $scope.refreshPersonsData()
-
-  $scope.refreshPageData()
+  $scope.groups.refreshData()
+  $scope.persons.refreshData()
 
   # open form allowing add person groups
   $scope.openGroupAddModal = () ->
@@ -52,7 +50,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
     instance.result.then \
       () =>
         # refresh last items list
-        $scope.refreshPersonGroupsData()
+        $scope.groups.refreshData()
       ,
       () =>
         console.log 'GroupAdd modal closed'
@@ -65,7 +63,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
     instance.result.then \
       () =>
         # refresh last items list
-        $scope.refreshPersonsData()
+        $scope.persons.refreshData()
       ,
       () =>
         console.log 'PersonAdd modal closed'

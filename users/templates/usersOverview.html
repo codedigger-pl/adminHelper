@@ -12,12 +12,12 @@
 
     <div class="row">
         <div class="col-md-6">
-            <button type="button" class="btn-default" ng-click="get_recent_persons()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="persons.refreshData()">Odśwież</button>
             <button type="button" class="btn-default" ng-click="openPersonAddModal()">Dodaj</button>
         </div>
 
         <div class="col-md-6">
-            <button type="button" class="btn-default" ng-click="get_recent_groups()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="groups.refreshData()">Odśwież</button>
             <button type="button" class="btn-default" ng-click="openGroupAddModal()">Dodaj</button>
         </div>
     </div>
@@ -27,20 +27,20 @@
             <dl class="dl-horizontal">
                 {% verbatim %}
                 <dt>Ilość zarejestrowanych pracowników:</dt>
-                <dd>{{ personsCount }}</dd>
-                {% endverbatim %}
+                <dd>{{ persons.itemsCount }}</dd>
                 <dt>Ostatni zarejestrowany pracownik:</dt>
-                <dd>{{ lastRegisteredPerson }}</dd>
+                <dd>{{ persons.lastRegistered }}</dd>
+                {% endverbatim %}
             </dl>
         </div>
         <div class="col-md-6">
             <dl class="dl-horizontal">
                 {% verbatim %}
                 <dt>Ilość zarejestrowanych grup:</dt>
-                <dd>{{ groupsCount }}</dd>
-                {% endverbatim %}
+                <dd>{{ groups.itemsCount }}</dd>
                 <dt>Ostatnia zarejestrowana grupa:</dt>
-                <dd>{{ lastRegisteredGroup }}</dd>
+                <dd>{{ groups.lastRegistered }}</dd>
+                {% endverbatim %}
             </dl>
         </div>
     </div>
@@ -57,7 +57,7 @@
                     <th>Grupa</th>
                 </tr>
                 {% verbatim %}
-                <tr ng-repeat="person in persons" ng-click="showPersonDetails(person.id)">
+                <tr ng-repeat="person in persons.items" ng-click="showPersonDetails(person.id)">
                     <td>{{ $index + 1 }}</td>
                     <td>{{ person.rank }}</td>
                     <td>{{ person.first_name }}</td>
@@ -76,7 +76,7 @@
                     <th>Nazwa grupy</th>
                 </tr>
                 {% verbatim %}
-                <tr ng-repeat="group in groups">
+                <tr ng-repeat="group in groups.items">
                     <td>{{ $index + 1 }}</td>
                     <td>{{ group.name }}</td>
                 </tr>
