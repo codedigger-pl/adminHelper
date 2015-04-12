@@ -15,7 +15,7 @@ router.register(r'persons', PersonViewset)
 router.register(r'users', UserViewset)
 
 urlpatterns = patterns('',
-    url(r'^overview', UsersOverview, name='usersOverview'),
+    url(r'^overview', UsersOverview.as_view(), name='usersOverview'),
     url(r'^person_list', PersonList.as_view(), name='person_list'),
     url(r'^person_detail', PersonDetail.as_view(), name='person_detail'),
     url(r'^personGroup_list', PGroupList.as_view(), name='pgroup_list'),

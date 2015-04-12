@@ -1,25 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render
-from django.conf import settings
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView
 
-from rest_framework import viewsets, status
-from rest_framework.response import Response
-from rest_framework.decorators import detail_route, list_route
-
-from .models import PersonGroup, Person, SysUser
 from .forms import (AngularPGroupAddForm,
                     AngularPersonAddForm, AngularPersonCardNumberForm, AngularPersonDataForm, AngularPersonPhotoForm,
                     AngularUserAddForm, )
-from .filters import PersonFilter
-
-from .apiSerializers import DefPersonGroupSerializer, PersonSerializer, MinimalPersonSerializer
-from .apiSerializers import DefUserSerializer, UserPasswordSerializer
 
 
 class UserHomepage(TemplateView):
-
     """ Homepage view.
 
     Display homepage. Class based on TemplateView.
@@ -29,42 +17,17 @@ class UserHomepage(TemplateView):
     template_name = 'base.html'
 
 
-def UsersOverview(request):
-
+class UsersOverview(TemplateView):
     """ Users overview view.
 
     Generate part of main page containing all overview information about persons, person groups and users.
     Give access to adding persons, etc...
-    :param request: request
     :return: generated Users overview page based on usersOverview.html template
     """
-
-    resp = {}
-
-    # getting objects counts
-    # TODO: do this with API call and change view to TemplateView
-    resp['usersCount'] = SysUser.objects.count()
-
-    # getting last registered objects
-    # TODO: do this with API call and change view to TemplateView
-    lastRegisteredPerson = Person.objects.last()
-    if lastRegisteredPerson is not None:
-        resp['lastRegisteredPerson'] = lastRegisteredPerson.last_name + ' ' + lastRegisteredPerson.first_name
-
-    lastRegisteredGroup = PersonGroup.objects.last()
-    if lastRegisteredGroup is not None:
-        resp['lastRegisteredGroup'] = lastRegisteredGroup.name
-
-    lastRegisteredUser = SysUser.objects.last()
-    if lastRegisteredUser is not None:
-        resp['lastRegisteredUser'] = lastRegisteredUser.last_name + ' ' + lastRegisteredUser.first_name
-
-    # return prepared data
-    return render(request, 'usersOverview.html', resp)
+    template_name = 'usersOverview.html'
 
 
 class PersonList(TemplateView):
-
     """ Person list view.
 
     Display list of persons in all systems. Class based on TemplateView.
@@ -75,7 +38,6 @@ class PersonList(TemplateView):
 
 
 class PersonDetail(TemplateView):
-
     """ Person detail view.
 
     Display persons detail info. Class based on TemplateView.
@@ -88,6 +50,8 @@ class PersonDetail(TemplateView):
         """
         Return generated context data used to generating template. Added fields:
           cardNumberForm: form allowing change person's card number
+          dataForm: form allowing change person's data
+          photoForm: form allowing change person's photo
         :param kwargs:
         :return: generated context data
         """
@@ -99,7 +63,6 @@ class PersonDetail(TemplateView):
 
 
 class PGroupList(TemplateView):
-
     """ Person group list view.
 
     Display list of person groups in system. Class based on TemplateView.
