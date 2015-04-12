@@ -6,10 +6,11 @@ overviewController = angular.module 'adminHelper.users.controllers'
 
   Angular controller for person group add form.
 ###
-overviewController.controller 'PGroupAddModalController', ['$scope', '$modalInstance', 'PersonGroup', 'djangoForm', ($scope, $modalInstance, PersonGroup, djangoForm) ->
+overviewController.controller 'PGroupAddModalController', ['$scope', '$modalInstance', 'djangoForm', 'Restangular', ($scope, $modalInstance, djangoForm, Restangular) ->
+  base = Restangular.all('api/users/personGroups')
 
   $scope.ok = () ->
-    request = PersonGroup.post
+    request = base.post
       name: $scope.name
       description: $scope.description
     request.then \
