@@ -56,7 +56,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
       () =>
         console.log 'GroupAdd modal closed'
 
-  # open form allowing add perons
+  # open form allowing add persons
   $scope.openPersonAddModal = () ->
     instance = $modal.open
       templateUrl: '/users/addPerson'
@@ -77,11 +77,12 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
     instance.result.then \
       () =>
         # refresh last items list
-        $scope.users = Person.get_last_items()
+        $scope.users.refreshData()
       ,
       () =>
         console.log 'PersonAdd modal closed'
 
+  # going to another views
   $scope.showPersonDetails = (id) =>
     $state.go('users.person_detail', { id: id })
 ]

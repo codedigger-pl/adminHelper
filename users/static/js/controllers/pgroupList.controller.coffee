@@ -6,6 +6,8 @@ overviewController = angular.module 'adminHelper.users.controllers'
 
   Angular controller for person group list view.
 ###
-overviewController.controller 'PersonGroupListController', ['$scope', 'PersonGroup', ($scope, PersonGroup) ->
-  $scope.groups = PersonGroup.list()
+overviewController.controller 'PersonGroupListController', ['$scope', 'Restangular', ($scope, Restangular) ->
+  base = Restangular.all('api/users/personGroups')
+
+  $scope.groups = base.getList().$object
 ]
