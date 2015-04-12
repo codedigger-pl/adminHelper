@@ -6,14 +6,15 @@ overviewController = angular.module 'adminHelper.users.controllers'
 
   Angular controller for person list view.
 ###
-overviewController.controller 'PersonDetailController', ['$scope', '$stateParams', 'Person', 'djangoForm', ($scope, $stateParams, Person, djangoForm) ->
-  $scope.person = Person.get($stateParams.id)
+overviewController.controller 'PersonDetailController', ['$scope', '$stateParams', 'djangoForm', 'Restangular', ($scope, $stateParams, djangoForm, Restangular) ->
+  base = Restangular.all('api/users/persons')
+
+  $scope.person = base.get($stateParams.id).$object
   if not $scope.person.photo
     $scope.person.photo = '/static/img/unknown_user.jpg'
 
   $scope.updateCardNumber = () ->
-    request = Person.patch($scope.person.id, {card_number: $scope.person.card_number })
-    request.then \
+    $scope.person.patch({card_number: $scope.person.card_number }).then \
       (person) ->
         $scope.person = person
       ,
@@ -22,7 +23,7 @@ overviewController.controller 'PersonDetailController', ['$scope', '$stateParams
           djangoForm.setErrors($scope.cardNumberForm, response.data)
 
   $scope.updateData = () ->
-    request = Person.patch $scope.person.id,
+    request = $scope.person.patch
       first_name: $scope.person.first_name
       last_name: $scope.person.last_name
       rank: $scope.person.rank
