@@ -3,11 +3,12 @@
 from django.test import TestCase
 import pep8
 
-ENABLE_E2E_TESTS = True
+ENABLE_E2E_TESTS = False
 
 # Enabling basic view tests
 from .allTests.viewTests.homePage import HomePageTest
 from .allTests.viewTests.usersOverview import UsersOverviewTest
+from .allTests.viewTests.personGroup import PersonGroupTest
 
 # Enabling class tests
 from .allTests.classTests.person import PersonClassTest

@@ -1,26 +1,62 @@
 <div class="row">
     <div class="col-md-12">
-        <h3>Lista grup pracowników</h3>
+        <h3>Szczegóły grupy</h3>
+    </div>
+</div>
+
+{#    generated {{ personGroupForm.as_div }} with custom changes#}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group has-feedback">
+            <label class="control-label" for="id_id">ID</label>
+            <input class="form-control" id="id_id" maxlength="25" name="id" ng-model="personGroup.id" type="text" disabled/>
+
+            <label class="control-label" for="id_creationDateDate">Data utworzenia</label>
+            <input class="form-control" id="id_creationDateDate" maxlength="25" name="creationDateDate" ng-model="personGroup.creation_date_date" type="text" disabled/>
+
+            <label class="control-label" for="id_creationDateTime">Czas utworzenia</label>
+            <input class="form-control" id="id_creationDateTime" maxlength="25" name="creationDateTime" ng-model="personGroup.creation_date_time" type="text" disabled/>
+
+            <label class="control-label" for="personsCount">Ilość pracowników</label>
+            <input class="form-control" id="personsCount" maxlength="25" name="personsCount" ng-model="persons_count" type="text" disabled/>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="djng-line-spreader">
+            <ul class="djng-form-errors" ng-show="personGroupForm.$pristine" ng-cloak>
+                <li ng-show="personGroupForm.$message" class="invalid" ng-bind="personGroupForm.$message"></li>
+            </ul>
+            <ul class="djng-form-errors" ng-show="personGroupForm.$dirty" ng-cloak></ul>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="control-label" for="id_name">Name</label>
+            <input class="form-control" id="id_name" maxlength="25" name="name" ng-model="personGroup.name" type="text" />
+            <ul class="djng-field-errors" ng-show="personGroupForm.name.$pristine" ng-cloak>
+                <li ng-show="personGroupForm.name.$message" class="invalid" ng-bind="personGroupForm.name.$message"></li>
+            </ul>
+            <ul class="djng-field-errors" ng-show="personGroupForm.name.$dirty" ng-cloak></ul>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="control-label" for="id_description">Description</label>
+            <textarea class="form-control" cols="40" id="id_description" name="description" ng-model="personGroup.description" rows="10"></textarea>
+            <ul class="djng-field-errors" ng-show="personGroupForm.description.$pristine" ng-cloak>
+                <li ng-show="personGroupForm.description.$message" class="invalid" ng-bind="personGroupForm.description.$message"></li>
+            </ul>
+            <ul class="djng-field-errors" ng-show="personGroupForm.description.$dirty" ng-cloak></ul>
+        </div>
+
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12 text-center">
         <table class="table table-responsive table-condensed table-hover text-left">
-            <tr>
-                <th>Lp</th>
-                <th>Nazwa grupy</th>
-                <th>Data utworzenia</th>
-                <th>Opis</th>
-            </tr>
-            {% verbatim %}
-            <tr ng-repeat="group in groups">
-                <td>{{ $index + 1 }}</td>
-                <td>{{ group.name }}</td>
-                <td>{{ group.creation_date_date }}</td>
-                <td>{{ group.description }}</td>
-            </tr>
-            {% endverbatim %}
+
         </table>
     </div>
 </div>

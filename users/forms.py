@@ -6,7 +6,7 @@ from djangular.styling.bootstrap3.forms import Bootstrap3FormMixin, Bootstrap3Fo
 from .models import PersonGroup, Person, SysUser
 
 
-class AngularPGroupAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+class AngularPersonGroupAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
     """
     Form allowing manipulating person groups.
     """
@@ -15,6 +15,21 @@ class AngularPGroupAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
     class Meta:
         model = PersonGroup
         fields = ('name', 'description')
+
+
+class AngularPersonGroupForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+    """
+    Form allowing manipulating person groups.
+    """
+    form_name = 'personGroupForm'
+
+    class Meta:
+        model = PersonGroup
+        fields = ('name', 'description')
+
+    def __init__(self, *args, **kwargs):
+        kwargs.update(scope_prefix='personGroup')
+        super(AngularPersonGroupForm, self).__init__(*args, **kwargs)
 
 
 class AngularPersonAddForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):

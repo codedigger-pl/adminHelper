@@ -8,9 +8,10 @@ overviewController = angular.module 'adminHelper.users.controllers'
 ###
 overviewController.controller 'PersonGroupListController', [
   '$scope'
+  '$state'
   'Restangular'
   'modalFactory'
-  ($scope, Restangular, modalFactory) ->
+  ($scope, $state, Restangular, modalFactory) ->
     base = Restangular.all('api/users/personGroups')
 
     $scope.loadData = ->
@@ -20,6 +21,9 @@ overviewController.controller 'PersonGroupListController', [
       instance = modalFactory.openPersonGroupAddModal()
       instance.result.then ->
         $scope.loadData()
+
+    $scope.showPersonGroupDetails = (id) ->
+      $state.go('users.personGroup_detail', { id: id })
 
     $scope.loadData()
 ]

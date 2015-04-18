@@ -18,7 +18,7 @@
                 <th>Opis</th>
             </tr>
             {% verbatim %}
-            <tr ng-repeat="group in groups">
+            <tr ng-repeat="group in groups" ng-click="showPersonGroupDetails(group.id)">
                 <td>{{ $index + 1 }}</td>
                 <td>{{ group.name }}</td>
                 <td>{{ group.creation_date_date }}</td>

@@ -48,6 +48,11 @@ mainApp.config [
       templateUrl: '/users/personGroup_list'
       controller: 'PersonGroupListController'
 
+    $stateProvider.state 'users.personGroup_detail',
+      url: '^/personGroup_detail/{id:int}'
+      templateUrl: '/users/personGroup_detail'
+      controller: 'PersonGroupDetailController'
+
     $stateProvider.state 'sswin',
       url: '/sswin'
       templateUrl: '/sswin/overview'

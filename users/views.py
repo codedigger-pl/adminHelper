@@ -2,8 +2,9 @@
 
 from django.views.generic import TemplateView
 
-from .forms import (AngularPGroupAddForm,
-                    AngularPersonAddForm, AngularPersonCardNumberForm, AngularPersonDataForm, AngularPersonPhotoForm,
+from .forms import (AngularPersonGroupAddForm, AngularPersonAddForm,
+                    AngularPersonCardNumberForm, AngularPersonDataForm, AngularPersonPhotoForm,
+                    AngularPersonGroupForm,
                     AngularUserAddForm, )
 
 
@@ -62,7 +63,7 @@ class PersonDetail(TemplateView):
         return context
 
 
-class PGroupList(TemplateView):
+class PersonGroupList(TemplateView):
     """ Person group list view.
 
     Display list of person groups in system. Class based on TemplateView.
@@ -70,6 +71,29 @@ class PGroupList(TemplateView):
     """
 
     template_name = 'pgroupList.html'
+
+
+class PersonGroupDetail(TemplateView):
+    """ Person group detail view.
+
+    Display selected person group details.
+    :return: generated pgroupDetail.html
+    """
+
+    template_name = 'pgroupDetail.html'
+
+    def get_context_data(self, **kwargs):
+        """
+        Return generated context data used to generating template. Added fields:
+          cardNumberForm: form allowing change person's card number
+          dataForm: form allowing change person's data
+          photoForm: form allowing change person's photo
+        :param kwargs:
+        :return: generated context data
+        """
+        context = super(PersonGroupDetail, self).get_context_data(**kwargs)
+        context.update(personGroupForm=AngularPersonGroupForm)
+        return context
 
 
 class PersonGroupAddView(TemplateView):
@@ -87,7 +111,7 @@ class PersonGroupAddView(TemplateView):
         :return: generated context data
         """
         context = super(PersonGroupAddView, self).get_context_data(**kwargs)
-        context.update(form=AngularPGroupAddForm())
+        context.update(form=AngularPersonGroupAddForm())
         context.update(form_title='Dodaj grupę pracowników')
         return context
 
