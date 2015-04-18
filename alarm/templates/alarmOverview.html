@@ -2,7 +2,107 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h3>Alarm information</h3>
+            <a ui-sref='users.person_list'><h3>Strefy systemu alarmowego</h3></a>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn-default" ng-click="groups.refreshData()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openGroupAddModal()">Dodaj</button>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa strefy</th>
+                    <th>Opis strefy</th>
+                    <th>Osoba zarządzająca</th>
+                    <th>Ilość użytkowników</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Jakaś nazwa</td>
+                    <td>Jakiś opis</td>
+                    <td>Manadżer strefy</td>
+                    <td>34234</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+{#    <div class="row">#}
+{#        <div class="col-md-12">#}
+{#            <a ui-sref='users.person_list'><h3>Upoważnione osoby</h3></a>#}
+{#        </div>#}
+{#        <div class="col-md-12">#}
+{#            <table class="table table-responsive table-condensed table-hover text-left">#}
+{#                <tr>#}
+{#                    <th>Lp</th>#}
+{#                    <th>Nazwa strefy</th>#}
+{#                    <th>Opis strefy</th>#}
+{#                    <th>Osoba zarządzająca</th>#}
+{#                    <th>Ilość użytkowników</th>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>1</td>#}
+{#                    <td>Jakaś nazwa</td>#}
+{#                    <td>Jakiś opis</td>#}
+{#                    <td>Manadżer strefy</td>#}
+{#                    <td>34234</td>#}
+{#                </tr>#}
+{#            </table>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="row">
+        <div class="col-md-12">
+            <a ui-sref='users.person_list'><h3>Polecenia zmiany uprawnień</h3></a>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn-default" ng-click="groups.refreshData()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openGroupAddModal()">Dodaj</button>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa strefy</th>
+                    <th>Użytkownik</th>
+                    <th>Rodzaj uprawnienia</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Jakaś nazwa</td>
+                    <td>Jakiś user</td>
+                    <td>Nadanie lub odebranie</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a ui-sref='users.person_list'><h3>Prośby zmiany uprawnień</h3></a>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn-default" ng-click="groups.refreshData()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openGroupAddModal()">Dodaj</button>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa strefy</th>
+                    <th>Użytkownik</th>
+                    <th>Rodzaj uprawnienia</th>
+                    <th>Prośba od</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Jakaś nazwa</td>
+                    <td>Jakiś user</td>
+                    <td>Nadanie lub odebranie</td>
+                    <td>Inny user</td>
+                </tr>
+            </table>
         </div>
     </div>
 
