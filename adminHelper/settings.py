@@ -107,6 +107,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
+
 AUTH_USER_MODEL = 'users.SysUser'
 
 REST_FRAMEWORK = {
