@@ -3,7 +3,7 @@
 from django.test import TestCase
 import pep8
 
-ENABLE_E2E_TESTS = False
+ENABLE_E2E_TESTS = True
 
 # Enabling basic view tests
 from .allTests.viewTests.homePage import HomePageTest
@@ -22,11 +22,12 @@ from .allTests.apiTests.sysUser import APISysUserTest
 # Enabling WEB tests
 # from .allTests.e2eTests.webTests import WEBTests
 if ENABLE_E2E_TESTS:
-    from .allTests.e2eTests.personAddForm import PersonAddFormTest
-    from .allTests.e2eTests.personDataChange import PersonDataChangeTest
-    from .allTests.e2eTests.personCardNumberChange import PersonCardNumberChangeTest
-    from .allTests.e2eTests.pgroupAddForm import PersonGroupAddFormTest
-    from .allTests.e2eTests.userAddForm import UserAddFormTest
+    # from .allTests.e2eTests.personAddForm import PersonAddFormTest
+    # from .allTests.e2eTests.personDataChange import PersonDataChangeTest
+    # from .allTests.e2eTests.personCardNumberChange import PersonCardNumberChangeTest
+    # from .allTests.e2eTests.pgroupAddForm import PersonGroupAddFormTest
+    # from .allTests.e2eTests.userAddForm import UserAddFormTest
+    from .allTests.e2eTests.personGroupDataChange import PersonGroupDataChangeTest
 
 
 class PEP8Test(TestCase):

@@ -53,6 +53,13 @@ class PersonGroupViewset(viewsets.ModelViewSet):
         resp['name'] = PersonGroup.objects.last().name
         return Response(resp, status=status.HTTP_200_OK)
 
+    @detail_route(methods=['get'])
+    def person_count(self, request, pk):
+        group = self.get_object()
+        resp = {}
+        resp['count'] = group.person_set.count()
+        return Response(resp)
+
 
 class PersonViewset(viewsets.ModelViewSet):
     """Person viewset

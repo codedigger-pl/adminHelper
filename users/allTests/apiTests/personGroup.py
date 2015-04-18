@@ -7,7 +7,7 @@ from autofixture import AutoFixture
 
 from random import randint
 
-from users.models import PersonGroup
+from users.models import PersonGroup, Person
 
 
 class APIPersonGroupTest(APITestCase):
@@ -42,6 +42,22 @@ class APIPersonGroupTest(APITestCase):
         resp = self.client.get(reverse('api:persongroup-last-registered'))
         self.assertEqual(status.HTTP_200_OK, resp.status_code)
         self.assertEqual(last_registered.name, resp.data['name'])
+
+    def test_person_count(self):
+        """Testing person count"""
+        group_fixture = AutoFixture(PersonGroup)
+        group = group_fixture.create(1)[0]
+
+        count = randint(3, 30)
+        person_fixture = AutoFixture(Person)
+        persons = person_fixture.create(count)
+        for person in persons:
+            person.group = group
+            person.save()
+
+        resp = self.client.get(reverse('api:persongroup-person-count', kwargs={'pk': group.id}))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(count, resp.data['count'])
 
 
 class APIPersonGroup_lastItems(APITestCase):
