@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.db.models import ForeignKey, CharField, BooleanField, DateTimeField
+from django.db.models import ForeignKey, CharField, BooleanField, DateTimeField, TextField
 
 from users.models import SysUser, Person
 
@@ -14,7 +14,14 @@ class AlarmZone(models.Model):
     Describes alarm zone: something, what user can arm, disarm, ...
     """
     name = CharField(max_length=50)
+    description = TextField(blank=True)
     manager = ForeignKey(SysUser)
+
+    # ---== read only fields ==---
+    # zone creation date
+    creation_date = DateTimeField(auto_now_add=True)
+    creation_date_date = property(lambda self: self.creation_date.date())
+    creation_date_time = property(lambda self: self.creation_date.time())
 
     class Meta:
         verbose_name = 'Strefa systemu alarmowego'
