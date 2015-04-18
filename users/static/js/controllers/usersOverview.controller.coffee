@@ -6,7 +6,7 @@ overviewController = angular.module 'adminHelper.users.controllers'
 
   Angular controller for main view to person overview part.
 ###
-overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$modal', 'Restangular', ($scope, $state, $modal, Restangular) ->
+overviewController.controller 'UsersOverviewController', ['$scope', '$state', 'Restangular', 'modalFactory', ($scope, $state, Restangular, modalFactory) ->
 
   class ItemInfo
     constructor: (url) ->
@@ -45,9 +45,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
 
   # open form allowing add person groups
   $scope.openGroupAddModal = () ->
-    instance = $modal.open
-      templateUrl: '/users/addPersonGroup'
-      controller: 'PGroupAddModalController'
+    instance = modalFactory.openPersonGroupAddModal()
     instance.result.then \
       () =>
         # refresh last items list
@@ -58,9 +56,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
 
   # open form allowing add persons
   $scope.openPersonAddModal = () ->
-    instance = $modal.open
-      templateUrl: '/users/addPerson'
-      controller: 'PersonAddModalController'
+    instance = modalFactory.openPersonAddModal()
     instance.result.then \
       () =>
         # refresh last items list
@@ -71,9 +67,7 @@ overviewController.controller 'UsersOverviewController', ['$scope', '$state', '$
 
   # open form allowing add users
   $scope.openUserAddModal = () ->
-    instance = $modal.open
-      templateUrl: '/users/addUser'
-      controller: 'UserAddModalController'
+    instance = modalFactory.openUserAddModal()
     instance.result.then \
       () =>
         # refresh last items list

@@ -1,10 +1,23 @@
-modalProvider = angular.module 'adminHelper.users.services'
+modalFactory = angular.module 'adminHelper.users.services'
 
-modalProvider.service 'modalProvider', ['$modal', ($modal) ->
+modalFactory.factory 'modalFactory', ['$modal', ($modal) ->
+  new class ModalFactory
 
-  @openPersonGroupAddModal = ->
-    $modal.open
-      templateUrl: '/users/addPersonGroup'
-      controller: 'PGroupAddModalController'
+    constructor: ->
+
+    openPersonGroupAddModal: ->
+      $modal.open
+        templateUrl: '/users/addPersonGroup'
+        controller: 'PGroupAddModalController'
+
+    openPersonAddModal: ->
+      $modal.open
+        templateUrl: '/users/addPerson'
+        controller: 'PersonAddModalController'
+
+    openUserAddModal: ->
+      $modal.open
+        templateUrl: '/users/addUser'
+        controller: 'UserAddModalController'
 
 ]
