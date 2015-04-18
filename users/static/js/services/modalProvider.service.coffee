@@ -3,8 +3,6 @@ modalFactory = angular.module 'adminHelper.users.services'
 modalFactory.factory 'modalFactory', ['$modal', ($modal) ->
   new class ModalFactory
 
-    constructor: ->
-
     openPersonGroupAddModal: ->
       $modal.open
         templateUrl: '/users/addPersonGroup'
