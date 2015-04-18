@@ -14,60 +14,13 @@ module.exports = {
             .waitForElementVisible('select[id="id_rank"]', 2000)
             .waitForElementVisible('input[id="id_card_number"]', 2000)
             .waitForElementVisible('select[id="id_group"]', 2000)
-            .setValue('input[id="id_first_name"]', [
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                'New first name'])
-            .setValue('input[id="id_last_name"]', [
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                'New last name'])
+
+            .clearValue('input[id="id_first_name"]')
+            .clearValue('input[id="id_last_name"]')
+            .clearValue('input[id="id_card_number"]')
+
+            .setValue('input[id="id_first_name"]', 'New first name')
+            .setValue('input[id="id_last_name"]', 'New last name')
             .setValue('select[id="id_rank"]', ['pan', browser.Keys.RETURN])
             .setValue('input[id="id_card_number"]', '1111111111111')
             .setValue('select[id="id_group"]', [browser.Keys.DOWN_ARROW, browser.Keys.DOWN_ARROW])

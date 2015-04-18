@@ -10,33 +10,8 @@ module.exports = {
         browser
             .waitForElementVisible('button[ng-click="updateCardNumber()"]', 2000)
             .waitForElementVisible('input[id="id_card_number"]', 2000)
-            .setValue('input[id="id_card_number"]', [
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                browser.Keys.BACK_SPACE,
-                '2222222222'])
+            .clearValue('input[id="id_card_number"]')
+            .setValue('input[id="id_card_number"]', '2222222222')
             .click('button[ng-click="updateCardNumber()"]')
             .pause(500)
             .end()
