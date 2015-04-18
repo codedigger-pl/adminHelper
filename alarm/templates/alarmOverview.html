@@ -5,7 +5,7 @@
             <a ui-sref='users.person_list'><h3>Strefy systemu alarmowego</h3></a>
         </div>
         <div class="col-md-12">
-            <button type="button" class="btn-default" ng-click="groups.refreshData()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="updateZoneData()">Odśwież</button>
             <button type="button" class="btn-default" ng-click="openGroupAddModal()">Dodaj</button>
         </div>
         <div class="col-md-12">
@@ -23,7 +23,7 @@
                     <td>{{ zone.name }}</td>
                     <td>{{ zone.description }}</td>
                     <td>{{ zone.manager }}</td>
-                    <td>-1</td>
+                    <td>not yet</td>
                 </tr>
                 {% endverbatim %}
             </table>
