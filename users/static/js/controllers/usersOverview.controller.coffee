@@ -69,4 +69,7 @@ overviewController.controller 'UsersOverviewController', [
     # going to another views
     $scope.showPersonDetails = (id) =>
       $state.go('users.person_detail', { id: id })
+
+    $scope.showPersonGroupDetails = (id) =>
+      $state.go('users.personGroup_detail', { id: id })
 ]

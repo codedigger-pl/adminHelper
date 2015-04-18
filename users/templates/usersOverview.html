@@ -76,7 +76,7 @@
                     <th>Nazwa grupy</th>
                 </tr>
                 {% verbatim %}
-                <tr ng-repeat="group in groups.items">
+                <tr ng-repeat="group in groups.items" ng-click="showPersonGroupDetails(group.id)">
                     <td>{{ $index + 1 }}</td>
                     <td>{{ group.name }}</td>
                 </tr>
