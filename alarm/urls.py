@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import patterns, url
+from .views import AlarmOverview
 
 urlpatterns = patterns('',
-    # url(r'^overview', UsersOverview.as_view(), name='usersOverview'),
+    url(r'^overview', AlarmOverview.as_view(), name='alarmOverview'),
     # url(r'^person_list', PersonList.as_view(), name='person_list'),
     # url(r'^person_detail', PersonDetail.as_view(), name='person_detail'),
     # url(r'^personGroup_list', PersonGroupList.as_view(), name='pgroup_list'),

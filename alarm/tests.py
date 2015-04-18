@@ -9,6 +9,7 @@ ENABLE_E2E_TESTS = True
 from .allTests.classTests.alarmZone import AlarmZoneTest
 
 # Enabling basic view tests
+from .allTests.viewTests.alarmOverview import AlarmOverviewTest
 
 # Enabling API tests
 from .allTests.apiTests.alarmZone import APIAlarmZoneTest
