@@ -8,22 +8,6 @@
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group has-feedback">
-            <label class="control-label" for="id_id">ID</label>
-            <input class="form-control" id="id_id" maxlength="25" name="id" ng-model="personGroup.id" type="text" disabled/>
-
-            <label class="control-label" for="id_creationDateDate">Data utworzenia</label>
-            <input class="form-control" id="id_creationDateDate" maxlength="25" name="creationDateDate" ng-model="personGroup.creation_date_date" type="text" disabled/>
-
-            <label class="control-label" for="id_creationDateTime">Czas utworzenia</label>
-            <input class="form-control" id="id_creationDateTime" maxlength="25" name="creationDateTime" ng-model="personGroup.creation_date_time" type="text" disabled/>
-
-            <label class="control-label" for="personsCount">Ilość pracowników</label>
-            <input class="form-control" id="personsCount" maxlength="25" name="personsCount" ng-model="persons_count" type="text" disabled/>
-        </div>
-    </div>
-
-    <div class="col-md-6">
 
         <div class="djng-line-spreader">
             <ul class="djng-form-errors" ng-show="personGroupForm.$pristine" ng-cloak>
@@ -49,7 +33,41 @@
             </ul>
             <ul class="djng-field-errors" ng-show="personGroupForm.description.$dirty" ng-cloak></ul>
         </div>
+        <button type="button" class="btn-primary" ng-click="updateData()">Uaktualnij</button>
 
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-horizontal">
+
+            <div class="form-group form-group-sm">
+                <label class="control-label col-md-3">ID</label>
+                <div class="col-md-8">
+                    <input class="form-control" ng-model="personGroup.id" type="text" disabled/>
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm">
+                <label class="control-label col-md-3">Data utworzenia</label>
+                <div class="col-md-8">
+                    <input class="form-control" ng-model="personGroup.creation_date_date" type="text" disabled/>
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm">
+                <label class="control-label col-md-3">Czas utworzenia</label>
+                <div class="col-md-8">
+                    <input class="form-control" ng-model="personGroup.creation_date_time" type="text" disabled/>
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm">
+                <label class="control-label col-md-3">Ilość pracowników</label>
+                <div class="col-md-8">
+                    <input class="form-control" ng-model="person_count" type="text" disabled/>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
