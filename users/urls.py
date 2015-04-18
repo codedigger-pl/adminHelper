@@ -1,21 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import patterns, url
-
-from rest_framework.routers import DefaultRouter
-
 from .views import (UsersOverview,
                     PersonAddView, PersonGroupAddView, UserAddView,
                     PersonList, PersonDetail,
                     PersonGroupList, PersonGroupDetail)
-from .apiViewsets import PersonGroupViewset, PersonViewset, UserViewset
-
-
-# TODO: move this to main API generating after finish
-router = DefaultRouter(trailing_slash=False)
-router.register(r'personGroups', PersonGroupViewset)
-router.register(r'persons', PersonViewset)
-router.register(r'users', UserViewset)
 
 urlpatterns = patterns('',
     url(r'^overview', UsersOverview.as_view(), name='usersOverview'),

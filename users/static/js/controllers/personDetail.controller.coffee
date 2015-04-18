@@ -12,7 +12,7 @@ overviewController.controller 'PersonDetailController', [
   'djangoForm'
   'Restangular'
   ($scope, $stateParams, djangoForm, Restangular) ->
-    base = Restangular.all('api/users/persons')
+    base = Restangular.all('api/persons')
 
     $scope.person = base.get($stateParams.id).$object
     if not $scope.person.photo

@@ -12,7 +12,7 @@ overviewController.controller 'UserAddModalController', [
   'djangoForm'
   'Restangular'
   ($scope, $modalInstance, djangoForm, Restangular) ->
-    base = Restangular.all('api/users/users')
+    base = Restangular.all('api/users')
 
     $scope.ok = ->
       request = base.post

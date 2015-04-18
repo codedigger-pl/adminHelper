@@ -12,7 +12,7 @@ overviewController.controller 'PGroupAddModalController', [
   'djangoForm'
   'Restangular'
   ($scope, $modalInstance, djangoForm, Restangular) ->
-    base = Restangular.all('api/users/personGroups')
+    base = Restangular.all('api/personGroups')
 
     $scope.ok = ->
       request = base.post

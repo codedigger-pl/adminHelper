@@ -12,7 +12,7 @@ overviewController.controller 'PersonGroupDetailController', [
   'djangoForm'
   'Restangular'
   ($scope, $stateParams, djangoForm, Restangular) ->
-    base = Restangular.one('api/users/personGroups', $stateParams.id)
+    base = Restangular.one('api/personGroups', $stateParams.id)
     console.log(base)
 
     $scope.personGroup = base.get().$object

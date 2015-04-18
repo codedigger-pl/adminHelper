@@ -15,7 +15,7 @@ overviewController.controller 'PersonListController', [
 
     class Paginator
       constructor: ->
-        @base = Restangular.all('api/users/persons')
+        @base = Restangular.all('api/persons')
         @currPage = 1
         @items = []
         @itemsCount = 0

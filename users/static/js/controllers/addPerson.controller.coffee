@@ -12,7 +12,7 @@ overviewController.controller 'PersonAddModalController', [
   'djangoForm'
   'Restangular'
   ($scope, $modalInstance, djangoForm, Restangular) ->
-    base = Restangular.all('api/users/persons')
+    base = Restangular.all('api/persons')
 
     $scope.ok = ->
       # in template is one form with this name

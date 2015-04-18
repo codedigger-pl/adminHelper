@@ -40,9 +40,9 @@ overviewController.controller 'UsersOverviewController', [
       getItems: ->
         @items = @base.getList().$object
 
-    $scope.groups = new ItemInfo('api/users/personGroups')
-    $scope.persons = new ItemInfo('api/users/persons')
-    $scope.users = new UserItemInfo('api/users/users')
+    $scope.groups = new ItemInfo('api/personGroups')
+    $scope.persons = new ItemInfo('api/persons')
+    $scope.users = new UserItemInfo('api/users')
 
     $scope.groups.refreshData()
     $scope.persons.refreshData()

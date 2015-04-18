@@ -12,7 +12,7 @@ overviewController.controller 'PersonGroupListController', [
   'Restangular'
   'modalFactory'
   ($scope, $state, Restangular, modalFactory) ->
-    base = Restangular.all('api/users/personGroups')
+    base = Restangular.all('api/personGroups')
 
     $scope.loadData = ->
       $scope.groups = base.getList().$object
