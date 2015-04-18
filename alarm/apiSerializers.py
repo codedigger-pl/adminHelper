@@ -9,6 +9,8 @@ class AlarmZoneSerializer(serializers.ModelSerializer):
     """
     Default person group serializer.
     """
+    manager = serializers.StringRelatedField()
+
     class Meta:
         model = AlarmZone
         fields = ('id', 'name', 'description', 'creation_date_date', 'creation_date_time', 'manager')

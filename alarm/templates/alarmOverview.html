@@ -17,13 +17,15 @@
                     <th>Osoba zarządzająca</th>
                     <th>Ilość użytkowników</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Jakaś nazwa</td>
-                    <td>Jakiś opis</td>
-                    <td>Manadżer strefy</td>
-                    <td>34234</td>
+                {% verbatim %}
+                <tr ng-repeat="zone in zones">
+                    <td>{{ $index +1 }}</td>
+                    <td>{{ zone.name }}</td>
+                    <td>{{ zone.description }}</td>
+                    <td>{{ zone.manager }}</td>
+                    <td>-1</td>
                 </tr>
+                {% endverbatim %}
             </table>
         </div>
     </div>

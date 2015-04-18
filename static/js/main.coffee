@@ -13,9 +13,10 @@ mainApp = angular.module 'adminHelper', [
   'ngRoute'
   'ngAnimate'
   'ui.bootstrap'
-  'ui.router',
+  'ui.router'
   'restangular'
-  'adminHelper.users']
+  'adminHelper.users'
+  'adminHelper.alarm']
 
 mainApp.config [
   '$stateProvider'
@@ -56,7 +57,7 @@ mainApp.config [
     $stateProvider.state 'alarm',
       url: '/alarm'
       templateUrl: '/alarm/overview'
-      controller: 'UsersOverviewController'
+      controller: 'AlarmOverviewController'
 
     $stateProvider.state 'acs',
       url: '/acs'
