@@ -54,9 +54,18 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12 text-center">
-        <table class="table table-responsive table-condensed table-hover text-left">
 
-        </table>
-    </div>
+    <accordion close-others="true">
+
+        <div class="col-md-12">
+            {% verbatim %}
+            <accordion-group is-open="false">
+                <accordion-heading>Lista pracowników</accordion-heading>
+                    <table class="table table-responsive table-condensed table-hover text-left">
+
+                    </table>
+            </accordion-group>
+            {% endverbatim %}
+        </div>
+
 </div>
