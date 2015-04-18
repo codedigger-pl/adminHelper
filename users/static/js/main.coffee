@@ -9,51 +9,59 @@
 #allPages.push(new Page('System kontroli dostępu', '/acs/overview', 'acs'))
 #allPages.push(new Page('Klucze', '/keys/overview', 'keys'))
 
-mainApp = angular.module 'adminHelper', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.router', 'restangular', 'adminHelper.users']
+mainApp = angular.module 'adminHelper', [
+  'ngRoute'
+  'ngAnimate'
+  'ui.bootstrap'
+  'ui.router',
+  'restangular'
+  'adminHelper.users']
 
-mainApp.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
+mainApp.config [
+  '$stateProvider'
+  '$urlRouterProvider'
+  ($stateProvider, $urlRouterProvider) ->
+    $urlRouterProvider.otherwise('/users')
 
-  $urlRouterProvider.otherwise('/users')
+    $stateProvider.state 'overview',
+      url: '/'
+      templateUrl: '/'
+      controller: 'UsersOverviewController'
 
-  $stateProvider.state 'overview',
-    url: '/'
-    templateUrl: '/'
-    controller: 'UsersOverviewController'
+    $stateProvider.state 'users',
+      url: '/users'
+      templateUrl: '/users/overview'
+      controller: 'UsersOverviewController'
 
-  $stateProvider.state 'users',
-    url: '/users'
-    templateUrl: '/users/overview'
-    controller: 'UsersOverviewController'
+    $stateProvider.state 'users.person_list',
+      url: '/person_list'
+      templateUrl: '/users/person_list'
+      controller: 'PersonListController'
 
-  $stateProvider.state 'users.person_list',
-    url: '/person_list'
-    templateUrl: '/users/person_list'
-    controller: 'PersonListController'
+    $stateProvider.state 'users.person_detail',
+      url: '^/person_detail/{id:int}'
+      templateUrl: '/users/person_detail'
+      controller: 'PersonDetailController'
 
-  $stateProvider.state 'users.person_detail',
-    url: '^/person_detail/{id:int}'
-    templateUrl: '/users/person_detail'
-    controller: 'PersonDetailController'
+    $stateProvider.state 'users.personGroup_list',
+      url: '/personGroup_list'
+      templateUrl: '/users/personGroup_list'
+      controller: 'PersonGroupListController'
 
-  $stateProvider.state 'users.personGroup_list',
-    url: '/personGroup_list'
-    templateUrl: '/users/personGroup_list'
-    controller: 'PersonGroupListController'
+    $stateProvider.state 'sswin',
+      url: '/sswin'
+      templateUrl: '/sswin/overview'
+      controller: 'UsersOverviewController'
 
-  $stateProvider.state 'sswin',
-    url: '/sswin'
-    templateUrl: '/sswin/overview'
-    controller: 'UsersOverviewController'
+    $stateProvider.state 'acs',
+      url: '/acs'
+      templateUrl: '/acs/overview'
+      controller: 'UsersOverviewController'
 
-  $stateProvider.state 'acs',
-    url: '/acs'
-    templateUrl: '/acs/overview'
-    controller: 'UsersOverviewController'
-
-  $stateProvider.state 'keys',
-    url: '/keys'
-    templateUrl: '/keys/overview'
-    controller: 'UsersOverviewController'
+    $stateProvider.state 'keys',
+      url: '/keys'
+      templateUrl: '/keys/overview'
+      controller: 'UsersOverviewController'
 ]
 
 # Main controller

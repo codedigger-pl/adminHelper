@@ -7,9 +7,9 @@ overviewController = angular.module 'adminHelper.users.controllers'
   Angular controller for person group list view.
 ###
 overviewController.controller 'PersonGroupListController', [
-  '$scope',
-  'Restangular',
-  'modalFactory',
+  '$scope'
+  'Restangular'
+  'modalFactory'
   ($scope, Restangular, modalFactory) ->
     base = Restangular.all('api/users/personGroups')
 
@@ -18,7 +18,7 @@ overviewController.controller 'PersonGroupListController', [
 
     $scope.openGroupAddModal = ->
       instance = modalFactory.openPersonGroupAddModal()
-      instance.result.then () ->
+      instance.result.then ->
         $scope.loadData()
 
     $scope.loadData()

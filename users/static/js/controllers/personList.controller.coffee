@@ -7,14 +7,14 @@ overviewController = angular.module 'adminHelper.users.controllers'
   Angular controller for person list view.
 ###
 overviewController.controller 'PersonListController', [
-  '$scope',
-  '$state',
-  'Restangular',
-  'modalFactory',
+  '$scope'
+  '$state'
+  'Restangular'
+  'modalFactory'
   ($scope, $state, Restangular, modalFactory) ->
 
     class Paginator
-      constructor: () ->
+      constructor: ->
         @base = Restangular.all('api/users/persons')
         @currPage = 1
         @items = []
@@ -23,14 +23,12 @@ overviewController.controller 'PersonListController', [
         @lastNameFilter=''
         @firstNameFilter=''
 
-      changePage: () =>
+      changePage: =>
         startIndex = 20*(@currPage-1)
         stopIndex = Math.min(startIndex + 19, @itemsCount)
         @currVisItems = @items[startIndex..stopIndex]
 
-      newSearch: () =>
-
-      loadData: () =>
+      loadData: =>
         @currVisItems = []
         @items = []
         @base.getList({last_name: @lastNameFilter, first_name: @firstNameFilter}).then (items) =>
@@ -45,7 +43,7 @@ overviewController.controller 'PersonListController', [
 
     $scope.openUserAddModal = ->
       instance = modalFactory.openPersonAddModal()
-      instance.result.then () ->
+      instance.result.then ->
         $scope.pager.loadData()
 
 
