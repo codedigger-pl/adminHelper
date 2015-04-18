@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', UserHomepage.as_view(), name='homepage'),
     url(r'^admin/', include(admin.site.urls)),
+
     url(r'^users/', include('users.urls')),
     url(r'^alarm/', include('alarm.urls')),
 

@@ -53,9 +53,9 @@ mainApp.config [
       templateUrl: '/users/personGroup_detail'
       controller: 'PersonGroupDetailController'
 
-    $stateProvider.state 'sswin',
-      url: '/sswin'
-      templateUrl: '/sswin/overview'
+    $stateProvider.state 'alarm',
+      url: '/alarm'
+      templateUrl: '/alarm/overview'
       controller: 'UsersOverviewController'
 
     $stateProvider.state 'acs',
@@ -78,7 +78,7 @@ mainApp.controller 'MainController', ['$scope', ($scope) ->
   $scope.tabs = []
   $scope.tabs.push(new Page('Przegląd', '/overview', 'overview'))
   $scope.tabs.push(new Page('Użytkownicy i pracownicy', '/users/overview', 'users'))
-  $scope.tabs.push(new Page('System alarmowy', '/sswin/overview', 'sswin'))
+  $scope.tabs.push(new Page('System alarmowy', '/alarm/overview', 'alarm'))
   $scope.tabs.push(new Page('System kontroli dostępu', '/acs/overview', 'acs'))
   $scope.tabs.push(new Page('Klucze', '/keys/overview', 'keys'))
 
