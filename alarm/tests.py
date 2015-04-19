@@ -12,6 +12,7 @@ from .allTests.classTests.alarmOrder import AlarmOrderTest
 # Enabling basic view tests
 from .allTests.viewTests.alarmOverview import AlarmOverviewTest
 from .allTests.viewTests.alarmZone import AddAlarmZoneTest
+from .allTests.viewTests.alarmOrder import AddAlarmOrderTest
 
 # Enabling API tests
 from .allTests.apiTests.alarmZone import APIAlarmZoneTest
