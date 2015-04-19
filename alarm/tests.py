@@ -17,7 +17,7 @@ from .allTests.apiTests.alarmZone import APIAlarmZoneTest
 
 # Enabling WEB tests
 if ENABLE_E2E_TESTS:
-    pass
+    from .allTests.e2eTests.alarmZoneAdd import AlarmZoneAddTest
 
 
 class PEP8Test(TestCase):

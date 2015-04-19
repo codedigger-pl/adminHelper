@@ -2,6 +2,7 @@
 
 from rest_framework import serializers
 
+from users.apiSerializers import DefUserSerializer
 from .models import AlarmZone
 
 
@@ -9,7 +10,6 @@ class AlarmZoneSerializer(serializers.ModelSerializer):
     """
     Default person group serializer.
     """
-    manager = serializers.StringRelatedField()
 
     class Meta:
         model = AlarmZone

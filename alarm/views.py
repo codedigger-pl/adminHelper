@@ -19,7 +19,7 @@ class AddAlarmZoneForm(TemplateView):
 
         class AngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
             """Angular form helper class"""
-            form_name = 'personGroupForm'
+            form_name = 'alarmZoneForm'
 
             class Meta:
                 model = AlarmZone
