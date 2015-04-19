@@ -37,8 +37,6 @@ class AlarmRuleSerializer(serializers.ModelSerializer):
 class AlarmOrderSerializer(serializers.ModelSerializer):
     """Default alarm order serializer"""
 
-    rule = AlarmRuleSerializer()
-
     class Meta:
         model = AlarmOrder
         fields = ('id', 'user', 'grant_privilege', 'creation_date_date', 'creation_date_time', 'rule')

@@ -51,7 +51,7 @@ class AddAlarmOrderForm(TemplateView):
                 fields = ('person', 'zone')
 
             def __init__(self, *args, **kwargs):
-                kwargs.update(scope_prefix='alarmZone')
+                kwargs.update(scope_prefix='alarmRule')
                 super(RuleAngularForm, self).__init__(*args, **kwargs)
 
         class OrderAngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
@@ -60,7 +60,7 @@ class AddAlarmOrderForm(TemplateView):
 
             class Meta:
                 model = AlarmOrder
-                fields = ('grant_privilege', )
+                fields = ('grant_privilege', 'user')
 
             def __init__(self, *args, **kwargs):
                 kwargs.update(scope_prefix='alarmOrder')
@@ -68,6 +68,6 @@ class AddAlarmOrderForm(TemplateView):
 
         context = super(AddAlarmOrderForm, self).get_context_data(**kwargs)
         context.update(form_title='Dodaj nowe polecenie')
-        context.update(rule_form=RuleAngularForm())
         context.update(order_form=OrderAngularForm())
+        context.update(rule_form=RuleAngularForm())
         return context

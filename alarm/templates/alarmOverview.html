@@ -73,9 +73,9 @@
                 {% verbatim %}
                 <tr ng-repeat="order in orders">
                     <td>{{ $index + 1 }}</td>
-                    <td>Jakaś nazwa</td>
-                    <td>Jakiś user</td>
-                    <td>Nadanie lub odebranie</td>
+                    <td>{{ rule.zone }}</td>
+                    <td>{{ rule.person }}</td>
+                    <td>{{ order.grant_privilege }}</td>
                 </tr>
                 {% endverbatim %}
             </table>

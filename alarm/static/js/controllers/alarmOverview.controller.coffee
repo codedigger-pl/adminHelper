@@ -32,5 +32,6 @@ overviewController.controller 'AlarmOverviewController', [
           $scope.updateOrderData()
 
     $scope.updateZoneData()
+    $scope.updateOrderData()
 
 ]

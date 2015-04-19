@@ -22,6 +22,7 @@ from .allTests.apiTests.alarmRule import APIAlarmRuleTest
 # Enabling WEB tests
 if ENABLE_E2E_TESTS:
     from .allTests.e2eTests.alarmZoneAdd import AlarmZoneAddTest
+    from .allTests.e2eTests.alarmOrderAdd import AlarmOrderAddTest
 
 
 class PEP8Test(TestCase):

@@ -11,7 +11,7 @@ from users.models import SysUser
 class AlarmZoneAddTest(StaticLiveServerTestCase):
     """All tests with nightwatch and Selenium server"""
 
-    def test_pgroupAddForm(self):
+    def test_alarmzone_add_form(self):
         fixture = AutoFixture(SysUser, generate_fk=True)
         fixture.create(1)
         self.assertEqual(0,
