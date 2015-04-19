@@ -3,10 +3,11 @@
 from django.test import TestCase
 import pep8
 
-ENABLE_E2E_TESTS = True
+ENABLE_E2E_TESTS = False
 
 # Enabling class tests
 from .allTests.classTests.alarmZone import AlarmZoneTest
+from .allTests.classTests.alarmOrder import AlarmOrderTest
 
 # Enabling basic view tests
 from .allTests.viewTests.alarmOverview import AlarmOverviewTest
