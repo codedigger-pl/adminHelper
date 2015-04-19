@@ -15,6 +15,8 @@ from .allTests.viewTests.alarmZone import AddAlarmZoneTest
 
 # Enabling API tests
 from .allTests.apiTests.alarmZone import APIAlarmZoneTest
+from .allTests.apiTests.alarmOrder import APIAlarmOrderTest
+from .allTests.apiTests.alarmRule import APIAlarmRuleTest
 
 # Enabling WEB tests
 if ENABLE_E2E_TESTS:

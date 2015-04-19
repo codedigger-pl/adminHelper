@@ -40,6 +40,12 @@ class AlarmRule(models.Model):
     zone = ForeignKey(AlarmZone)
     confirmed = BooleanField(default=False)
 
+    # ---== read only fields ==---
+    # zone creation date
+    creation_date = DateTimeField(auto_now_add=True)
+    creation_date_date = property(lambda self: self.creation_date.date())
+    creation_date_time = property(lambda self: self.creation_date.time())
+
     class Meta:
         verbose_name = 'Uprawnienie'
         verbose_name_plural = 'Uprawnienia'
@@ -74,8 +80,7 @@ class AlarmOrder(models.Model):
     """
     rule = ForeignKey(AlarmRule)
     user = ForeignKey(SysUser)
-    creationDate = DateTimeField(auto_now_add=True)
-    addRule = BooleanField(default=False)
+    grant_privilege = BooleanField(default=False)
 
     # ---== read only fields ==---
     # zone creation date

@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from .models import AlarmZone
+from .models import AlarmZone, AlarmOrder, AlarmRule
 
 
 class AlarmZoneSerializer(serializers.ModelSerializer):
@@ -23,3 +23,23 @@ class ListAlarmZoneSerializer(serializers.ModelSerializer):
         model = AlarmZone
         fields = ('id', 'name', 'description', 'manager')
         read_only_fields = ('id')
+
+
+class AlarmRuleSerializer(serializers.ModelSerializer):
+    """Default alarm rule serializer"""
+
+    class Meta:
+        model = AlarmRule
+        fields = ('id', 'person', 'zone', 'confirmed', 'creation_date_date', 'creation_date_time')
+        read_only_fields = ('id', 'confirmed', 'creation_date_date', 'creation_date_time')
+
+
+class AlarmOrderSerializer(serializers.ModelSerializer):
+    """Default alarm order serializer"""
+
+    rule = AlarmRuleSerializer()
+
+    class Meta:
+        model = AlarmOrder
+        fields = ('id', 'user', 'grant_privilege', 'creation_date_date', 'creation_date_time', 'rule')
+        read_only_fields = ('id', 'creation_date_date', 'creation_date_time')

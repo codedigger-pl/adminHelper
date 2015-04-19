@@ -15,7 +15,7 @@ class APIAlarmZoneTest(APITestCase):
     """All primary API tests"""
 
     def test_access_alarmzones(self):
-        """Testing access to persons API values"""
+        """Testing access to alarm zone list"""
         resp = self.client.get(reverse('api:alarmzone-list'))
         self.assertEqual(resp.status_code, 200)
 
