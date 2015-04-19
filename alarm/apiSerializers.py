@@ -2,7 +2,6 @@
 
 from rest_framework import serializers
 
-from users.apiSerializers import DefUserSerializer
 from .models import AlarmZone
 
 

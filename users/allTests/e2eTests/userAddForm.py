@@ -12,7 +12,7 @@ class UserAddFormTest(StaticLiveServerTestCase):
     def test_userAddForm(self):
         # calling browser
         self.assertEqual(0,
-                         call('cd users/allTests/e2eTests && nightwatch --test userAddForm.js', shell=True),
+                         call('nightwatch --test users/allTests/e2eTests/userAddForm.js', shell=True),
                          'Nighwatch tests failed')
         user = SysUser.objects.all()[0]
         self.assertEqual(user.username, 'username')

@@ -11,7 +11,7 @@ class PersonGroupAddFormTest(StaticLiveServerTestCase):
 
     def test_pgroupAddForm(self):
         self.assertEqual(0,
-                         call('cd users/allTests/e2eTests && nightwatch --test pgroupAddForm.js', shell=True),
+                         call('nightwatch --test users/allTests/e2eTests/pgroupAddForm.js', shell=True),
                          'Nighwatch tests failed')
         group = PersonGroup.objects.all()[0]
         self.assertEqual(group.name, 'Group name')

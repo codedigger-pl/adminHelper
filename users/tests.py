@@ -3,7 +3,7 @@
 from django.test import TestCase
 import pep8
 
-ENABLE_E2E_TESTS = False
+ENABLE_E2E_TESTS = True
 
 # Enabling basic view tests
 from .allTests.viewTests.homePage import HomePageTest
