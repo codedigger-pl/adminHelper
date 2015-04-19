@@ -7,7 +7,7 @@ from rest_framework.decorators import detail_route, list_route
 from .models import AlarmZone, AlarmRule, AlarmOrder
 
 from .apiSerializers import AlarmZoneSerializer, ListAlarmZoneSerializer
-from .apiSerializers import AlarmRuleSerializer
+from .apiSerializers import AlarmRuleSerializer, ListAlarmOrderSerializer
 from .apiSerializers import AlarmOrderSerializer
 
 
@@ -43,3 +43,7 @@ class AlarmOrderViewset(viewsets.ModelViewSet):
 
     queryset = AlarmOrder.objects.all()
     serializer_class = AlarmOrderSerializer
+
+    def list(self, request, *args, **kwargs):
+        self.serializer_class = ListAlarmOrderSerializer
+        return super(AlarmOrderViewset, self).list(request, args, kwargs)

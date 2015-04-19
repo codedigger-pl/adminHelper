@@ -73,8 +73,8 @@
                 {% verbatim %}
                 <tr ng-repeat="order in orders">
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ rule.zone }}</td>
-                    <td>{{ rule.person }}</td>
+                    <td>{{ order.rule_zone }}</td>
+                    <td>{{ order.rule_person }}</td>
                     <td>{{ order.grant_privilege }}</td>
                 </tr>
                 {% endverbatim %}

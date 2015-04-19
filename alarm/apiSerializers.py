@@ -41,3 +41,15 @@ class AlarmOrderSerializer(serializers.ModelSerializer):
         model = AlarmOrder
         fields = ('id', 'user', 'grant_privilege', 'creation_date_date', 'creation_date_time', 'rule')
         read_only_fields = ('id', 'creation_date_date', 'creation_date_time')
+
+
+class ListAlarmOrderSerializer(serializers.ModelSerializer):
+    """Alarm order serializer used in lists"""
+
+    rule_zone = serializers.ReadOnlyField(source='rule.zone.name')
+    rule_person = serializers.StringRelatedField(source='rule.person')
+
+    class Meta:
+        model = AlarmOrder
+        fields = ('id', 'user', 'grant_privilege', 'rule_zone', 'rule_person')
+        read_only_fields = ('id', )
