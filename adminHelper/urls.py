@@ -16,7 +16,7 @@ router.register(r'users', UserViewset)
 
 router.register(r'alarmZones', AlarmZoneViewset)
 router.register(r'alarmRules', AlarmRuleViewset)
-router.register(r'alarmOrder', AlarmOrderViewset)
+router.register(r'alarmOrders', AlarmOrderViewset)
 
 urlpatterns = patterns('',
     # Examples:
