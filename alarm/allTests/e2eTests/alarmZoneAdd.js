@@ -18,6 +18,13 @@ module.exports = {
             .setValue('textarea[id="id_description"]', 'Zone description')
 
             .click('button[ng-click="ok()"]')
+    },
+    'testing new zone visibility': function (browser) {
+        browser
+            .useXpath()
+            .waitForElementVisible("//td[text()='Zone name']", 2000)
+            .waitForElementVisible("//td[text()='Zone description']", 2000)
+            .useCss()
             .pause(500)
             .end()
     }
