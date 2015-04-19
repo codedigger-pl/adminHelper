@@ -10,6 +10,7 @@ from .allTests.classTests.alarmZone import AlarmZoneTest
 
 # Enabling basic view tests
 from .allTests.viewTests.alarmOverview import AlarmOverviewTest
+from .allTests.viewTests.alarmZone import AddAlarmZoneTest
 
 # Enabling API tests
 from .allTests.apiTests.alarmZone import APIAlarmZoneTest
@@ -31,39 +32,38 @@ class PEP8Test(TestCase):
 
     def test_users_files(self):
         """Testing main package files"""
-        files_prefix = 'users/'
+        files_prefix = 'alarm/'
         files = ['admin.py',
-                 'forms.py',
                  'models.py',
                  'tests.py',
-                 'views.py',]
+                 'views.py', ]
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
 
     def test_tests_apiTests(self):
         """Testing apiTests files"""
-        files_prefix = 'users/allTests/apiTests/'
+        files_prefix = 'alarm/allTests/apiTests/'
         files = []
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
 
     def test_tests_classTests(self):
         """Testing classTests files"""
-        files_prefix = 'users/allTests/classTests/'
+        files_prefix = 'alarm/allTests/classTests/'
         files = []
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
 
     def test_tests_e2eTests(self):
         """Testing e2eTests files"""
-        files_prefix = 'users/allTests/e2eTests/'
+        files_prefix = 'alarm/allTests/e2eTests/'
         files = []
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
 
     def test_tests_viewTests(self):
         """Testing viewTests files"""
-        files_prefix = 'users/allTests/viewTests/'
+        files_prefix = 'alarm/allTests/viewTests/'
         files = []
         result = self.check_PEP8_file(files_prefix, files)
         self.assertEqual(result.total_errors, 0, 'Errors or warnings in PEP8 test')
