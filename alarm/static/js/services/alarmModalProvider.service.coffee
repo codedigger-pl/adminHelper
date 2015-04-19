@@ -8,4 +8,9 @@ modalFactory.factory 'alarmModalFactory', ['$modal', ($modal) ->
         templateUrl: '/alarm/addAlarmZone'
         controller: 'AlarmZoneAddModalController'
 
+    openAlarmOrderAddModal: ->
+      $modal.open
+        templateUrl: '/alarm/addAlarmOrder'
+        controller: 'AlarmOrderAddModalController'
+
 ]
