@@ -9,10 +9,8 @@ from .apiSerializers import AlarmZoneSerializer, ListAlarmZoneSerializer
 
 
 class AlarmZoneViewset(viewsets.ModelViewSet):
-    """
-    Alarm zone API viewset.
+    """Alarm zone API viewset"""
 
-    """
     queryset = AlarmZone.objects.all()
     serializer_class = AlarmZoneSerializer
 

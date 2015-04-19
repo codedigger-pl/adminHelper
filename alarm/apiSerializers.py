@@ -16,11 +16,11 @@ class AlarmZoneSerializer(serializers.ModelSerializer):
 
 
 class ListAlarmZoneSerializer(serializers.ModelSerializer):
-    """Alarm zone serializer used to list zones (manager is in string repr"""
+    """Alarm zone serializer used to list zones"""
 
     manager = serializers.StringRelatedField()
 
     class Meta:
         model = AlarmZone
-        fields = ('id', 'name', 'description', 'creation_date_date', 'creation_date_time', 'manager')
-        read_only_fields = ('id', 'creation_date_date', 'creation_date_time')
+        fields = ('id', 'name', 'description', 'manager')
+        read_only_fields = ('id')
