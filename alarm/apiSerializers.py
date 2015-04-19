@@ -7,9 +7,18 @@ from .models import AlarmZone
 
 
 class AlarmZoneSerializer(serializers.ModelSerializer):
-    """
-    Default person group serializer.
-    """
+    """Default alarm zone serializer"""
+
+    class Meta:
+        model = AlarmZone
+        fields = ('id', 'name', 'description', 'creation_date_date', 'creation_date_time', 'manager')
+        read_only_fields = ('id', 'creation_date_date', 'creation_date_time')
+
+
+class ListAlarmZoneSerializer(serializers.ModelSerializer):
+    """Alarm zone serializer used to list zones (manager is in string repr"""
+
+    manager = serializers.StringRelatedField()
 
     class Meta:
         model = AlarmZone

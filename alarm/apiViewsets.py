@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, serializers
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route, list_route
 
 from .models import AlarmZone, AlarmRule
-from .apiSerializers import AlarmZoneSerializer
+from .apiSerializers import AlarmZoneSerializer, ListAlarmZoneSerializer
 
 
 class AlarmZoneViewset(viewsets.ModelViewSet):
@@ -15,6 +15,10 @@ class AlarmZoneViewset(viewsets.ModelViewSet):
     """
     queryset = AlarmZone.objects.all()
     serializer_class = AlarmZoneSerializer
+
+    def list(self, request, *args, **kwargs):
+        self.serializer_class = ListAlarmZoneSerializer
+        return super(AlarmZoneViewset, self).list(request, args, kwargs)
 
     @detail_route(methods=['get'])
     def persons_count(self, request, pk):

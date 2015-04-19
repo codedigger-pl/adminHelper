@@ -139,3 +139,6 @@ class SysUser(AbstractUser):
     """
     # user rank (pan/pani/kpt./mjr/por. etc
     rank = CharField(max_length=20, choices=RANK_CHOICES, blank=True)
+
+    def __str__(self):
+        return '%s %s' % (self.first_name, self.last_name)
