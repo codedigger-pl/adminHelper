@@ -8,7 +8,7 @@ from .models import AlarmZone, AlarmRule, AlarmOrder, AlarmRequest
 
 from .apiSerializers import AlarmZoneSerializer, ListAlarmZoneSerializer
 from .apiSerializers import AlarmRuleSerializer, ListAlarmOrderSerializer, AlarmOrderSerializer
-from .apiSerializers import AlarmRequestSerializer
+from .apiSerializers import AlarmRequestSerializer, ListAlarmRequestSerializer
 
 
 class AlarmZoneViewset(viewsets.ModelViewSet):
@@ -54,3 +54,7 @@ class AlarmRequestViewset(viewsets.ModelViewSet):
 
     queryset = AlarmRequest.objects.all()
     serializer_class = AlarmRequestSerializer
+
+    def list(self, request, *args, **kwargs):
+        self.serializer_class = ListAlarmRequestSerializer
+        return super(AlarmRequestViewset, self).list(request, args, kwargs)

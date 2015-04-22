@@ -63,3 +63,15 @@ class AlarmRequestSerializer(serializers.ModelSerializer):
         model = AlarmRequest
         fields = ('id', 'creation_date_date', 'creation_date_time', 'user', 'rule', 'grant_privilege')
         read_only_fields = ('id', 'creation_date_date', 'creation_date_time')
+
+
+class ListAlarmRequestSerializer(serializers.ModelSerializer):
+
+    rule_zone = serializers.ReadOnlyField(source='rule.zone.name')
+    rule_person = serializers.StringRelatedField(source='rule.person')
+    user = serializers.StringRelatedField()
+
+    class Meta:
+        model = AlarmRequest
+        fields = ('id', 'user', 'rule_zone', 'rule_person', 'grant_privilege')
+        read_only_fields = ('id', )
