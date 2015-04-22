@@ -20,6 +20,12 @@ module.exports = {
             .click('input[id="id_grant_privilege"]')
 
             .click('button[ng-click="ok()"]')
+    },
+    'testing new order visibility': function (browser) {
+        browser
+            .useXpath()
+            .waitForElementVisible("//td[text()='Nadanie uprawnienia']", 2000)
+            .useCss()
             .pause(500)
             .end()
     }

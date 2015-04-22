@@ -62,7 +62,8 @@
             <button type="button" class="btn-default" ng-click="updateOrderData()">Odśwież</button>
             <button type="button" class="btn-default" ng-click="openAlarmOrderAddModal()">Dodaj</button>
         </div>
-        <div class="col-md-12">
+
+        <div class="col-md-10">
             <table class="table table-responsive table-condensed table-hover text-left">
                 <tr>
                     <th>Lp</th>
@@ -80,6 +81,23 @@
                 {% endverbatim %}
             </table>
         </div>
+
+        <div class="col-md-2">
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Akcje</th>
+                </tr>
+                {% verbatim %}
+                <tr ng-repeat="order in orders">
+                    <td>
+                        <button type="button" class="btn-warning" ng-click="">Usuń</button>
+                        <button type="button" class="btn-success" ng-click="">Oznacz jako zrealizowane</button>
+                    </td>
+                </tr>
+                {% endverbatim %}
+            </table>
+        </div>
+
     </div>
 
     <div class="row">
@@ -90,7 +108,8 @@
             <button type="button" class="btn-default" ng-click="groups.refreshData()">Odśwież</button>
             <button type="button" class="btn-default" ng-click="openGroupAddModal()">Dodaj</button>
         </div>
-        <div class="col-md-12">
+
+        <div class="col-md-10">
             <table class="table table-responsive table-condensed table-hover text-left">
                 <tr>
                     <th>Lp</th>
@@ -105,6 +124,20 @@
                     <td>Jakiś user</td>
                     <td>Nadanie lub odebranie</td>
                     <td>Inny user</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-2">
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Akcje</th>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn-warning" ng-click="">Odrzuć</button>
+                        <button type="button" class="btn-success" ng-click="">Zatwierdź</button>
+                    </td>
                 </tr>
             </table>
         </div>
