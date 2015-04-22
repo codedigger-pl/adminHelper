@@ -35,6 +35,11 @@ overviewController.controller 'AlarmOverviewController', [
       instance.result.then ->
           $scope.updateOrderData()
 
+    $scope.openAlarmRequestAddModal = ->
+      instance = alarmModalFactory.openAlarmRequestAddModal()
+      instance.result.then ->
+          $scope.updateRequestData()
+
     $scope.updateZoneData()
     $scope.updateOrderData()
     $scope.updateRequestData()

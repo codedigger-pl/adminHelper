@@ -106,6 +106,6 @@ class AddAlarmRequestForm(TemplateView):
 
         context = super(AddAlarmRequestForm, self).get_context_data(**kwargs)
         context.update(form_title='Dodaj nową prośbę')
-        context.update(order_form=RequestAngularForm())
+        context.update(request_form=RequestAngularForm())
         context.update(rule_form=RuleAngularForm())
         return context
