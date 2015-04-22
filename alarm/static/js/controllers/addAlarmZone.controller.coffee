@@ -10,14 +10,6 @@ overviewController.controller 'AlarmZoneAddModalController', [
     base = Restangular.all('api/alarmZones')
 
     $scope.ok = ->
-      form = document.getElementsByName('alarmZoneForm')[0]
-      formData = new FormData(form)
-
-      # direct request - left for future tests
-      # req = new XMLHttpRequest()
-      # req.open('POST', '/api/users/persons/')
-      # req.send(formData)
-
       request = base.post
         name: $scope.alarmZone.name
         description: $scope.alarmZone.description

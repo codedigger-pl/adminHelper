@@ -13,4 +13,9 @@ modalFactory.factory 'alarmModalFactory', ['$modal', ($modal) ->
         templateUrl: '/alarm/addAlarmOrder'
         controller: 'AlarmOrderAddModalController'
 
+    openAlarmRequestAddModal: ->
+      $modal.open
+        templateUrl: '/alarm/addAlarmRequest'
+        controller: 'AlarmRequestAddModalController'
+
 ]

@@ -14,6 +14,7 @@ from .allTests.classTests.alarmRequest import AlarmRequestTest
 from .allTests.viewTests.alarmOverview import AlarmOverviewTest
 from .allTests.viewTests.alarmZone import AddAlarmZoneTest
 from .allTests.viewTests.alarmOrder import AddAlarmOrderTest
+from .allTests.viewTests.alarmRequest import AddAlarmRequestrTest
 
 # Enabling API tests
 from .allTests.apiTests.alarmZone import APIAlarmZoneTest

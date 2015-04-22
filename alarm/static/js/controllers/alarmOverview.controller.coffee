@@ -14,12 +14,16 @@ overviewController.controller 'AlarmOverviewController', [
   ($scope, $state, Restangular, alarmModalFactory) ->
     zoneBase = Restangular.all('api/alarmZones')
     orderBase = Restangular.all('api/alarmOrders')
+    requestBase = Restangular.all('api/alarmRequests')
 
     $scope.updateZoneData = ->
       $scope.zones = zoneBase.getList().$object
 
     $scope.updateOrderData = ->
       $scope.orders = orderBase.getList().$object
+
+    $scope.updateRequestData = ->
+      $scope.requests = requestBase.getList().$object
 
     $scope.openAlarmZoneAddModal = ->
       instance = alarmModalFactory.openAlarmZoneAddModal()
@@ -33,5 +37,6 @@ overviewController.controller 'AlarmOverviewController', [
 
     $scope.updateZoneData()
     $scope.updateOrderData()
+    $scope.updateRequestData()
 
 ]
