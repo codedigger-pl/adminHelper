@@ -26,6 +26,7 @@ from .allTests.apiTests.alarmRequest import APIAlarmRequestTest
 if ENABLE_E2E_TESTS:
     from .allTests.e2eTests.alarmZoneAdd import AlarmZoneAddTest
     from .allTests.e2eTests.alarmOrderAdd import AlarmOrderAddTest
+    from .allTests.e2eTests.alarmRequestAdd import AlarmRequestAddTest
 
 
 class PEP8Test(TestCase):

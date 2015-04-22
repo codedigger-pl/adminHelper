@@ -1,12 +1,12 @@
 module.exports = {
-    'opening alarm order add form': function (browser) {
+    'opening alarm request add form': function (browser) {
         browser
             .maximizeWindow()
             .url('http://127.0.0.1:8081/#/alarm')
-            .waitForElementVisible('button[ng-click="openAlarmOrderAddModal()"]', 2000)
-            .click('button[ng-click="openAlarmOrderAddModal()"]')
+            .waitForElementVisible('button[ng-click="openAlarmRequestAddModal()"]', 2000)
+            .click('button[ng-click="openAlarmRequestAddModal()"]')
     },
-    'testing alarm order add form': function (browser) {
+    'testing alarm request add form': function (browser) {
         browser
             .waitForElementVisible('select[id="id_zone"]', 2000)
             .waitForElementVisible('select[id="id_person"]', 2000)
@@ -21,10 +21,10 @@ module.exports = {
 
             .click('button[ng-click="ok()"]')
     },
-    'testing new order visibility': function (browser) {
+    'testing new request visibility': function (browser) {
         browser
             .useXpath()
-            .waitForElementVisible("//td[text()='Nadanie uprawnienia']", 2000)
+            .waitForElementVisible("//td[text()='Odebranie uprawnienia']", 2000)
             .useCss()
             .pause(500)
             .end()

@@ -118,13 +118,15 @@
                     <th>Rodzaj uprawnienia</th>
                     <th>Prośba od</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Jakaś nazwa</td>
-                    <td>Jakiś user</td>
-                    <td>Nadanie lub odebranie</td>
-                    <td>Inny user</td>
+                {% verbatim %}
+                <tr ng-repeat="request in requests">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ request.rule_zone }}</td>
+                    <td>{{ request.rule_person }}</td>
+                    <td>{{ request.grant_privilege ? 'Nadanie uprawnienia' : 'Odebranie uprawnienia' }}</td>
+                    <td>{{ request.user }}</td>
                 </tr>
+                {% endverbatim %}
             </table>
         </div>
 
@@ -133,12 +135,14 @@
                 <tr>
                     <th>Akcje</th>
                 </tr>
-                <tr>
+                {% verbatim %}
+                <tr ng-repeat="request in requests">
                     <td>
                         <button type="button" class="btn-warning" ng-click="">Odrzuć</button>
                         <button type="button" class="btn-success" ng-click="">Zatwierdź</button>
                     </td>
                 </tr>
+                {% endverbatim %}
             </table>
         </div>
     </div>
