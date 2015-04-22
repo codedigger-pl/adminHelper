@@ -4,11 +4,11 @@ from rest_framework import viewsets, status, serializers
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route, list_route
 
-from .models import AlarmZone, AlarmRule, AlarmOrder
+from .models import AlarmZone, AlarmRule, AlarmOrder, AlarmRequest
 
 from .apiSerializers import AlarmZoneSerializer, ListAlarmZoneSerializer
-from .apiSerializers import AlarmRuleSerializer, ListAlarmOrderSerializer
-from .apiSerializers import AlarmOrderSerializer
+from .apiSerializers import AlarmRuleSerializer, ListAlarmOrderSerializer, AlarmOrderSerializer
+from .apiSerializers import AlarmRequestSerializer
 
 
 class AlarmZoneViewset(viewsets.ModelViewSet):
@@ -47,3 +47,10 @@ class AlarmOrderViewset(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         self.serializer_class = ListAlarmOrderSerializer
         return super(AlarmOrderViewset, self).list(request, args, kwargs)
+
+
+class AlarmRequestViewset(viewsets.ModelViewSet):
+    """Alarm request API viewset"""
+
+    queryset = AlarmRequest.objects.all()
+    serializer_class = AlarmRequestSerializer

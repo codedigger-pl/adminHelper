@@ -62,7 +62,13 @@ class AlarmRequest(models.Model):
     rule = ForeignKey(AlarmRule)
     user = ForeignKey(SysUser)
     creationDate = DateTimeField(auto_now_add=True)
-    addRule = BooleanField(default=True)
+    grant_privilege = BooleanField(default=True)
+
+    # ---== read only fields ==---
+    # zone creation date
+    creation_date = DateTimeField(auto_now_add=True)
+    creation_date_date = property(lambda self: self.creation_date.date())
+    creation_date_time = property(lambda self: self.creation_date.time())
 
     class Meta:
         verbose_name = 'Prośba zmiany uprawnień'

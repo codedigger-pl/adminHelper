@@ -7,7 +7,7 @@ from users.views import UserHomepage
 
 from rest_framework.routers import DefaultRouter
 from users.apiViewsets import PersonGroupViewset, PersonViewset, UserViewset
-from alarm.apiViewsets import AlarmZoneViewset, AlarmOrderViewset, AlarmRuleViewset
+from alarm.apiViewsets import AlarmZoneViewset, AlarmOrderViewset, AlarmRuleViewset, AlarmRequestViewset
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'personGroups', PersonGroupViewset)
@@ -17,6 +17,7 @@ router.register(r'users', UserViewset)
 router.register(r'alarmZones', AlarmZoneViewset)
 router.register(r'alarmRules', AlarmRuleViewset)
 router.register(r'alarmOrders', AlarmOrderViewset)
+router.register(r'alarmRequests', AlarmRequestViewset)
 
 urlpatterns = patterns('',
     # Examples:

@@ -8,6 +8,7 @@ ENABLE_E2E_TESTS = True
 # Enabling class tests
 from .allTests.classTests.alarmZone import AlarmZoneTest
 from .allTests.classTests.alarmOrder import AlarmOrderTest
+from .allTests.classTests.alarmRequest import AlarmRequestTest
 
 # Enabling basic view tests
 from .allTests.viewTests.alarmOverview import AlarmOverviewTest
@@ -18,6 +19,7 @@ from .allTests.viewTests.alarmOrder import AddAlarmOrderTest
 from .allTests.apiTests.alarmZone import APIAlarmZoneTest
 from .allTests.apiTests.alarmOrder import APIAlarmOrderTest
 from .allTests.apiTests.alarmRule import APIAlarmRuleTest
+from .allTests.apiTests.alarmRequest import APIAlarmRequestTest
 
 # Enabling WEB tests
 if ENABLE_E2E_TESTS:
