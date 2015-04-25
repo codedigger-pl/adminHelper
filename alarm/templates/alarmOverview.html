@@ -139,7 +139,7 @@
                 <tr ng-repeat="request in requests">
                     <td>
                         <button type="button" class="btn-warning" ng-click="">Odrzuć</button>
-                        <button type="button" class="btn-success" ng-click="">Zatwierdź</button>
+                        <button type="button" class="btn-success" ng-click="acceptRequest(request.id)">Zatwierdź</button>
                     </td>
                 </tr>
                 {% endverbatim %}

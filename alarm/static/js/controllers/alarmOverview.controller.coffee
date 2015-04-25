@@ -15,6 +15,7 @@ overviewController.controller 'AlarmOverviewController', [
     zoneBase = Restangular.all('api/alarmZones')
     orderBase = Restangular.all('api/alarmOrders')
     requestBase = Restangular.all('api/alarmRequests')
+    ruleBase = Restangular.all('api/alarmRules')
 
     $scope.updateZoneData = ->
       $scope.zones = zoneBase.getList().$object
@@ -38,6 +39,17 @@ overviewController.controller 'AlarmOverviewController', [
     $scope.openAlarmRequestAddModal = ->
       instance = alarmModalFactory.openAlarmRequestAddModal()
       instance.result.then ->
+          $scope.updateRequestData()
+
+    $scope.acceptRequest = (requestID) ->
+      requestBase.get(requestID).then (request) ->
+        req = orderBase.post
+          rule: request.rule
+          user: 1
+          grant_privilege: request.grant_privilege
+        request.remove()
+        req.then ->
+          $scope.updateOrderData()
           $scope.updateRequestData()
 
     $scope.updateZoneData()

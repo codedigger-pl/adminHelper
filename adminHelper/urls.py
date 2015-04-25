@@ -3,9 +3,9 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from users.views import UserHomepage
-
 from rest_framework.routers import DefaultRouter
+
+from users.views import UserHomepage
 from users.apiViewsets import PersonGroupViewset, PersonViewset, UserViewset
 from alarm.apiViewsets import AlarmZoneViewset, AlarmOrderViewset, AlarmRuleViewset, AlarmRequestViewset
 
@@ -31,5 +31,6 @@ urlpatterns = patterns('',
 
     # including API urls
     url(r'^api/', include(router.urls, namespace='api')),
+    url(r'^api/rest-auth/', include('rest_auth.urls'))
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

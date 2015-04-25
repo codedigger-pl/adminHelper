@@ -24,6 +24,11 @@
   </head>
 
   <body ng-app="adminHelper">
+  {% if not user.is_authenticated %}
+      anonimowy
+  {% else %}
+      user: {{ user }}
+
   {% verbatim %}
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -100,6 +105,8 @@
 
         <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
+
+  {% endif %}
 
   </body>
 </html>
