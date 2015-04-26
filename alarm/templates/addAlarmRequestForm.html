@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ form_title }}</h3>
+</div>
+
+<div class="modal-body">
+    <form name={{ rule_form.form_name }} >
+        {{ rule_form.as_div }}
+    </form>
+</div>
+
+<div class="modal-body">
+    <form name={{ request_form.form_name }} >
+        {{ request_form.as_div }}
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
