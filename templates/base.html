@@ -24,10 +24,6 @@
   </head>
 
   <body ng-app="adminHelper">
-  {% if not user.is_authenticated %}
-      anonimowy
-  {% else %}
-      user: {{ user }}
 
   {% verbatim %}
 
@@ -107,8 +103,6 @@
 
         <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
-
-  {% endif %}
 
   </body>
 </html>

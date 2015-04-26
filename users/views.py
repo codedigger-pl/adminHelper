@@ -239,9 +239,6 @@ class LoginForm(TemplateView):
         context.update(form_title='Logowanie do systemu')
         return context
 
-    def dispatch(self, request, *args, **kwargs):
-        return super(LoginForm, self).dispatch(request, args, kwargs)
-
 
 class LoginView(TemplateView):
     """Login to system page"""

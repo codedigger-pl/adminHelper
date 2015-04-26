@@ -22,5 +22,4 @@ module.factory 'sessionFactory', [
 
       get_user_data: (id) ->
         @user = @all_base.get(id).$object
-
 ]
