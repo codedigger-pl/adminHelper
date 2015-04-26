@@ -215,3 +215,25 @@ class UserAddView(TemplateView):
         context.update(form=AngularForm())
         context.update(form_title='Dodaj użytkownika')
         return context
+
+
+class LoginForm(TemplateView):
+    """Login to system form"""
+    template_name = 'defaultForm.html'
+
+    def get_context_data(self, **kwargs):
+        class AngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'loginForm'
+
+            class Meta:
+                model = SysUser
+                fields = ('username', 'password')
+
+            def __init__(self, *args, **kwargs):
+                kwargs.update(scope_prefix='login')
+                super(AngularForm, self).__init__(*args, **kwargs)
+
+        context = super(LoginForm, self).get_context_data(**kwargs)
+        context.update(form=AngularForm())
+        context.update(form_title='Logowanie do systemu')
+        return context

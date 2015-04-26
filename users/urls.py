@@ -4,7 +4,8 @@ from django.conf.urls import patterns, url
 from .views import (UsersOverview,
                     PersonAddView, PersonGroupAddView, UserAddView,
                     PersonList, PersonDetail,
-                    PersonGroupList, PersonGroupDetail)
+                    PersonGroupList, PersonGroupDetail,
+                    LoginForm, )
 
 urlpatterns = patterns('',
     url(r'^overview', UsersOverview.as_view(), name='usersOverview'),
@@ -15,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^addPersonGroup', PersonGroupAddView.as_view(), name='add_personGroup'),
     url(r'^addPerson', PersonAddView.as_view(), name='add_person'),
     url(r'^addUser', UserAddView.as_view(), name='add_user'),
+    url(r'^login', LoginForm.as_view(), name='login'),
 )
