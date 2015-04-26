@@ -18,4 +18,9 @@ modalFactory.factory 'modalFactory', ['$modal', ($modal) ->
         templateUrl: '/users/addUser'
         controller: 'UserAddModalController'
 
+    openLoginModal: ->
+      $modal.open
+        templateUrl: '/users/login_form'
+        controller: 'LoginModalController'
+
 ]

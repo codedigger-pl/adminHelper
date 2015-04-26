@@ -1,7 +1,10 @@
 module.exports = {
+    'login to system': function (browser) {
+        browser
+            .login('test_user', 'test_user')
+    },
     'finding person': function (browser) {
         browser
-            .maximizeWindow()
             .url('http://127.0.0.1:8081/#/users/person_list')
             .waitForElementVisible('tr[ng-click="showPersonDetails(person.id)"]', 2000)
             .click('td')

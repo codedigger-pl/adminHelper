@@ -1,17 +1,27 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import reverse
+from django.contrib.auth import authenticate, login
 from rest_framework.test import APITestCase
 from rest_framework import status
 from autofixture import AutoFixture
 
 from random import randint
 
-from users.models import PersonGroup, Person
+from users.models import PersonGroup, Person, SysUser
 
 
 class APIPersonGroupTest(APITestCase):
     """All primary API tests"""
+
+    def setUp(self):
+        super(APIPersonGroupTest, self).setUp()
+        user = SysUser()
+        user.username = 'test_user'
+        user.set_password('test_user')
+        user.save()
+        self.client.post(reverse('api:sysuser-login'), {'username': 'test_user', 'password': 'test_user'})
+
 
     def test_access_personGroups(self):
         """Testing access to persons API values"""
@@ -62,6 +72,13 @@ class APIPersonGroupTest(APITestCase):
 
 class APIPersonGroup_lastItems(APITestCase):
     """Testing last items from API"""
+    def setUp(self):
+        super(APIPersonGroup_lastItems, self).setUp()
+        user = SysUser()
+        user.username = 'test_user'
+        user.set_password('test_user')
+        user.save()
+        self.client.post(reverse('api:sysuser-login'), {'username': 'test_user', 'password': 'test_user'})
 
     def test_last_items(self):
         """Testing access to some last groups - primary use"""

@@ -5,11 +5,13 @@ from autofixture import AutoFixture
 from subprocess import call
 
 from users.models import PersonGroup, Person
+from .userLogin import create_test_user
 
 
 class PersonAddFormTest(StaticLiveServerTestCase):
 
     def test_personAddForm(self):
+        create_test_user()
         fixture = AutoFixture(PersonGroup)
         group = fixture.create(1)[0]
         self.assertEqual(0,

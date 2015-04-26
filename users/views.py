@@ -1,20 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from django.views.generic import TemplateView
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.core.context_processors import csrf
+from djangular.forms import NgModelFormMixin, NgModelForm
+from djangular.styling.bootstrap3.forms import Bootstrap3FormMixin
 
-from .forms import (AngularPersonGroupAddForm, AngularPersonAddForm,
-                    AngularPersonCardNumberForm, AngularPersonDataForm, AngularPersonPhotoForm,
-                    AngularPersonGroupForm,
-                    AngularUserAddForm, )
+from .models import Person, PersonGroup, SysUser
 
 
 class UserHomepage(TemplateView):
-    """ Homepage view.
-
-    Display homepage. Class based on TemplateView.
-    :return: generated base.html
-    """
-
+    """Shows homepage"""
     template_name = 'base.html'
 
 
@@ -44,7 +40,6 @@ class PersonDetail(TemplateView):
     Display persons detail info. Class based on TemplateView.
     :return: generated personDetail.html
     """
-
     template_name = 'personDetail.html'
 
     def get_context_data(self, **kwargs):
@@ -56,10 +51,43 @@ class PersonDetail(TemplateView):
         :param kwargs:
         :return: generated context data
         """
+        class CardNumberAngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'cardNumberForm'
+
+            class Meta:
+                model = Person
+                fields = ('card_number', )
+
+            def __init__(self, *args, **kwargs):
+                kwargs.update(scope_prefix='person')
+                super(CardNumberAngularForm, self).__init__(*args, **kwargs)
+
+        class DataAngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'personDataForm'
+
+            class Meta:
+                model = Person
+                fields = ('first_name', 'last_name', 'rank', 'group')
+
+            def __init__(self, *args, **kwargs):
+                kwargs.update(scope_prefix='person')
+                super(DataAngularForm, self).__init__(*args, **kwargs)
+
+        class PhotoAngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'personPhotoForm'
+
+            class Meta:
+                model = Person
+                fields = ('photo', )
+
+            def __init__(self, *args, **kwargs):
+                kwargs.update(scope_prefix='person')
+                super(PhotoAngularForm, self).__init__(*args, **kwargs)
+
         context = super(PersonDetail, self).get_context_data(**kwargs)
-        context.update(cardNumberForm=AngularPersonCardNumberForm())
-        context.update(dataForm=AngularPersonDataForm())
-        context.update(photoForm=AngularPersonPhotoForm())
+        context.update(cardNumberForm=CardNumberAngularForm())
+        context.update(dataForm=DataAngularForm())
+        context.update(photoForm=PhotoAngularForm())
         return context
 
 
@@ -69,7 +97,6 @@ class PersonGroupList(TemplateView):
     Display list of person groups in system. Class based on TemplateView.
     :return: generated pgroupList.html
     """
-
     template_name = 'pgroupList.html'
 
 
@@ -79,7 +106,6 @@ class PersonGroupDetail(TemplateView):
     Display selected person group details.
     :return: generated pgroupDetail.html
     """
-
     template_name = 'pgroupDetail.html'
 
     def get_context_data(self, **kwargs):
@@ -91,8 +117,19 @@ class PersonGroupDetail(TemplateView):
         :param kwargs:
         :return: generated context data
         """
+        class AngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'personGroupForm'
+
+            class Meta:
+                model = PersonGroup
+                fields = ('name', 'description')
+
+            def __init__(self, *args, **kwargs):
+                kwargs.update(scope_prefix='personGroup')
+                super(AngularForm, self).__init__(*args, **kwargs)
+
         context = super(PersonGroupDetail, self).get_context_data(**kwargs)
-        context.update(personGroupForm=AngularPersonGroupForm)
+        context.update(personGroupForm=AngularForm)
         return context
 
 
@@ -110,8 +147,15 @@ class PersonGroupAddView(TemplateView):
         :param kwargs:
         :return: generated context data
         """
+        class AngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'pgroupAddForm'
+
+            class Meta:
+                model = PersonGroup
+                fields = ('name', 'description')
+
         context = super(PersonGroupAddView, self).get_context_data(**kwargs)
-        context.update(form=AngularPersonGroupAddForm())
+        context.update(form=AngularForm())
         context.update(form_title='Dodaj grupę pracowników')
         return context
 
@@ -130,8 +174,15 @@ class PersonAddView(TemplateView):
         :param kwargs:
         :return: generated context data
         """
+        class AngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'personAddForm'
+
+            class Meta:
+                model = Person
+                fields = ('last_name', 'first_name', 'rank', 'card_number', 'group', 'photo')
+
         context = super(PersonAddView, self).get_context_data(**kwargs)
-        context.update(form=AngularPersonAddForm())
+        context.update(form=AngularForm())
         context.update(form_title='Dodaj pracownika')
         return context
 
@@ -150,7 +201,48 @@ class UserAddView(TemplateView):
         :param kwargs:
         :return: generated context data
         """
+        class AngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'userAddForm'
+
+            class Meta:
+                model = SysUser
+                fields = ('username', 'first_name', 'last_name', 'rank', 'email')
+
+            def __init__(self, *args, **kwargs):
+                kwargs.update(scope_prefix='user')
+                super(AngularForm, self).__init__(*args, **kwargs)
+
         context = super(UserAddView, self).get_context_data(**kwargs)
-        context.update(form=AngularUserAddForm())
+        context.update(form=AngularForm())
         context.update(form_title='Dodaj użytkownika')
         return context
+
+
+class LoginForm(TemplateView):
+    """Login to system form"""
+    template_name = 'defaultForm.html'
+
+    def get_context_data(self, **kwargs):
+        class AngularForm(NgModelFormMixin, NgModelForm, Bootstrap3FormMixin):
+            form_name = 'loginForm'
+
+            class Meta:
+                model = SysUser
+                fields = ('username', 'password')
+
+            def __init__(self, *args, **kwargs):
+                kwargs.update(scope_prefix='login')
+                super(AngularForm, self).__init__(*args, **kwargs)
+
+        context = super(LoginForm, self).get_context_data(**kwargs)
+        context.update(form=AngularForm())
+        context.update(form_title='Logowanie do systemu')
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginForm, self).dispatch(request, args, kwargs)
+
+
+class LoginView(TemplateView):
+    """Login to system page"""
+    template_name = 'login.html'

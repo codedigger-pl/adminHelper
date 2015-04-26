@@ -9,6 +9,7 @@ ENABLE_E2E_TESTS = False
 from .allTests.viewTests.homePage import HomePageTest
 from .allTests.viewTests.usersOverview import UsersOverviewTest
 from .allTests.viewTests.personGroup import PersonGroupTest
+from .allTests.viewTests.login import LoginTest
 
 # Enabling class tests
 from .allTests.classTests.person import PersonClassTest
@@ -20,7 +21,6 @@ from .allTests.apiTests.personGroup import APIPersonGroupTest, APIPersonGroup_la
 from .allTests.apiTests.sysUser import APISysUserTest
 
 # Enabling WEB tests
-# from .allTests.e2eTests.webTests import WEBTests
 if ENABLE_E2E_TESTS:
     from .allTests.e2eTests.personAddForm import PersonAddFormTest
     from .allTests.e2eTests.personDataChange import PersonDataChangeTest
@@ -28,6 +28,7 @@ if ENABLE_E2E_TESTS:
     from .allTests.e2eTests.pgroupAddForm import PersonGroupAddFormTest
     from .allTests.e2eTests.userAddForm import UserAddFormTest
     from .allTests.e2eTests.personGroupDataChange import PersonGroupDataChangeTest
+    from .allTests.e2eTests.userLogin import UserLoginTest
 
 
 class PEP8Test(TestCase):
@@ -46,7 +47,6 @@ class PEP8Test(TestCase):
         files = ['admin.py',
                  'apiSerializers.py',
                  'apiViewsets.py',
-                 'forms.py',
                  'models.py',
                  'tests.py',
                  'views.py',
