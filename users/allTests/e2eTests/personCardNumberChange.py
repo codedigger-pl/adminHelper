@@ -5,12 +5,14 @@ from autofixture import AutoFixture
 from subprocess import call
 
 from users.models import PersonGroup, Person
+from .userLogin import create_test_user
 
 
 class PersonCardNumberChangeTest(StaticLiveServerTestCase):
     """All tests with nightwatch and Selenium server"""
 
     def test_personCardNumberChangeForm(self):
+        create_test_user()
         # creating groups
         group_fixture = AutoFixture(PersonGroup)
         group_fixture.create(1)

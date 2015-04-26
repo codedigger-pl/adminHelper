@@ -1,8 +1,10 @@
 module.exports = {
+    'login to system': function (browser) {
+        browser
+            .login('test_user', 'test_user')
+    },
     'testing person add form': function (browser) {
         browser
-            .maximizeWindow()
-
             // going to overview page
             .url('http://127.0.0.1:8081/#/users')
             .waitForElementVisible('button[ng-click="openPersonAddModal()"]', 2000)

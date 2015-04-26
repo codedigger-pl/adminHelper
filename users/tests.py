@@ -21,7 +21,6 @@ from .allTests.apiTests.personGroup import APIPersonGroupTest, APIPersonGroup_la
 from .allTests.apiTests.sysUser import APISysUserTest
 
 # Enabling WEB tests
-# from .allTests.e2eTests.webTests import WEBTests
 if ENABLE_E2E_TESTS:
     from .allTests.e2eTests.personAddForm import PersonAddFormTest
     from .allTests.e2eTests.personDataChange import PersonDataChangeTest
@@ -29,6 +28,7 @@ if ENABLE_E2E_TESTS:
     from .allTests.e2eTests.pgroupAddForm import PersonGroupAddFormTest
     from .allTests.e2eTests.userAddForm import UserAddFormTest
     from .allTests.e2eTests.personGroupDataChange import PersonGroupDataChangeTest
+    from .allTests.e2eTests.userLogin import UserLoginTest
 
 
 class PEP8Test(TestCase):
