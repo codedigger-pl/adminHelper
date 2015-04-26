@@ -22,12 +22,17 @@ mainApp.config [
   '$stateProvider'
   '$urlRouterProvider'
   ($stateProvider, $urlRouterProvider) ->
-    $urlRouterProvider.otherwise('/users')
+    $urlRouterProvider.otherwise('/login')
 
     $stateProvider.state 'overview',
       url: '/'
       templateUrl: '/'
       controller: 'UsersOverviewController'
+
+    $stateProvider.state 'login',
+      url: '/login'
+      templateUrl: '/users/login_view'
+      controller: 'LoginController'
 
     $stateProvider.state 'users',
       url: '/users'

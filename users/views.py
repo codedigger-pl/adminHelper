@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.views.generic import TemplateView
-
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.core.context_processors import csrf
 from djangular.forms import NgModelFormMixin, NgModelForm
 from djangular.styling.bootstrap3.forms import Bootstrap3FormMixin
 
@@ -237,3 +238,11 @@ class LoginForm(TemplateView):
         context.update(form=AngularForm())
         context.update(form_title='Logowanie do systemu')
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginForm, self).dispatch(request, args, kwargs)
+
+
+class LoginView(TemplateView):
+    """Login to system page"""
+    template_name = 'login.html'

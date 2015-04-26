@@ -9,7 +9,7 @@ ENABLE_E2E_TESTS = True
 from .allTests.viewTests.homePage import HomePageTest
 from .allTests.viewTests.usersOverview import UsersOverviewTest
 from .allTests.viewTests.personGroup import PersonGroupTest
-from .allTests.viewTests.forms import FormsViewTest
+from .allTests.viewTests.login import LoginTest
 
 # Enabling class tests
 from .allTests.classTests.person import PersonClassTest
