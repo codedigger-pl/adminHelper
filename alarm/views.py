@@ -60,7 +60,7 @@ class AddAlarmOrderForm(TemplateView):
 
             class Meta:
                 model = AlarmOrder
-                fields = ('grant_privilege', 'user')
+                fields = ('grant_privilege', )
 
             def __init__(self, *args, **kwargs):
                 kwargs.update(scope_prefix='alarmOrder')
@@ -98,7 +98,7 @@ class AddAlarmRequestForm(TemplateView):
 
             class Meta:
                 model = AlarmRequest
-                fields = ('grant_privilege', 'user')
+                fields = ('grant_privilege',)
 
             def __init__(self, *args, **kwargs):
                 kwargs.update(scope_prefix='alarmRequest')

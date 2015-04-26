@@ -6,7 +6,8 @@ overviewController.controller 'AlarmRequestAddModalController', [
   '$modalInstance'
   'djangoForm'
   'Restangular'
-  ($scope, $modalInstance, djangoForm, Restangular) ->
+  'sessionFactory'
+  ($scope, $modalInstance, djangoForm, Restangular, sessionFactory) ->
     ruleBase = Restangular.all('api/alarmRules')
     requestBase = Restangular.all('api/alarmRequests')
 
@@ -20,7 +21,7 @@ overviewController.controller 'AlarmRequestAddModalController', [
           # second request: trying to save new request
           requestRequest = requestBase.post
             rule: rule.id
-            user: $scope.alarmRequest.user
+            user: sessionFactory.user.id
             grant_privilege: $scope.alarmRequest.grant_privilege
           requestRequest.then \
             () ->

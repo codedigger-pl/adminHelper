@@ -50,7 +50,7 @@ overviewController.controller 'AlarmOverviewController', [
       requestBase.get(requestID).then (request) ->
         req = orderBase.post
           rule: request.rule
-          user: 1
+          user: sessionFactory.user.id
           grant_privilege: request.grant_privilege
         request.remove()
         req.then ->
