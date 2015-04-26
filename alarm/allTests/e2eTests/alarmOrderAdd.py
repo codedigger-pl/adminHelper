@@ -6,14 +6,15 @@ from autofixture import AutoFixture
 
 from alarm.models import AlarmZone, AlarmOrder, AlarmRule
 from users.models import SysUser, Person
+from users.allTests.e2eTests.userLogin import create_test_user
 
 
 class AlarmOrderAddTest(StaticLiveServerTestCase):
     """All tests with nightwatch and Selenium server"""
 
     def test_alarmorder_add_form(self):
-        fixture = AutoFixture(SysUser, generate_fk=True)
-        user = fixture.create(1)[0]
+        create_test_user()
+        user = SysUser.objects.last()
 
         fixture = AutoFixture(AlarmZone, generate_fk=True)
         zone = fixture.create(1)[0]

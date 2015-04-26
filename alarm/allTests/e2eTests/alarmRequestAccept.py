@@ -6,14 +6,14 @@ from autofixture import AutoFixture
 
 from alarm.models import AlarmOrder, AlarmRequest, AlarmRule
 from users.models import SysUser, Person
+from users.allTests.e2eTests.userLogin import create_test_user
 
 
 class AlarmRequestAcceptTest(StaticLiveServerTestCase):
     """All tests with nightwatch and Selenium server"""
 
     def test_alarmrequest_accept_form(self):
-        fixture = AutoFixture(SysUser, generate_fk=True)
-        fixture.create(1)
+        create_test_user()
 
         fixture = AutoFixture(AlarmRequest, generate_fk=True)
         request = fixture.create(1)[0]

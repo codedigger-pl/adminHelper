@@ -6,14 +6,14 @@ from autofixture import AutoFixture
 
 from alarm.models import AlarmZone
 from users.models import SysUser
+from users.allTests.e2eTests.userLogin import create_test_user
 
 
 class AlarmZoneAddTest(StaticLiveServerTestCase):
     """All tests with nightwatch and Selenium server"""
 
     def test_alarmzone_add_form(self):
-        fixture = AutoFixture(SysUser, generate_fk=True)
-        fixture.create(1)
+        create_test_user()
         self.assertEqual(0,
                          call('nightwatch --test alarm/allTests/e2eTests/alarmZoneAdd.js', shell=True),
                          'Nighwatch tests failed')

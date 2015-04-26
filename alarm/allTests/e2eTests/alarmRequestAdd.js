@@ -1,4 +1,8 @@
 module.exports = {
+    'login to system': function (browser) {
+        browser
+            .login('test_user', 'test_user')
+    },
     'opening alarm request add form': function (browser) {
         browser
             .maximizeWindow()
