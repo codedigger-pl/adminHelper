@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AlarmConfirm',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('executionDate', models.DateTimeField(auto_now_add=True)),
             ],
             options={
@@ -25,9 +25,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AlarmOrder',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
-                ('creationDate', models.DateTimeField(auto_now_add=True)),
-                ('addRule', models.BooleanField(default=False)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('grant_privilege', models.BooleanField(default=False)),
+                ('creation_date', models.DateTimeField(auto_now_add=True)),
             ],
             options={
                 'verbose_name_plural': 'Polecenia zmiany uprawnień',
@@ -38,9 +38,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AlarmRequest',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('creationDate', models.DateTimeField(auto_now_add=True)),
-                ('addRule', models.BooleanField(default=True)),
+                ('grant_privilege', models.BooleanField(default=True)),
+                ('creation_date', models.DateTimeField(auto_now_add=True)),
             ],
             options={
                 'verbose_name_plural': 'Prośby zmiany uprawnień',
@@ -51,8 +52,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AlarmRule',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('confirmed', models.BooleanField(default=False)),
+                ('creation_date', models.DateTimeField(auto_now_add=True)),
             ],
             options={
                 'verbose_name_plural': 'Uprawnienia',
@@ -63,8 +65,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AlarmZone',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('name', models.CharField(max_length=50)),
+                ('description', models.TextField(blank=True)),
+                ('creation_date', models.DateTimeField(auto_now_add=True)),
             ],
             options={
                 'verbose_name_plural': 'Strefy systemu',

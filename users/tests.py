@@ -46,7 +46,6 @@ class PEP8Test(TestCase):
         files = ['admin.py',
                  'apiSerializers.py',
                  'apiViewsets.py',
-                 'forms.py',
                  'models.py',
                  'tests.py',
                  'views.py',

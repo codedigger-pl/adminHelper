@@ -3,6 +3,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route, list_route
+from rest_framework.permissions import IsAuthenticated
 
 from .models import PersonGroup, Person, SysUser
 
@@ -19,6 +20,7 @@ class PersonGroupViewset(viewsets.ModelViewSet):
     """
     queryset = PersonGroup.objects.all()
     serializer_class = DefPersonGroupSerializer
+    # permission_classes = (IsAuthenticated, )
 
     def list(self, request, *args, **kwargs):
         """

@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Key',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('name', models.CharField(max_length=50)),
             ],
             options={
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='KeyConfirm',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('executionDate', models.DateTimeField(auto_now_add=True)),
             ],
             options={
@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='KeyOrder',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('creationDate', models.DateTimeField(auto_now_add=True)),
                 ('addRule', models.BooleanField(default=True)),
             ],
@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='KeyRequest',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('creationDate', models.DateTimeField(auto_now_add=True)),
                 ('addRule', models.BooleanField(default=True)),
             ],
@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='KeyRule',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('confirmed', models.BooleanField(default=False)),
                 ('key', models.ForeignKey(to='key.Key')),
             ],
