@@ -72,6 +72,7 @@ class PersonViewset(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     filter_class = PersonFilter
+    permission_classes = (IsAuthenticated, )
 
     def list(self, request, *args, **kwargs):
         """

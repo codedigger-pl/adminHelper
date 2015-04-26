@@ -7,11 +7,19 @@ from rest_framework import status
 from autofixture import AutoFixture
 from random import randint
 
-from users.models import Person
+from users.models import Person, SysUser
 
 
 class APIPersonTest(APITestCase):
     """All primary API tests"""
+
+    def setUp(self):
+        super(APIPersonTest, self).setUp()
+        user = SysUser()
+        user.username = 'test_user'
+        user.set_password('test_user')
+        user.save()
+        self.client.post(reverse('api:sysuser-login'), {'username': 'test_user', 'password': 'test_user'})
 
     def test_access_persons(self):
         """Testing access to persons API values"""
@@ -47,6 +55,14 @@ class APIPersonTest(APITestCase):
 class APIPersonsTest_lastItems(APITestCase):
     """Testing last items from API"""
 
+    def setUp(self):
+        super(APIPersonsTest_lastItems, self).setUp()
+        user = SysUser()
+        user.username = 'test_user'
+        user.set_password('test_user')
+        user.save()
+        self.client.post(reverse('api:sysuser-login'), {'username': 'test_user', 'password': 'test_user'})
+
     def test_last_items(self):
         """Testing access to some last persons - primary use"""
         fixture = AutoFixture(Person, generate_fk=True)
@@ -72,6 +88,14 @@ class APIPersonsTest_lastItems(APITestCase):
 
 class APITest_Person_serializerSwitcher(APITestCase):
     """Class for testing various serializer switching"""
+
+    def setUp(self):
+        super(APITest_Person_serializerSwitcher, self).setUp()
+        user = SysUser()
+        user.username = 'test_user'
+        user.set_password('test_user')
+        user.save()
+        self.client.post(reverse('api:sysuser-login'), {'username': 'test_user', 'password': 'test_user'})
 
     def test_minimal_serializer(self):
         """Checking, if minimal information are present"""
