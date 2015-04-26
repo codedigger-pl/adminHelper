@@ -56,3 +56,23 @@ class APISysUserTest(APITestCase):
         resp = self.client.get(reverse('api:sysuser-last-registered'))
         self.assertEqual(status.HTTP_200_OK, resp.status_code)
         self.assertEqual(last_registered.last_name+ ' ' + last_registered.first_name, resp.data['name'])
+
+    def test_login(self):
+        """Testing login to system"""
+        fixture = AutoFixture(SysUser)
+        user = fixture.create(1)[0]
+        user.username = 'user'
+        user.set_password('user')
+        user.save()
+
+        # checking incorrect username/password
+        resp = self.client.post(reverse('api:sysuser-login'), {'username': 'invalid', 'password': 'user'})
+        self.assertEqual(status.HTTP_400_BAD_REQUEST, resp.status_code)
+
+        resp = self.client.post(reverse('api:sysuser-login'), {'username': 'user', 'password': 'invalid'})
+        self.assertEqual(status.HTTP_400_BAD_REQUEST, resp.status_code)
+
+        # checking with correct data
+        resp = self.client.post(reverse('api:sysuser-login'), {'username': 'user', 'password': 'user'})
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(user.id, resp.data['id'])

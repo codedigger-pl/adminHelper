@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from django.contrib.auth import authenticate, login
+
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route, list_route
@@ -20,7 +22,7 @@ class PersonGroupViewset(viewsets.ModelViewSet):
     """
     queryset = PersonGroup.objects.all()
     serializer_class = DefPersonGroupSerializer
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, )
 
     def list(self, request, *args, **kwargs):
         """
@@ -144,3 +146,16 @@ class UserViewset(viewsets.ModelViewSet):
         resp = {}
         resp['name'] = last_user.last_name + ' ' + last_user.first_name
         return Response(resp, status=status.HTTP_200_OK)
+
+    @list_route(methods=['post'])
+    def login(self, request):
+        username = request.data['username']
+        password = request.data['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            resp = {}
+            resp['id'] = user.id
+            login(request, user)
+            return Response(resp, status=status.HTTP_200_OK)
+
+        return Response({}, status=status.HTTP_400_BAD_REQUEST)
