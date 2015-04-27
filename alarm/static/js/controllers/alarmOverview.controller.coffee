@@ -26,7 +26,7 @@ overviewController.controller 'AlarmOverviewController', [
       $scope.zones = zoneBase.getList().$object
 
     $scope.updateOrderData = ->
-      $scope.orders = orderBase.getList().$object
+      $scope.orders = orderBase.customGETLIST('', {'nonExecutedOnly': ''}).$object
 
     $scope.updateRequestData = ->
       $scope.requests = requestBase.getList().$object

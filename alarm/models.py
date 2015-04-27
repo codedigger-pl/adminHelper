@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.db.models import ForeignKey, CharField, BooleanField, DateTimeField, TextField
+from django.db.models import ForeignKey, CharField, BooleanField, DateTimeField, TextField, ManyToManyField
 
 from users.models import SysUser, Person
 
@@ -16,6 +16,7 @@ class AlarmZone(models.Model):
     name = CharField(max_length=50)
     description = TextField(blank=True)
     manager = ForeignKey(SysUser)
+    persons = ManyToManyField(Person)
 
     # ---== read only fields ==---
     # zone creation date
@@ -87,6 +88,7 @@ class AlarmOrder(models.Model):
     rule = ForeignKey(AlarmRule)
     user = ForeignKey(SysUser)
     grant_privilege = BooleanField(default=False)
+    executed = BooleanField(default=False)
 
     # ---== read only fields ==---
     # zone creation date

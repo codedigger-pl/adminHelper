@@ -46,6 +46,10 @@ class AlarmOrderViewset(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         self.serializer_class = ListAlarmOrderSerializer
+
+        if 'nonExecutedOnly' in request.QUERY_PARAMS:
+            self.queryset = AlarmOrder.objects.filter(executed=False)
+
         return super(AlarmOrderViewset, self).list(request, args, kwargs)
 
 
