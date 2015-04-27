@@ -23,11 +23,9 @@ class AlarmZoneViewset(viewsets.ModelViewSet):
 
     @detail_route(methods=['get'])
     def persons_count(self, request, pk):
-        # TODO: finish later...
         resp = {}
         zone = self.get_object()
-        rules = AlarmRule.objects.filter(zone__id=zone.id)
-        resp['count'] = -1
+        resp['count'] = zone.persons.count()
         return Response(resp)
 
 

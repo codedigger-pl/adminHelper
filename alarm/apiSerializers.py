@@ -18,12 +18,10 @@ class ListAlarmZoneSerializer(serializers.ModelSerializer):
     """Alarm zone serializer used to list zones"""
 
     manager = serializers.StringRelatedField()
-    # TODO: test it after migrate to normal database
-    # persons_count = serializers.ReadOnlyField(source="AlarmRule.objects.filter(zone_id=id).distinct('person')")
 
     class Meta:
         model = AlarmZone
-        fields = ('id', 'name', 'description', 'manager')
+        fields = ('id', 'name', 'description', 'manager', 'persons_count')
         read_only_fields = ('id')
 
 

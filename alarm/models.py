@@ -24,6 +24,10 @@ class AlarmZone(models.Model):
     creation_date_date = property(lambda self: self.creation_date.date())
     creation_date_time = property(lambda self: self.creation_date.time())
 
+    @property
+    def persons_count(self):
+        return self.persons.count()
+
     class Meta:
         verbose_name = 'Strefa systemu alarmowego'
         verbose_name_plural = 'Strefy systemu'
