@@ -90,7 +90,7 @@
                 {% verbatim %}
                 <tr ng-repeat="order in orders">
                     <td>
-                        <button type="button" class="btn-warning" ng-click="">Usuń</button>
+                        <button type="button" class="btn-warning" ng-click="deleteOrder(order.id)">Usuń</button>
                         <button type="button" class="btn-success" ng-click="">Oznacz jako zrealizowane</button>
                     </td>
                 </tr>

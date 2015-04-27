@@ -64,6 +64,13 @@ overviewController.controller 'AlarmOverviewController', [
           reqRequest.remove()
           $scope.updateRequestData()
 
+    $scope.deleteOrder = (orderID) ->
+      orderBase.get(orderID).then (orderRequest) ->
+        ruleBase.get(orderRequest.rule).then (ruleRequest) ->
+          ruleRequest.remove()
+          orderRequest.remove()
+          $scope.updateOrderData()
+
     $scope.updateZoneData()
     $scope.updateOrderData()
     $scope.updateRequestData()
