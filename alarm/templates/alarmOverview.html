@@ -63,13 +63,14 @@
             <button type="button" class="btn-default" ng-click="openAlarmOrderAddModal()">Dodaj</button>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-12">
             <table class="table table-responsive table-condensed table-hover text-left">
                 <tr>
                     <th>Lp</th>
                     <th>Nazwa strefy</th>
                     <th>Użytkownik</th>
                     <th>Rodzaj uprawnienia</th>
+                    <th>Akcje</th>
                 </tr>
                 {% verbatim %}
                 <tr ng-repeat="order in orders">
@@ -77,18 +78,6 @@
                     <td>{{ order.rule_zone }}</td>
                     <td>{{ order.rule_person }}</td>
                     <td>{{ order.grant_privilege ? 'Nadanie uprawnienia' : 'Odebranie uprawnienia' }}</td>
-                </tr>
-                {% endverbatim %}
-            </table>
-        </div>
-
-        <div class="col-md-2">
-            <table class="table table-responsive table-condensed table-hover text-left">
-                <tr>
-                    <th>Akcje</th>
-                </tr>
-                {% verbatim %}
-                <tr ng-repeat="order in orders">
                     <td>
                         <button type="button" class="btn-warning" ng-click="deleteOrder(order.id)">Usuń</button>
                         <button type="button" class="btn-success" ng-click="">Oznacz jako zrealizowane</button>
@@ -109,7 +98,7 @@
             <button type="button" class="btn-default" ng-click="openAlarmRequestAddModal()">Dodaj</button>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-12">
             <table class="table table-responsive table-condensed table-hover text-left">
                 <tr>
                     <th>Lp</th>
@@ -117,6 +106,7 @@
                     <th>Użytkownik</th>
                     <th>Rodzaj uprawnienia</th>
                     <th>Prośba od</th>
+                    <th>Akcje</th>
                 </tr>
                 {% verbatim %}
                 <tr ng-repeat="request in requests">
@@ -125,18 +115,6 @@
                     <td>{{ request.rule_person }}</td>
                     <td>{{ request.grant_privilege ? 'Nadanie uprawnienia' : 'Odebranie uprawnienia' }}</td>
                     <td>{{ request.user }}</td>
-                </tr>
-                {% endverbatim %}
-            </table>
-        </div>
-
-        <div class="col-md-2">
-            <table class="table table-responsive table-condensed table-hover text-left">
-                <tr>
-                    <th>Akcje</th>
-                </tr>
-                {% verbatim %}
-                <tr ng-repeat="request in requests">
                     <td>
                         <button type="button" class="btn-warning" ng-click="deleteRequest(request.id)">Odrzuć</button>
                         <button type="button" class="btn-success" ng-click="acceptRequest(request.id)">Zatwierdź</button>
