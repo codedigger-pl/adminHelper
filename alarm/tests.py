@@ -28,6 +28,7 @@ if ENABLE_E2E_TESTS:
     from .allTests.e2eTests.alarmOrderAdd import AlarmOrderAddTest
     from .allTests.e2eTests.alarmRequestAdd import AlarmRequestAddTest
     from .allTests.e2eTests.alarmRequestAccept import AlarmRequestAcceptTest
+    from .allTests.e2eTests.alarmRequestDelete import AlarmRequestDeleteTest
 
 
 class PEP8Test(TestCase):
