@@ -57,7 +57,11 @@ class AlarmOrderViewset(viewsets.ModelViewSet):
         order = self.get_object()
         order.executed = True
         order.save()
-        return Response({}, status=status.HTTP_200_OK)
+        person = order.rule.person
+        zone = order.rule.zone
+        zone.persons.add(person)
+        zone.save()
+        return Response({'result': 'user added to zone'}, status=status.HTTP_200_OK)
 
 
 class AlarmRequestViewset(viewsets.ModelViewSet):

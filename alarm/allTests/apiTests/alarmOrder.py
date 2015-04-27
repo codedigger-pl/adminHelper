@@ -6,8 +6,10 @@ from rest_framework import status
 from autofixture import AutoFixture
 
 from random import randint
+from time import sleep
 
-from alarm.models import AlarmOrder
+from alarm.models import AlarmOrder, AlarmRule, AlarmZone
+from users.models import Person
 
 
 class APIAlarmOrderTest(APITestCase):
@@ -66,8 +68,29 @@ class APIAlarmOrderTest(APITestCase):
 
     def test_execute_order(self):
         """Testing order execute"""
+        fixture = AutoFixture(Person, generate_fk=True)
+        persons = fixture.create(10)
+
+        fixture = AutoFixture(AlarmZone, generate_fk=True)
+        zone = fixture.create(1)[0]
+        zone.persons.clear()
+        zone.save()
+
+        fixture = AutoFixture(AlarmRule, generate_fk=True)
+        rules = fixture.create(10)
+        for person, rule in zip(persons, rules):
+            rule.person = person
+            rule.zone = zone
+            rule.save()
+
         fixture = AutoFixture(AlarmOrder, generate_fk=True)
         orders = fixture.create(10)
+
+        for order, rule in zip(orders, rules):
+            order.rule = rule
+            order.save()
+
+        self.assertEqual(0, zone.persons.count())
 
         for order in orders:
             self.assertFalse(order.executed)
@@ -79,3 +102,6 @@ class APIAlarmOrderTest(APITestCase):
         orders = AlarmOrder.objects.all()
         for order in orders:
             self.assertTrue(order.executed)
+
+        zone = AlarmZone.objects.get(id=zone.id)
+        self.assertEqual(10, zone.persons.count())
