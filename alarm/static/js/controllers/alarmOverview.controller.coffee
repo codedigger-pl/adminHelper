@@ -71,6 +71,10 @@ overviewController.controller 'AlarmOverviewController', [
           orderRequest.remove()
           $scope.updateOrderData()
 
+    $scope.executeOrder = (orderID) ->
+      orderBase.get(orderID).then (orderRequest) ->
+
+
     $scope.updateZoneData()
     $scope.updateOrderData()
     $scope.updateRequestData()

@@ -52,6 +52,13 @@ class AlarmOrderViewset(viewsets.ModelViewSet):
 
         return super(AlarmOrderViewset, self).list(request, args, kwargs)
 
+    @detail_route(methods=['post'])
+    def execute(self, request, pk):
+        order = self.get_object()
+        order.executed = True
+        order.save()
+        return Response({}, status=status.HTTP_200_OK)
+
 
 class AlarmRequestViewset(viewsets.ModelViewSet):
     """Alarm request API viewset"""

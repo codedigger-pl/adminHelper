@@ -64,3 +64,18 @@ class APIAlarmOrderTest(APITestCase):
         self.assertEqual(1, len(non_exec_response.data))
         self.assertEqual(21, len(response.data))
 
+    def test_execute_order(self):
+        """Testing order execute"""
+        fixture = AutoFixture(AlarmOrder, generate_fk=True)
+        orders = fixture.create(10)
+
+        for order in orders:
+            self.assertFalse(order.executed)
+
+        for order in orders:
+            resp = self.client.post(reverse('api:alarmorder-execute', kwargs={'pk': order.id}), {})
+            self.assertEqual(status.HTTP_200_OK, resp.status_code)
+
+        orders = AlarmOrder.objects.all()
+        for order in orders:
+            self.assertTrue(order.executed)
