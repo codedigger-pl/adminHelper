@@ -4,15 +4,14 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from subprocess import call
 from autofixture import AutoFixture
 
-from alarm.models import AlarmOrder, AlarmRequest, AlarmRule
-from users.models import SysUser, Person
+from alarm.models import AlarmRequest, AlarmRule
 from users.allTests.e2eTests.userLogin import create_test_user
 
 
 class AlarmRequestDeleteTest(StaticLiveServerTestCase):
     """All tests with nightwatch and Selenium server"""
 
-    def test_alarmrequest_accept_form(self):
+    def test_alarmrequest_delete(self):
         create_test_user()
 
         fixture = AutoFixture(AlarmRequest, generate_fk=True)

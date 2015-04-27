@@ -2,10 +2,8 @@
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from subprocess import call
-from autofixture import AutoFixture
 
 from alarm.models import AlarmZone
-from users.models import SysUser
 from users.allTests.e2eTests.userLogin import create_test_user
 
 
