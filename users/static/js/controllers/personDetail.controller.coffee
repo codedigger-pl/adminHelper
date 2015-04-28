@@ -12,9 +12,11 @@ overviewController.controller 'PersonDetailController', [
   'djangoForm'
   'Restangular'
   ($scope, $stateParams, djangoForm, Restangular) ->
-    base = Restangular.all('api/persons')
+    base = Restangular.one('api/persons', $stateParams.id)
 
-    $scope.person = base.get($stateParams.id).$object
+    $scope.person = base.get().$object
+    $scope.alarmZones = base.getList('alarm_zones').$object
+
     if not $scope.person.photo
       $scope.person.photo = '/static/img/unknown_user.jpg'
 

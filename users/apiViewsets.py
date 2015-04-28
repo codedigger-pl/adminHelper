@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.permissions import IsAuthenticated
 
+from alarm.models import AlarmZone
+
 from .models import PersonGroup, Person, SysUser
 
 from .filters import PersonFilter
@@ -113,6 +115,18 @@ class PersonViewset(viewsets.ModelViewSet):
         last_person = Person.objects.last()
         resp = {}
         resp['name'] = last_person.last_name + ' ' + last_person.first_name
+        return Response(resp, status=status.HTTP_200_OK)
+
+    @detail_route(methods=['get'])
+    def alarm_zones(self, request, pk):
+        person = self.get_object()
+        user_zones = AlarmZone.objects.filter(persons=person)
+        zones = AlarmZone.objects.all()
+        resp = []
+        for zone in zones:
+            resp.append({'id': zone.id,
+                         'name': zone.name,
+                         'has_access': zone in user_zones})
         return Response(resp, status=status.HTTP_200_OK)
 
 

@@ -7,6 +7,7 @@ from rest_framework import status
 from autofixture import AutoFixture
 from random import randint
 
+from alarm.models import AlarmZone
 from users.models import Person, SysUser
 
 
@@ -50,6 +51,25 @@ class APIPersonTest(APITestCase):
         resp = self.client.get(reverse('api:person-last-registered'))
         self.assertEqual(status.HTTP_200_OK, resp.status_code)
         self.assertEqual(last_registered.last_name + ' ' + last_registered.first_name, resp.data['name'])
+
+    def test_alarm_zone_list(self):
+        """Testing alarm zone lists, where some user has access"""
+        fixture = AutoFixture(Person, generate_fk=True)
+        person = fixture.create(1)[0]
+
+        resp = self.client.get(reverse('api:person-alarm-zones', kwargs={'pk': person.id}))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(0, len(resp.data))
+
+        fixture = AutoFixture(AlarmZone, generate_fk=True)
+        zones = fixture.create(10)
+        for zone in zones:
+            zone.persons.add(person)
+            zone.save()
+
+        resp = self.client.get(reverse('api:person-alarm-zones', kwargs={'pk': person.id}))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(10, len(resp.data))
 
 
 class APIPersonsTest_lastItems(APITestCase):
