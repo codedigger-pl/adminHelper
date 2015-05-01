@@ -3,7 +3,7 @@
 from django.test import TestCase
 import pep8
 
-ENABLE_E2E_TESTS = False
+ENABLE_E2E_TESTS = True
 
 # Enabling class tests
 from .allTests.classTests.alarmZone import AlarmZoneTest
@@ -24,13 +24,14 @@ from .allTests.apiTests.alarmRequest import APIAlarmRequestTest
 
 # Enabling WEB tests
 if ENABLE_E2E_TESTS:
-    from .allTests.e2eTests.alarmZoneAdd import AlarmZoneAddTest
-    from .allTests.e2eTests.alarmOrderAdd import AlarmOrderAddTest
-    from .allTests.e2eTests.alarmRequestAdd import AlarmRequestAddTest
-    from .allTests.e2eTests.alarmRequestAccept import AlarmRequestAcceptTest
-    from .allTests.e2eTests.alarmRequestDelete import AlarmRequestDeleteTest
-    from .allTests.e2eTests.alarmOrderDelete import AlarmOrderDeleteTest
-    from .allTests.e2eTests.alarmOrderExecute import AlarmOrderExecuteTest
+    # from .allTests.e2eTests.alarmZoneAdd import AlarmZoneAddTest
+    # from .allTests.e2eTests.alarmOrderAdd import AlarmOrderAddTest
+    # from .allTests.e2eTests.alarmRequestAdd import AlarmRequestAddTest
+    # from .allTests.e2eTests.alarmRequestAccept import AlarmRequestAcceptTest
+    # from .allTests.e2eTests.alarmRequestDelete import AlarmRequestDeleteTest
+    # from .allTests.e2eTests.alarmOrderDelete import AlarmOrderDeleteTest
+    # from .allTests.e2eTests.alarmOrderExecute import AlarmOrderExecuteTest
+    from .allTests.e2eTests.alarmOrderAddFromPerson import AlarmOrderAddFromPerson
 
 
 class PEP8Test(TestCase):

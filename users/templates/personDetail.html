@@ -177,11 +177,11 @@
                         <td>
                             <button type="button"
                                     class="{{ alarmZone.has_access ? 'btn-default' : 'btn-success' }}"
-                                    ng-click=""
+                                    ng-click="addToAlarmZone(alarmZone.id, true)"
                                     ng-disabled="{{ alarmZone.has_access }}">Nadaj uprawnienie</button>
                             <button type="button"
                                     class="{{ alarmZone.has_access ? 'btn-danger' : 'btn-default' }}"
-                                    ng-click=""
+                                    ng-click="addToAlarmZone(alarmZone.id, false)"
                                     ng-disabled="{{ !(alarmZone.has_access) }}">Odbierz uprawnienie</button>
                         </td>
                     </tr>

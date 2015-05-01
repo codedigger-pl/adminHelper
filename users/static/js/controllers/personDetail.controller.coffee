@@ -11,8 +11,13 @@ overviewController.controller 'PersonDetailController', [
   '$stateParams'
   'djangoForm'
   'Restangular'
-  ($scope, $stateParams, djangoForm, Restangular) ->
+  'sessionFactory'
+  ($scope, $stateParams, djangoForm, Restangular, sessionFactory) ->
     base = Restangular.one('api/persons', $stateParams.id)
+    alarmOrderBase = Restangular.all('api/alarmOrders')
+    alarmRequestBase = Restangular.all('api/alarmRequests')
+    alarmRuleBase = Restangular.all('api/alarmRules')
+    alarmZoneBase = Restangular.all('api/alarmZones')
 
     $scope.person = base.get().$object
     $scope.alarmZones = base.getList('alarm_zones').$object
@@ -48,4 +53,23 @@ overviewController.controller 'PersonDetailController', [
     $scope.updatePhoto = ->
       # FormData: only by PUT request?
       console.log('updatePhoto called')
+
+    $scope.addToAlarmZone = (zoneID, grant) ->
+      personID = $stateParams.id
+
+      alarmZoneBase.get(zoneID).then (zone) ->
+        ruleResp = alarmRuleBase.post
+          person: personID
+          zone: zone.id
+        ruleResp.then (ruleResp) ->
+          currBase = null
+          if sessionFactory.user.id == zone.manager
+            currBase = alarmOrderBase
+          else
+            currBase = alarmRequestBase
+          currBase.post
+            rule: ruleResp.id
+            user: sessionFactory.user.id
+            grant_privilege: grant
+
 ]
