@@ -14,8 +14,10 @@ overviewController.controller 'AlarmOverviewController', [
   'sessionFactory'
   ($scope, $state, Restangular, alarmModalFactory, sessionFactory) ->
 
-    if not sessionFactory.user
-      $state.go('login')
+    sessionFactory.get_logged_user().then \
+      (resp) -> sessionFactory.get_user_data(resp.id)
+      ,
+      () -> $state.go('login')
 
     zoneBase = Restangular.all('api/alarmZones')
     orderBase = Restangular.all('api/alarmOrders')

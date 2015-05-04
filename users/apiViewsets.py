@@ -174,3 +174,12 @@ class UserViewset(viewsets.ModelViewSet):
             return Response(resp, status=status.HTTP_200_OK)
 
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
+    @list_route(methods=['get'])
+    def logged_user(self, request):
+        if request.user.is_anonymous():
+            return Response({}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            resp = {}
+            resp['id'] = request.user.id
+            return Response(resp, status=status.HTTP_200_OK)

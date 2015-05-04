@@ -76,3 +76,21 @@ class APISysUserTest(APITestCase):
         resp = self.client.post(reverse('api:sysuser-login'), {'username': 'user', 'password': 'user'})
         self.assertEqual(status.HTTP_200_OK, resp.status_code)
         self.assertEqual(user.id, resp.data['id'])
+
+    def test_logged_user(self):
+        fixture = AutoFixture(SysUser)
+        user = fixture.create(1)[0]
+        user.username = 'user'
+        user.set_password('user')
+        user.save()
+
+        resp = self.client.get(reverse('api:sysuser-logged-user'))
+        self.assertEqual(status.HTTP_401_UNAUTHORIZED,
+                         resp.status_code,
+                         'Some user is already logged in')
+
+        self.client.post(reverse('api:sysuser-login'), {'username': 'user', 'password': 'user'})
+        resp = self.client.get(reverse('api:sysuser-logged-user'))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(user.id, resp.data['id'])
+

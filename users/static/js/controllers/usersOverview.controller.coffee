@@ -14,8 +14,10 @@ overviewController.controller 'UsersOverviewController', [
   'sessionFactory'
   ($scope, $state, Restangular, modalFactory, sessionFactory) ->
 
-    if not sessionFactory.user
-      $state.go('login')
+    sessionFactory.get_logged_user().then \
+      (resp) -> sessionFactory.get_user_data(resp.id)
+      ,
+      () -> $state.go('login')
 
     class ItemInfo
       constructor: (url) ->

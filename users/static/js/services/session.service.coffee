@@ -11,7 +11,6 @@ module.factory 'sessionFactory', [
         @user = null
         $http.defaults.xsrfCookieName = 'csrftoken'
         $http.defaults.xsrfHeaderName = 'X-CSRFToken'
-#        Restangular.setDefaultHeaders({'X-CSRFToken': $cookies.csrftoken})
         @all_base = Restangular.all('api/users')
         @login_base = Restangular.all('api/users/login')
 
@@ -22,4 +21,7 @@ module.factory 'sessionFactory', [
 
       get_user_data: (id) ->
         @user = @all_base.get(id).$object
+
+      get_logged_user: ->
+        @all_base.get('logged_user')
 ]
