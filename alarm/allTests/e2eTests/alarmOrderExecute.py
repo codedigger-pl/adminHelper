@@ -15,12 +15,17 @@ class AlarmOrderExecuteTest(StaticLiveServerTestCase):
         create_test_user()
 
         fixture = AutoFixture(AlarmOrder, generate_fk=True)
-        fixture.create(1)
+        order = fixture.create(1)[0]
+        order.grant_privilege = True
+        order.save()
+
         zone = AlarmZone.objects.all()[0]
         zone.persons.clear()
         zone.save()
+
         self.assertEqual(0,
                          call('nightwatch --test alarm/allTests/e2eTests/alarmOrderExecute.js', shell=True),
                          'Nighwatch tests failed')
+
         zone = AlarmZone.objects.all()[0]
         self.assertEqual(1, zone.persons.count())

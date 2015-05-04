@@ -88,6 +88,7 @@ class APIAlarmOrderTest(APITestCase):
 
         for order, rule in zip(orders, rules):
             order.rule = rule
+            order.grant_privilege = True
             order.save()
 
         self.assertEqual(0, zone.persons.count())

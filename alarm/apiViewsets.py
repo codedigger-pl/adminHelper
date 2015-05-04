@@ -57,7 +57,10 @@ class AlarmOrderViewset(viewsets.ModelViewSet):
         order.save()
         person = order.rule.person
         zone = order.rule.zone
-        zone.persons.add(person)
+        if order.grant_privilege:
+            zone.persons.add(person)
+        else:
+            zone.persons.remove(person)
         zone.save()
         return Response({'result': 'user added to zone'}, status=status.HTTP_200_OK)
 
