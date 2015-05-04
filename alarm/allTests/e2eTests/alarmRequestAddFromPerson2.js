@@ -16,10 +16,10 @@ module.exports = {
             .click("//span[text()='Dostęp do stref systemu alarmowego']")
             .useCss()
     },
-    'adding new rule': function (browser) {
+    'adding new rules': function (browser) {
         browser
-            .waitForElementVisible('button[ng-click="addToAlarmZone(alarmZone.id, true)"]', 2000)
-            .click('button[ng-click="addToAlarmZone(alarmZone.id, true)"]')
+            .waitForElementVisible('button[ng-click="addToAlarmZone(alarmZone.id, false)"]', 2000)
+            .click('button[ng-click="addToAlarmZone(alarmZone.id, false)"]')
             .pause(500)
             .end()
     }

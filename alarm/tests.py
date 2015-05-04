@@ -33,6 +33,8 @@ if ENABLE_E2E_TESTS:
     from .allTests.e2eTests.alarmOrderExecute import AlarmOrderExecuteTest
     from .allTests.e2eTests.alarmOrderAddFromPerson import AlarmOrderAddFromPerson
     from .allTests.e2eTests.alarmRequestAddFromPerson import AlarmRequestAddFromPerson
+    from .allTests.e2eTests.alarmRequestAddFromPerson2 import AlarmRequestAddFromPerson_Deny
+    from .allTests.e2eTests.alarmOrderAddFromPerson2 import AlarmOrderAddFromPerson_Deny
 
 
 class PEP8Test(TestCase):
