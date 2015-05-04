@@ -9,16 +9,19 @@ from users.models import SysUser, Person
 from users.allTests.e2eTests.userLogin import create_test_user
 
 
-class AlarmOrderAddFromPerson(StaticLiveServerTestCase):
+class AlarmRequestAddFromPerson(StaticLiveServerTestCase):
     """All tests with nightwatch and Selenium server"""
 
-    def test_alarm_order_from_person_page(self):
+    def test_alarm_request_from_person_page(self):
         create_test_user()
-        user = SysUser.objects.last()
+        user_1 = SysUser.objects.last()
+
+        fixture = AutoFixture(SysUser, generate_fk=True)
+        user_2 = fixture.create(1)[0]
 
         fixture = AutoFixture(AlarmZone, generate_fk=True)
         zone = fixture.create(1)[0]
-        zone.manager = user
+        zone.manager = user_2
         zone.save()
 
         fixture = AutoFixture(Person, generate_fk=True)
@@ -28,10 +31,9 @@ class AlarmOrderAddFromPerson(StaticLiveServerTestCase):
                          call('nightwatch --test alarm/allTests/e2eTests/alarmOrderAddFromPerson.js', shell=True),
                          'Nighwatch tests failed')
 
-        print('Po wywołaniu nightwatch')
-        order = AlarmOrder.objects.all()[0]
-        rule = order.rule
-        self.assertEqual(order.user, user)
-        self.assertTrue(order.grant_privilege)
+        request = AlarmRequest.objects.all()[0]
+        rule = request.rule
+        self.assertEqual(request.user, user_1)
+        self.assertTrue(request.grant_privilege)
         self.assertEqual(rule.person, person)
         self.assertEqual(rule.zone, zone)
