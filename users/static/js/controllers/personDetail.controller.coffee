@@ -19,8 +19,14 @@ overviewController.controller 'PersonDetailController', [
     alarmRuleBase = Restangular.all('api/alarmRules')
     alarmZoneBase = Restangular.all('api/alarmZones')
 
+    ACSOrderBase = Restangular.all('api/ACSOrders')
+    ACSRequestBase = Restangular.all('api/ACSRequests')
+    ACSRuleBase = Restangular.all('api/ACSRules')
+    ACSZoneBase = Restangular.all('api/ACSZones')
+
     $scope.person = base.get().$object
     $scope.alarmZones = base.getList('alarm_zones').$object
+    $scope.ACSZones = base.getList('acs_zones').$object
 
     if not $scope.person.photo
       $scope.person.photo = '/static/img/unknown_user.jpg'
@@ -67,6 +73,24 @@ overviewController.controller 'PersonDetailController', [
             currBase = alarmOrderBase
           else
             currBase = alarmRequestBase
+          currBase.post
+            rule: ruleResp.id
+            user: sessionFactory.user.id
+            grant_privilege: grant
+
+    $scope.addToACSZone = (zoneID, grant) ->
+      personID = $stateParams.id
+
+      ACSZoneBase.get(zoneID).then (zone) ->
+        ruleResp = ACSRuleBase.post
+          person: personID
+          zone: zone.id
+        ruleResp.then (ruleResp) ->
+          currBase = null
+          if sessionFactory.user.id == zone.manager
+            currBase = ACSOrderBase
+          else
+            currBase = ACSRequestBase
           currBase.post
             rule: ruleResp.id
             user: sessionFactory.user.id

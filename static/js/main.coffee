@@ -16,7 +16,8 @@ mainApp = angular.module 'adminHelper', [
   'ui.router'
   'restangular'
   'adminHelper.users'
-  'adminHelper.alarm']
+  'adminHelper.alarm'
+  'adminHelper.ACS']
 
 mainApp.config [
   '$stateProvider'
@@ -67,7 +68,7 @@ mainApp.config [
     $stateProvider.state 'acs',
       url: '/acs'
       templateUrl: '/acs/overview'
-      controller: 'UsersOverviewController'
+      controller: 'ACSOverviewController'
 
     $stateProvider.state 'keys',
       url: '/keys'

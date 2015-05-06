@@ -8,6 +8,7 @@ from autofixture import AutoFixture
 from random import randint
 
 from alarm.models import AlarmZone
+from acs.models import ACSZone
 from users.models import Person, SysUser
 
 
@@ -68,6 +69,25 @@ class APIPersonTest(APITestCase):
             zone.save()
 
         resp = self.client.get(reverse('api:person-alarm-zones', kwargs={'pk': person.id}))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(10, len(resp.data))
+
+    def test_ACS_zone_list(self):
+        """Testing ACS zone lists, where some user has access"""
+        fixture = AutoFixture(Person, generate_fk=True)
+        person = fixture.create(1)[0]
+
+        resp = self.client.get(reverse('api:person-acs-zones', kwargs={'pk': person.id}))
+        self.assertEqual(status.HTTP_200_OK, resp.status_code)
+        self.assertEqual(0, len(resp.data))
+
+        fixture = AutoFixture(ACSZone, generate_fk=True)
+        zones = fixture.create(10)
+        for zone in zones:
+            zone.persons.add(person)
+            zone.save()
+
+        resp = self.client.get(reverse('api:person-acs-zones', kwargs={'pk': person.id}))
         self.assertEqual(status.HTTP_200_OK, resp.status_code)
         self.assertEqual(10, len(resp.data))
 

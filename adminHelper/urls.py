@@ -8,6 +8,7 @@ from rest_framework.routers import DefaultRouter
 from users.views import UserHomepage
 from users.apiViewsets import PersonGroupViewset, PersonViewset, UserViewset
 from alarm.apiViewsets import AlarmZoneViewset, AlarmOrderViewset, AlarmRuleViewset, AlarmRequestViewset
+from acs.apiViewsets import ACSOrderViewset, ACSRequestViewset, ACSRuleViewset, ACSZoneViewset
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'personGroups', PersonGroupViewset)
@@ -19,6 +20,11 @@ router.register(r'alarmRules', AlarmRuleViewset)
 router.register(r'alarmOrders', AlarmOrderViewset)
 router.register(r'alarmRequests', AlarmRequestViewset)
 
+router.register(r'ACSZones', ACSZoneViewset)
+router.register(r'ACSRules', ACSRuleViewset)
+router.register(r'ACSOrders', ACSOrderViewset)
+router.register(r'ACSRequests', ACSRequestViewset)
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'adminHelper.views.home', name='home'),
@@ -28,6 +34,7 @@ urlpatterns = patterns('',
 
     url(r'^users/', include('users.urls')),
     url(r'^alarm/', include('alarm.urls')),
+    url(r'^acs/', include('acs.urls')),
 
     # including API urls
     url(r'^api/', include(router.urls, namespace='api')),

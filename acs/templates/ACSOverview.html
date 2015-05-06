@@ -1,0 +1,104 @@
+<div ui-view>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a ui-sref='users.person_list'><h3>Strefy systemu kontroli dostępu</h3></a>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn-default" ng-click="updateZoneData()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openACSZoneAddModal()">Dodaj</button>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa strefy</th>
+                    <th>Opis strefy</th>
+                    <th>Osoba zarządzająca</th>
+                    <th>Ilość użytkowników</th>
+                </tr>
+                {% verbatim %}
+                <tr ng-repeat="zone in zones">
+                    <td>{{ $index +1 }}</td>
+                    <td>{{ zone.name }}</td>
+                    <td>{{ zone.description }}</td>
+                    <td>{{ zone.manager }}</td>
+                    <td>{{ zone.persons_count }}</td>
+                </tr>
+                {% endverbatim %}
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a ui-sref='users.person_list'><h3>Polecenia zmiany uprawnień (niezrealizowane)</h3></a>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn-default" ng-click="updateOrderData()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openACSOrderAddModal()">Dodaj</button>
+        </div>
+
+        <div class="col-md-12">
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa strefy</th>
+                    <th>Użytkownik</th>
+                    <th>Rodzaj uprawnienia</th>
+                    <th>Akcje</th>
+                </tr>
+                {% verbatim %}
+                <tr ng-repeat="order in orders">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ order.rule_zone }}</td>
+                    <td>{{ order.rule_person }}</td>
+                    <td>{{ order.grant_privilege ? 'Nadanie uprawnienia' : 'Odebranie uprawnienia' }}</td>
+                    <td>
+                        <button type="button" class="btn-warning" ng-click="deleteOrder(order.id)">Usuń</button>
+                        <button type="button" class="btn-success" ng-click="executeOrder(order.id)">Oznacz jako zrealizowane</button>
+                    </td>
+                </tr>
+                {% endverbatim %}
+            </table>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a ui-sref='users.person_list'><h3>Prośby zmiany uprawnień (niezatwierdzone)</h3></a>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn-default" ng-click="updateRequestData()">Odśwież</button>
+            <button type="button" class="btn-default" ng-click="openACSRequestAddModal()">Dodaj</button>
+        </div>
+
+        <div class="col-md-12">
+            <table class="table table-responsive table-condensed table-hover text-left">
+                <tr>
+                    <th>Lp</th>
+                    <th>Nazwa strefy</th>
+                    <th>Użytkownik</th>
+                    <th>Rodzaj uprawnienia</th>
+                    <th>Prośba od</th>
+                    <th>Akcje</th>
+                </tr>
+                {% verbatim %}
+                <tr ng-repeat="request in requests">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ request.rule_zone }}</td>
+                    <td>{{ request.rule_person }}</td>
+                    <td>{{ request.grant_privilege ? 'Nadanie uprawnienia' : 'Odebranie uprawnienia' }}</td>
+                    <td>{{ request.user }}</td>
+                    <td>
+                        <button type="button" class="btn-warning" ng-click="deleteRequest(request.id)">Odrzuć</button>
+                        <button type="button" class="btn-success" ng-click="acceptRequest(request.id)">Zatwierdź</button>
+                    </td>
+                </tr>
+                {% endverbatim %}
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -192,6 +192,31 @@
 
         <accordion-group is-open="false">
             <accordion-heading>Dostęp do stref systemu kontroli dostępu</accordion-heading>
+            <div class="col-md-12">
+                <table class="table table-responsive table-condensed table-hover text-left">
+                    <tr>
+                        <th>Nr</th>
+                        <th>Nazwa</th>
+                        <th>Akcja</th>
+                    </tr>
+                    {% verbatim %}
+                    <tr ng-repeat="ACSZone in ACSZones">
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ ACSZone.name }}</td>
+                        <td>
+                            <button type="button"
+                                    class="{{ ACSZone.has_access ? 'btn-default' : 'btn-success' }}"
+                                    ng-click="addToACSZone(ACSZone.id, true)"
+                                    ng-disabled="{{ ACSZone.has_access }}">Nadaj uprawnienie</button>
+                            <button type="button"
+                                    class="{{ ACSZone.has_access ? 'btn-danger' : 'btn-default' }}"
+                                    ng-click="addToACSZone(ACSZone.id, false)"
+                                    ng-disabled="{{ !(ACSZone.has_access) }}">Odbierz uprawnienie</button>
+                        </td>
+                    </tr>
+                    {% endverbatim %}
+                </table>
+            </div>
         </accordion-group>
 
         <accordion-group is-open="false">

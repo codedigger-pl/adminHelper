@@ -3,43 +3,60 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.db.models import ForeignKey, CharField, BooleanField, DateTimeField
+from django.db.models import ForeignKey, CharField, BooleanField, DateTimeField, TextField, ManyToManyField
 
-from users.models import Person, SysUser
+from users.models import SysUser, Person
+
 
 class ACSZone(models.Model):
     """ Class ACSZone
 
-    Class represent Access Control System Zone - zone, where Person can get in
+    Describes ACS zone: somewhere, where user can get in or out, ...
     """
     name = CharField(max_length=50)
+    description = TextField(blank=True)
     manager = ForeignKey(SysUser)
+    persons = ManyToManyField(Person)
+
+    # ---== read only fields ==---
+    # zone creation date
+    creation_date = DateTimeField(auto_now_add=True)
+    creation_date_date = property(lambda self: self.creation_date.date())
+    creation_date_time = property(lambda self: self.creation_date.time())
+
+    @property
+    def persons_count(self):
+        return self.persons.count()
 
     class Meta:
-        verbose_name = 'Strefa systemu KD'
+        verbose_name = 'Strefa systemu ACSowego'
         verbose_name_plural = 'Strefy systemu'
 
     def __str__(self):
-        """String repr"""
         return self.name
 
 
 class ACSRule(models.Model):
     """ Class ACSRule
 
-    Many-to-many table. Entry in this table allowing person get in to the ACSZone
+    Many-to-many table. Entry in this table allowing user manipulating with ACSZone
     """
     person = ForeignKey(Person)
     zone = ForeignKey(ACSZone)
     confirmed = BooleanField(default=False)
 
+    # ---== read only fields ==---
+    # zone creation date
+    creation_date = DateTimeField(auto_now_add=True)
+    creation_date_date = property(lambda self: self.creation_date.date())
+    creation_date_time = property(lambda self: self.creation_date.time())
+
     class Meta:
         verbose_name = 'Uprawnienie'
         verbose_name_plural = 'Uprawnienia'
 
-    def __str__(self):
-        """String repr"""
-        return '%s %s -> %s' % (self.person.firstName, self.person.lastName, self.zone.name)
+    def __str___(self):
+        return '%s %s -> %s' % (self.user.firstName, self.user.lastName, self.zone.name)
 
 
 class ACSRequest(models.Model):
@@ -50,7 +67,13 @@ class ACSRequest(models.Model):
     rule = ForeignKey(ACSRule)
     user = ForeignKey(SysUser)
     creationDate = DateTimeField(auto_now_add=True)
-    addRule = BooleanField(default=True)
+    grant_privilege = BooleanField(default=True)
+
+    # ---== read only fields ==---
+    # zone creation date
+    creation_date = DateTimeField(auto_now_add=True)
+    creation_date_date = property(lambda self: self.creation_date.date())
+    creation_date_time = property(lambda self: self.creation_date.time())
 
     class Meta:
         verbose_name = 'Prośba zmiany uprawnień'
@@ -58,7 +81,7 @@ class ACSRequest(models.Model):
 
     def __str__(self):
         """String repr"""
-        return '%s %s -> %s' % (self.user.first_name, self.user.last_name, self.rule.zone.name)
+        return '%s -> %s' % (self.user, self.rule.zone.name)
 
 
 class ACSOrder(models.Model):
@@ -68,8 +91,14 @@ class ACSOrder(models.Model):
     """
     rule = ForeignKey(ACSRule)
     user = ForeignKey(SysUser)
-    creationDate = DateTimeField(auto_now_add=True)
-    addRule = BooleanField(default=True)
+    grant_privilege = BooleanField(default=False)
+    executed = BooleanField(default=False)
+
+    # ---== read only fields ==---
+    # zone creation date
+    creation_date = DateTimeField(auto_now_add=True)
+    creation_date_date = property(lambda self: self.creation_date.date())
+    creation_date_time = property(lambda self: self.creation_date.time())
 
     class Meta:
         verbose_name = 'Polecenie zmiany uprawnień'

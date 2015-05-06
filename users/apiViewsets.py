@@ -8,6 +8,7 @@ from rest_framework.decorators import detail_route, list_route
 from rest_framework.permissions import IsAuthenticated
 
 from alarm.models import AlarmZone
+from acs.models import ACSZone
 
 from .models import PersonGroup, Person, SysUser
 
@@ -122,6 +123,18 @@ class PersonViewset(viewsets.ModelViewSet):
         person = self.get_object()
         user_zones = AlarmZone.objects.filter(persons=person)
         zones = AlarmZone.objects.all()
+        resp = []
+        for zone in zones:
+            resp.append({'id': zone.id,
+                         'name': zone.name,
+                         'has_access': zone in user_zones})
+        return Response(resp, status=status.HTTP_200_OK)
+
+    @detail_route(methods=['get'])
+    def acs_zones(self, request, pk):
+        person = self.get_object()
+        user_zones = ACSZone.objects.filter(persons=person)
+        zones = ACSZone.objects.all()
         resp = []
         for zone in zones:
             resp.append({'id': zone.id,
