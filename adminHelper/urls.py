@@ -9,6 +9,7 @@ from users.views import UserHomepage
 from users.apiViewsets import PersonGroupViewset, PersonViewset, UserViewset
 from alarm.apiViewsets import AlarmZoneViewset, AlarmOrderViewset, AlarmRuleViewset, AlarmRequestViewset
 from acs.apiViewsets import ACSOrderViewset, ACSRequestViewset, ACSRuleViewset, ACSZoneViewset
+from key.apiViewsets import KeyViewset, KeyOrderViewset, KeyRequestViewset, KeyRuleViewset
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'personGroups', PersonGroupViewset)
@@ -25,6 +26,12 @@ router.register(r'ACSRules', ACSRuleViewset)
 router.register(r'ACSOrders', ACSOrderViewset)
 router.register(r'ACSRequests', ACSRequestViewset)
 
+router.register(r'keys', KeyViewset)
+router.register(r'keyRules', KeyRuleViewset)
+router.register(r'keyOrders', KeyOrderViewset)
+router.register(r'keyRequests', KeyRequestViewset)
+
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'adminHelper.views.home', name='home'),
@@ -35,6 +42,7 @@ urlpatterns = patterns('',
     url(r'^users/', include('users.urls')),
     url(r'^alarm/', include('alarm.urls')),
     url(r'^acs/', include('acs.urls')),
+    url(r'^key/', include('key.urls')),
 
     # including API urls
     url(r'^api/', include(router.urls, namespace='api')),

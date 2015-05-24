@@ -17,7 +17,8 @@ mainApp = angular.module 'adminHelper', [
   'restangular'
   'adminHelper.users'
   'adminHelper.alarm'
-  'adminHelper.ACS']
+  'adminHelper.ACS'
+  'adminHelper.key']
 
 mainApp.config [
   '$stateProvider'
@@ -70,10 +71,10 @@ mainApp.config [
       templateUrl: '/acs/overview'
       controller: 'ACSOverviewController'
 
-    $stateProvider.state 'keys',
+    $stateProvider.state 'key',
       url: '/keys'
-      templateUrl: '/keys/overview'
-      controller: 'UsersOverviewController'
+      templateUrl: '/key/overview'
+      controller: 'KeyOverviewController'
 ]
 
 # Main controller
@@ -87,6 +88,6 @@ mainApp.controller 'MainController', ['$scope', ($scope) ->
   $scope.tabs.push(new Page('Użytkownicy i pracownicy', '/users/overview', 'users'))
   $scope.tabs.push(new Page('System alarmowy', '/alarm/overview', 'alarm'))
   $scope.tabs.push(new Page('System kontroli dostępu', '/acs/overview', 'acs'))
-  $scope.tabs.push(new Page('Klucze', '/keys/overview', 'keys'))
+  $scope.tabs.push(new Page('Klucze', '/keys/overview', 'key'))
 
 ]

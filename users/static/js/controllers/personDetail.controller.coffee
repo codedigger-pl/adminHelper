@@ -24,9 +24,15 @@ overviewController.controller 'PersonDetailController', [
     ACSRuleBase = Restangular.all('api/ACSRules')
     ACSZoneBase = Restangular.all('api/ACSZones')
 
+    keyOrderBase = Restangular.all('api/keyOrders')
+    keyRequestBase = Restangular.all('api/keyRequests')
+    keyRuleBase = Restangular.all('api/keyRules')
+    keyBase = Restangular.all('api/keys')
+
     $scope.person = base.get().$object
     $scope.alarmZones = base.getList('alarm_zones').$object
     $scope.ACSZones = base.getList('acs_zones').$object
+    $scope.keys = base.getList('keys').$object
 
     if not $scope.person.photo
       $scope.person.photo = '/static/img/unknown_user.jpg'
@@ -91,6 +97,24 @@ overviewController.controller 'PersonDetailController', [
             currBase = ACSOrderBase
           else
             currBase = ACSRequestBase
+          currBase.post
+            rule: ruleResp.id
+            user: sessionFactory.user.id
+            grant_privilege: grant
+
+    $scope.addToKey = (keyID, grant) ->
+      personID = $stateParams.id
+
+      keyBase.get(keyID).then (key) ->
+        ruleResp = keyRuleBase.post
+          person: personID
+          key: key.id
+        ruleResp.then (ruleResp) ->
+          currBase = null
+          if sessionFactory.user.id == key.manager
+            currBase = keyOrderBase
+          else
+            currBase = keyRequestBase
           currBase.post
             rule: ruleResp.id
             user: sessionFactory.user.id

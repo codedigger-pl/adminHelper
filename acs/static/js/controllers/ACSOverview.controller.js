@@ -14,7 +14,6 @@
   overviewController.controller('ACSOverviewController', [
     '$scope', '$state', 'Restangular', 'ACSModalFactory', 'sessionFactory', function($scope, $state, Restangular, ACSModalFactory, sessionFactory) {
       var orderBase, requestBase, ruleBase, zoneBase;
-      console.log('loaded');
       sessionFactory.get_logged_user().then(function(resp) {
         return sessionFactory.get_user_data(resp.id);
       }, function() {

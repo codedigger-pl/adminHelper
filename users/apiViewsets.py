@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from alarm.models import AlarmZone
 from acs.models import ACSZone
+from key.models import Key
 
 from .models import PersonGroup, Person, SysUser
 
@@ -140,6 +141,18 @@ class PersonViewset(viewsets.ModelViewSet):
             resp.append({'id': zone.id,
                          'name': zone.name,
                          'has_access': zone in user_zones})
+        return Response(resp, status=status.HTTP_200_OK)
+
+    @detail_route(methods=['get'])
+    def keys(self, request, pk):
+        person = self.get_object()
+        user_keys = Key.objects.filter(persons=person)
+        keys = Key.objects.all()
+        resp = []
+        for key in keys:
+            resp.append({'id': key.id,
+                         'name': key.name,
+                         'has_access': key in user_keys})
         return Response(resp, status=status.HTTP_200_OK)
 
 

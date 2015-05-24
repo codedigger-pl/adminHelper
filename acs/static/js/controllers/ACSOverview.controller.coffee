@@ -13,7 +13,6 @@ overviewController.controller 'ACSOverviewController', [
   'ACSModalFactory'
   'sessionFactory'
   ($scope, $state, Restangular, ACSModalFactory, sessionFactory) ->
-    console.log('loaded')
 
     sessionFactory.get_logged_user().then \
       (resp) -> sessionFactory.get_user_data(resp.id)

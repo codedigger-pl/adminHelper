@@ -2,10 +2,9 @@
 
 # -*- coding: utf-8 -*-
 
-
 from django.contrib import admin
 
-from .models import Key, KeyConfirm, KeyOrder, KeyRequest, KeyRule
+from .models import KeyConfirm, KeyOrder, KeyRequest, KeyRule, Key
 
 admin.site.register(Key)
 admin.site.register(KeyRule)
